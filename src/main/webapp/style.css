@@ -8,3 +8,16 @@ and open the template in the editor.
     Author     : Fabian Hupe
 */
 
+header{
+    display:    block;
+    background-color: grey;
+}
+
+header #title{
+    font-weight: bold;
+    width: 90%;
+}
+
+.square{
+    align-content:  center;
+}

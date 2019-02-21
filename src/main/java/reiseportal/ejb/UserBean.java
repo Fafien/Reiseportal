@@ -5,7 +5,11 @@
  */
 package reiseportal.ejb;
 
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import reiseportal.jpa.Useraccount;
 
 /**
  *
@@ -14,6 +18,39 @@ import javax.ejb.Stateless;
 @Stateless
 public class UserBean {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @PersistenceContext
+    EntityManager em;
+    
+
+    public Useraccount createNewUser(String firstname, String lastname, String email, String password, String username) {
+        Useraccount user = new Useraccount(firstname, lastname, email, password, username);
+        em.persist(user);
+        return em.merge(user);
+    }
+    
+    public Useraccount findUserbyID(String id) {
+        return em.find(Useraccount.class, id);
+    }
+    
+    public List<Useraccount> findUserByEmailOrUsername(String email, String username){
+        return em.createQuery("SELECT u FROM Useraccount u WHERE u.email = :email OR u.username = :username")
+                .setParameter("email", email)
+                .setParameter("username", username)
+                .getResultList();
+    }
+    
+    public Useraccount deleteUser(long id) {
+        Useraccount user = em.find(Useraccount.class, id);
+        
+        if (user != null) {
+            em.remove(user);
+        }
+        
+        return user;
+    }
+    
+    public Useraccount updateUser(Useraccount user) {
+        return em.merge(user);
+    }
+
 }
