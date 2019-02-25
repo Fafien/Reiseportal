@@ -19,7 +19,7 @@
                         <label for="firstname">Vorname:</label>
                     </td>
                     <td>
-                        <input name="firstname" value="${user_form.firtsname}"
+                        <input name="firstname" value="${firstname}"
                     </td>
                 </tr>
                 <tr>
@@ -27,7 +27,7 @@
                         <label for="lastname">Nachname:</label>
                     </td>
                     <td>
-                        <input name="lastname" value="${user_form.lastname}"
+                        <input name="lastname" value="${lastname}"
                     </td>
                 </tr>
                 <tr>
@@ -35,7 +35,7 @@
                         <label for="email">E-Mail:</label>
                     </td>
                     <td>
-                        <input name="email" value="${user_form.email}"
+                        <input type="email" name="email" value="${email}"
                     </td>
                 </tr>
                 <tr>
@@ -43,7 +43,7 @@
                         <label for="emailb">E-Mail bestätigen:</label>
                     </td>
                     <td>
-                        <input name="emailb" value="${user_form.emailb}"
+                        <input type="email" name="emailb" value="${emailb}"
                     </td>
                 </tr>
                 <tr>
@@ -51,7 +51,7 @@
                         <label for="username">Username</label>
                     </td>
                     <td>
-                        <input name="username" value="${user_form.username}"
+                        <input name="username" value="${username}"
                     </td>
                 </tr>
                 <tr>
@@ -59,7 +59,7 @@
                         <label for="password">Passwort:</label>
                     </td>
                     <td>
-                        <input type="password" name="password" value="${user_form.password}"
+                        <input type="password" name="password" value="${password}"
                     </td>
                 </tr>
                 <tr>
@@ -67,7 +67,7 @@
                         <label for="passwordb">Passwort bestätigen:</label>
                     </td>
                     <td>
-                        <input type="password" name="passwordb" value="${user_form.passwordb}"
+                        <input type="password" name="passwordb" value="${passwordb}"
                     </td>
                 </tr>
                 <tr>
