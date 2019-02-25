@@ -10,5 +10,5 @@ package reiseportal.jpa;
  * @author Fabian Hupe
  */
 public class Hotel {
-    
+ //Testjenkins
 }
