@@ -50,6 +50,9 @@
                                 <c:out value="${name}"/>
                             </td>
                             <td>
+                                <a href="<c:url value="/useraccount"/>">Mein Konto</a>
+                            </td>
+                            <td>
                                 <a href="<c:url value="/logout"/>">Logout</a>
                             </td>
                         </c:otherwise>
