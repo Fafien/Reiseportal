@@ -19,25 +19,25 @@
                         <label for="location">Ort:</label>
                     </td>
                     <td>
-                        <input name="location" value="${location}"
+                        <input name="location" type="text" value="${location}"
                     </td>
                     <td class="label">
                         <label for="fromDate">von:</label>
                     </td>
                     <td>
-                        <input name="fromDate" value="${fromDate}"
+                        <input name="fromDate" type="date" value="${fromDate}"
                     </td>
                     <td class="label">
                         <label for="untilDate">bis:</label>
                     </td>
                     <td>
-                        <input name="untilDate" value="${untilDate}"
+                        <input name="untilDate" type="date" value="${untilDate}"
                     </td>
                     <td class="label">
                         <label for="persons">Personen:</label>
                     </td>
                     <td>
-                        <input name="persons" value="${persons}"
+                        <input name="persons" type="number" value="${persons}"
                     </td>
                     <td>
                         <button>Suchen</button>

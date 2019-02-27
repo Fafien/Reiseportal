@@ -6,17 +6,12 @@
 package reiseportal.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import reiseportal.ejb.HotelBean;
-import reiseportal.jpa.Hotel;
 
 /**
  *
@@ -27,10 +22,7 @@ public class IndexServlet extends HttpServlet {
 
     public static final String URL = "/index.html";
     
-    @EJB
-    HotelBean hotelbean;
-    
-    List<Hotel> hotellist;
+    HttpSession session;
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,12 +33,19 @@ public class IndexServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        hotellist = this.hotelbean.findHotels(request.getParameter("location"));
-        
-        response.sendRedirect(request.getContextPath() + SelectionServlet.URL);
-        
+        session = request.getSession();
+        if(!request.getParameter("fromDate").trim().isEmpty() && !request.getParameter("location").trim().isEmpty() && !request.getParameter("untilDate").trim().isEmpty() && !request.getParameter("persons").trim().isEmpty()) {
+            
+            session.setAttribute("location", request.getParameter("location"));
+            session.setAttribute("fromDate", request.getParameter("fromDate"));
+            session.setAttribute("untilDate", request.getParameter("untilDate"));
+            session.setAttribute("persons", request.getParameter("persons"));
+            
+            response.sendRedirect(request.getContextPath() + SelectionServlet.URL);
+        } else {
+            //TODO
+            //Poop-Up mit Fehlermeldung
+            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+        }
     }
-    
-    
 }
