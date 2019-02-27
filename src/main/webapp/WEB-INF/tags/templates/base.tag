@@ -31,7 +31,7 @@
                         Dein Reiseportal
                     </td>
                     <c:choose>
-                        <c:when test="${empty name}">
+                        <c:when test="${empty usr}">
                             <td id="login">
                                 <a href="<c:url value="/login"/>">Anmelden</a>
                             </td>
@@ -47,7 +47,7 @@
                                 Hallo 
                             </td>
                             <td>
-                                <c:out value="${name}"/>
+                                <c:out value="${usr.firstname}"/>
                             </td>
                             <td>
                                 <a href="<c:url value="/useraccount"/>">Mein Konto</a>

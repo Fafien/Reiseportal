@@ -21,3 +21,8 @@ header #title{
 .square{
     align-content:  center;
 }
+
+.error{
+    font-weight: bold;
+    color: red;
+}

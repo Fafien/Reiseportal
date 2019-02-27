@@ -27,33 +27,56 @@ public class LoginServlet extends HttpServlet {
     
     @EJB
     UserBean userbean;
-    
+    HttpSession session;
     List<Useraccount> userlist;
+    String error = new String();
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        session = request.getSession();
+        
+        try{
+            if(!session.getAttribute("usr").equals(new Useraccount())){
+                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            }
+        }catch(NullPointerException e){
+            //Kann ignoriert werden das dies nur als Bestätigung verwendet wird, das man nicht eingeloggt ist.
+        }
+        
+        request.setAttribute("error", error);
+        
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        
     }
     
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        
         userlist = this.userbean.findUserByEmailOrUsername(" ", request.getParameter("username"));
         
-        if(userlist.get(0).getPassword().compareTo(request.getParameter("password")) == 0){
-            HttpSession session = request.getSession();  
-            session.setAttribute("name", userlist.get(0).getFirstname());
-            request.setAttribute("session", session);
-            request.setAttribute("usr", userlist.get(0));
-            
-            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+        if(userlist.size() > 0){
+        
+            if(userlist.get(0).getPassword().compareTo(request.getParameter("password")) == 0){
+                session = request.getSession();  
+                session.setAttribute("usr", userlist.get(0));
+
+                response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+            }
+            else{
+                //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden
+                error = "Unter den Angaben konnte kein Konto gefunden werden";
+                response.sendRedirect(request.getContextPath() + LoginServlet.URL);
+            }
+        
         }
         else{
             //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden
+            error = "Unter den Angaben konnte kein Konto gefunden werden";
             response.sendRedirect(request.getContextPath() + LoginServlet.URL);
         }
-        
     }
 }
+

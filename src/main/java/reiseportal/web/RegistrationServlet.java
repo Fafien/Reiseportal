@@ -33,23 +33,32 @@ public class RegistrationServlet extends HttpServlet {
     
     Useraccount usr;
     HttpSession session;
-    ArrayList<Integer> error = new ArrayList<Integer>();
+    ArrayList<String> error;
+    
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         session = request.getSession();
-        usr = (Useraccount) session.getAttribute("useraccount");
+        try{
+            if(!session.getAttribute("usr").equals(new Useraccount())){
+                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            }
+        }catch(NullPointerException e){
+            //Kann ignoriert werden das dies nur als Bestätigung verwendet wird, das man nicht eingeloggt ist.
+        }
   
         if(usr != null){
-            session.setAttribute("firstname", usr.getFirstname());
-            session.setAttribute("lastname", usr.getLastname());
-            session.setAttribute("email", usr.getEmail());
-            session.setAttribute("username", usr.getUsername());
+            request.setAttribute("firstname", usr.getFirstname());
+            request.setAttribute("lastname", usr.getLastname());
+            request.setAttribute("email", usr.getEmail());
+            request.setAttribute("username", usr.getUsername());
+            request.setAttribute("errors", error);
             request.getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, response);
         }
         else{
+            request.setAttribute("errors", error);
             request.getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, response);
         }
     }
@@ -59,46 +68,32 @@ public class RegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         
         usr = new Useraccount(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"), request.getParameter("password"), request.getParameter("username"));
-
+        error = new ArrayList<String>();
+        
         if(usr.checkValues()){
+            if(!request.getParameter("email").equals(request.getParameter("emailb"))){
+                error.add("E-Mails stimmen nicht überein");
+            }
+            if(!request.getParameter("password").equals(request.getParameter("passwordb"))){
+                error.add("Passwörter stimmen nicht überein");
+            }
             if(userBean.findUserByEmailOrUsername(request.getParameter("email"), request.getParameter("username")).isEmpty()){
-
-                userBean.createNewUser(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"), request.getParameter("password"), request.getParameter("username"));
-                response.sendRedirect(request.getContextPath() + IndexServlet.URL);
-
-            }
-            else{
-                //Meldung: Username oder E-Mail schon verwendet
-                error.add(1);
-            }
-            if(request.getParameter("email").equals(request.getParameter("emailb"))){
-                //Meldung: E-Mails stimmen nicht überein 
-                error.add(2);
-            }
-            if(request.getParameter("password").equals(request.getParameter("passwordb"))){
-                //Passwörter passen nicht überein
-                error.add(3);
-        }
-        }
-        else{
-            //Meldung: Bitte alle Felder ausfüllen
-            error.add(4);
-        }
-        if(error.size() > 0){
-            for(int i = 0; i < error.size(); i++){
-                switch(error.get(i)){
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
+                if(error.isEmpty()){
+                    userBean.createNewUser(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"), request.getParameter("password"), request.getParameter("username"));
+                    session.invalidate();
+                    response.sendRedirect(request.getContextPath() + IndexServlet.URL);
                 }
             }
-            session = request.getSession();
-            session.setAttribute("useraccount", usr);
+            else{
+                error.add("Username oder E-Mail schon verwendet");
+            }
+        }
+        else{
+            error.add("Bitte alle Felder ausfüllen");
+        }
+        
+        if(!error.isEmpty()){
+            //session.setAttribute("errors", error);
             response.sendRedirect(request.getContextPath() + RegistrationServlet.URL);
         }
     }

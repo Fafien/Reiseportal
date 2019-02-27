@@ -78,7 +78,13 @@
                         </button>
                     </td>
                 </tr>
-            </table>
+            </table>       
         </form>
+        
+        <div class="error">
+            <c:forEach items="${errors}" var="error">
+                <label><c:out value="${error}"></c:out></br></label>
+            </c:forEach>
+        </div>
     </jsp:attribute>
 </template:base>

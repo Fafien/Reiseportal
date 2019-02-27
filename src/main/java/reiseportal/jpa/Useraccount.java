@@ -21,7 +21,7 @@ public class Useraccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue()
     private Long id;
     private String username;
     private String email;
@@ -90,7 +90,7 @@ public class Useraccount implements Serializable {
     }
     
     public boolean checkValues(){
-        if(firstname.isEmpty() || lastname.isEmpty() || username.isEmpty() || password.isEmpty() || email.isEmpty()){
+        if(firstname.trim().isEmpty() || lastname.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty() || email.trim().isEmpty()){
             return false;
         }
         else{

@@ -19,7 +19,7 @@
                         <label for="username">Username:</label>
                     </td>
                     <td>
-                        <input name="username" value="${user_form.username}"
+                        <input name="username" value="${user_form.username}">
                     </td>
                 </tr>
                 <tr>
@@ -27,7 +27,7 @@
                         <label for="password">Passwort:</label>
                     </td>
                     <td>
-                        <input type="password" name="password" value="${user_form.username}"
+                        <input type="password" name="password" value="${user_form.username}">
                     </td>
                 </tr>
                 <tr>
@@ -38,6 +38,9 @@
                 </tr>
             </table>
         </form>
+        <div class="error">
+            <c:out value="${error}"></c:out>
+        </div>
         <div>
             Passwort vergessen                
         </div>
