@@ -12,6 +12,39 @@
 <!DOCTYPE html>
 <template:base>
     <jsp:attribute name="main">
+        <form method="POST" class="square">
+            <table>
+                <tr>
+                    <td class="label">
+                        <label for="location">Ort:</label>
+                    </td>
+                    <td>
+                        <input name="location" value="${location}"
+                    </td>
+                    <td class="label">
+                        <label for="fromDate">von:</label>
+                    </td>
+                    <td>
+                        <input name="fromDate" value="${fromDate}"
+                    </td>
+                    <td class="label">
+                        <label for="untilDate">bis:</label>
+                    </td>
+                    <td>
+                        <input name="untilDate" value="${untilDate}"
+                    </td>
+                    <td class="label">
+                        <label for="persons">Personen:</label>
+                    </td>
+                    <td>
+                        <input name="persons" value="${persons}"
+                    </td>
+                    <td>
+                        <button>Suchen</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </jsp:attribute>
 </template:base>
 
