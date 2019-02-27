@@ -55,7 +55,12 @@ public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        userlist = this.userbean.findUserByEmailOrUsername(" ", request.getParameter("username"));
+        if(request.getParameter("username").trim().isEmpty() || request.getParameter("password").trim().isEmpty()){
+            error = "Bitte alle Felder füllen";
+            response.sendRedirect(request.getContextPath() + LoginServlet.URL);
+        }
+        else{
+            userlist = this.userbean.findUserByEmailOrUsername(" ", request.getParameter("username"));
         
         if(userlist.size() > 0){
         
@@ -76,6 +81,7 @@ public class LoginServlet extends HttpServlet {
             //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden
             error = "Unter den Angaben konnte kein Konto gefunden werden";
             response.sendRedirect(request.getContextPath() + LoginServlet.URL);
+        }
         }
     }
 }

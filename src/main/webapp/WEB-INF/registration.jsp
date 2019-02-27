@@ -12,79 +12,35 @@
 <!DOCTYPE html>
 <template:base>
     <jsp:attribute name="main">
-        <form method="POST" class="square">
-            <table>
-                <tr>
-                    <td class="label">
-                        <label for="firstname">Vorname:</label>
-                    </td>
-                    <td>
-                        <input name="firstname" value="${firstname}"
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        <label for="lastname">Nachname:</label>
-                    </td>
-                    <td>
-                        <input name="lastname" value="${lastname}"
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        <label for="email">E-Mail:</label>
-                    </td>
-                    <td>
-                        <input type="email" name="email" value="${email}"
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        <label for="emailb">E-Mail bestätigen:</label>
-                    </td>
-                    <td>
-                        <input type="email" name="emailb" value="${emailb}"
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        <label for="username">Username</label>
-                    </td>
-                    <td>
-                        <input name="username" value="${username}"
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        <label for="password">Passwort:</label>
-                    </td>
-                    <td>
-                        <input type="password" name="password" value="${password}"
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">
-                        <label for="passwordb">Passwort bestätigen:</label>
-                    </td>
-                    <td>
-                        <input type="password" name="passwordb" value="${passwordb}"
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button>
-                            Account anlegen
-                        </button>
-                    </td>
-                </tr>
-            </table>       
-        </form>
+        <div class="center">
+            <form method="POST">
+                <div class="title">
+                    Neuen Account anlegen
+                </div>
+                <input placeholder="Vorname" class="field_top" name="firstname" value="${firstname}">
+                </br>
+                <input placeholder="Nachname" class="field_middle" name="lastname" value="${lastname}">
+                </br>
+                <input placeholder="E-Mail" class="field_middle" type="email" name="email" value="${email}">
+                </br>
+                <input placeholder="E-Mail bestätigen" class="field_middle" type="email" name="emailb" value="${emailb}">
+                </br>
+                <input placeholder="Username" class="field_middle" name="username" value="${username}">
+                </br>
+                <input placeholder="Passwort" class="field_middle" type="password" name="password" value="${password}">
+                </br>
+                <input placeholder="Passwort bestätigen" class="field_bottom" type="password" name="passwordb" value="${passwordb}">
+                </br>
+                <button class="button">
+                    Account anlegen
+                </button>
+            </form>
         
-        <div class="error">
-            <c:forEach items="${errors}" var="error">
-                <label><c:out value="${error}"></c:out></br></label>
-            </c:forEach>
+            <div class="error">
+                <c:forEach items="${errors}" var="error">
+                    <label><c:out value="${error}"></c:out></br></label>
+                </c:forEach>
+            </div>
         </div>
     </jsp:attribute>
 </template:base>
