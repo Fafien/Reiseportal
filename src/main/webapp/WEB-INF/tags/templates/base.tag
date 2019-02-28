@@ -52,11 +52,19 @@
                             <td>
                                 <a href="<c:url value="/useraccount"/>">Mein Konto</a>
                             </td>
+                            <c:if test="${usr.admn}">
+                                <td>
+                                    <a href="<c:url value="/benutzerverwaltung"/>">Benutzer verwalten</a>
+                                </td> 
+                            <td>    
+                                <a href="<c:url value="/hotelverwaltung"/>">Hotel verwalten</a>
+                            </td>   
+                            </c:if>   
                             <td>
                                 <a href="<c:url value="/logout"/>">Logout</a>
                             </td>
                         </c:otherwise>
-                    </c:choose>
+                    </c:choose> 
                 </tr>
             </table>           
         </header>
