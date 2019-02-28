@@ -28,6 +28,9 @@ public class Useraccount implements Serializable {
     private String lastname;
     private String firstname;
     private String password;
+    private boolean admn = false;
+    private boolean blocked = false;
+
 
     public Useraccount(){
         
@@ -39,6 +42,7 @@ public class Useraccount implements Serializable {
         this.email = email;
         this.password = password;
         this.username = username;
+        
     }
     
     public Long getId() {
@@ -87,6 +91,22 @@ public class Useraccount implements Serializable {
     
     public void setUsername(String username){
         this.username = username;
+    }
+    
+    public boolean isAdmn() {
+        return admn;
+    }
+
+    public void setAdmn(boolean admin) {
+        this.admn = admn;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
     
     public boolean checkValues(){
