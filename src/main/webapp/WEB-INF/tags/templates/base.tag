@@ -52,12 +52,12 @@
                             <td>
                                 <a href="<c:url value="/useraccount"/>">Mein Konto</a>
                             </td>
-                            <c:if test="${usr.admn}">
+                            <c:if test="${!usr.admn}">
                                 <td>
-                                    <a href="<c:url value="/benutzerverwaltung"/>">Benutzer verwalten</a>
+                                    <a href="<c:url value="/useradministration"/>">Benutzer verwalten</a>
                                 </td> 
                             <td>    
-                                <a href="<c:url value="/hotelverwaltung"/>">Hotel verwalten</a>
+                                <a href="<c:url value="/hoteladministration"/>">Hotel verwalten</a>
                             </td>   
                             </c:if>   
                             <td>
