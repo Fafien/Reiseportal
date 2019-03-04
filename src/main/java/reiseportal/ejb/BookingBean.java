@@ -16,7 +16,7 @@ import reiseportal.jpa.Useraccount;
 
 /**
  *
- * @Marwa Alqataa
+ * @author Marwa Alqataa
  */
 @Stateless
 public class BookingBean {
@@ -26,6 +26,7 @@ public class BookingBean {
     
     public Booking createNewBooking(Hotel hotelId, Useraccount userId, Date ankunft, Date ausreise, int personenanzahl, boolean cancel ){
         Booking booking = new Booking(hotelId, userId, ankunft, ausreise, personenanzahl, cancel);
+        em.persist(booking);
         return em.merge(booking);
     }
     

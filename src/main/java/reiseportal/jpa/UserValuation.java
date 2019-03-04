@@ -24,12 +24,12 @@ public class UserValuation implements Serializable{
     @OneToOne
     private Booking buchungId = null;
     
-    private int punkte;
+    private int sterne;
     private char bewertungstext;
 
-    public UserValuation(Long id, int punkte, char bewertungstext) {
-        this.id = id;
-        this.punkte = punkte;
+    public UserValuation(Booking buchungId, int sterne, char bewertungstext) {
+        this.buchungId = buchungId;
+        this.sterne = sterne;
         this.bewertungstext = bewertungstext;
     }
 
@@ -50,11 +50,11 @@ public class UserValuation implements Serializable{
     }
 
     public int getPunkte() {
-        return punkte;
+        return sterne;
     }
 
     public void setPunkte(int punkte) {
-        this.punkte = punkte;
+        this.sterne = punkte;
     }
 
     public char getBewertungstext() {
