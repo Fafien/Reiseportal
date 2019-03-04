@@ -10,18 +10,53 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <template:base>
-   <jsp:attribute name="main">
-       <div class="center">      
-            <a href = "<c:url value="/createhotel"/>"> 
-               <button class="button">Neues Hotel Anlegen</button>
-            </a>
-            <form method="POST" name="AdminHotelSearch">
-                <input class="field_top" name="hotelname" placeholder="Hotelname">
-                <br>
-                <input class="field_top" name="ort" placeholder="Ort">
-                <br>
-                <button class="button">Suchen</button>
-            </form>
-       </div>
-   </jsp:attribute>            
+    <jsp:attribute name="main">
+        <form method="POST" name="adminuseredit">
+        <table>
+            <tr>
+                <td>
+                    Vorname:
+                </td>
+                <td>
+                    <c:out value="${usr.firstname}"></c:out>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nachname:
+                </td>
+                <td>
+                    <c:out value="${usr.lastname}"></c:out>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Username:
+                </td>
+                <td>
+                    <c:out value="${usr.username}"></c:out>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button name="button" value="admin">Zum Admin ernennen</button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button name="button" value="sperren">Sperren</button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button name="button" value="löschen">Löschen</button>
+                </td>
+            </tr>          
+        </table>
+        </form>
+    </jsp:attribute>
 </template:base>
+

@@ -54,7 +54,7 @@
                             </td>
                             <c:if test="${!usr.admn}">
                                 <td>
-                                    <a href="<c:url value="/useradministration"/>">Benutzer verwalten</a>
+                                    <a href="<c:url value="/usersearch"/>">Benutzer verwalten</a>
                                 </td> 
                             <td>    
                                 <a href="<c:url value="/hoteladministration"/>">Hotel verwalten</a>
