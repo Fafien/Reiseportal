@@ -39,12 +39,11 @@ public class HotelAdministrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        //Fehlermeldungen TODO
-        //if(request.getParameter("formtype").equals("createhotel"))
-       // request.getRequestDispatcher("/WEB-INF/.jsp").forward(request, response);
         
-        //request.getParameter("")
-        //hotelbean.createNewHotel(hotelname, ort, 0, 0, 0, 0)createNewHotel(String hotelname, String ort, int preisProNacht, int anzahlZimmer, int sterne, int entfernung)
+        request.getRequestDispatcher("/WEB-INF/edithotel.jsp").forward(request, response);
+        
+        
+       
     }
 
     

@@ -15,7 +15,7 @@
             <a href = "<c:url value="/createhotel"/>"> 
                <button class="button">Neues Hotel Anlegen</button>
             </a>
-            <form method="POST" name="AdminHotelSearch" >
+            <form method="POST" name="AdminHotelSearch">
                 <input class="field_top" name="hotelname" placeholder="Hotelname">
                 <br>
                 <input class="field_top" name="ort" placeholder="Ort">
