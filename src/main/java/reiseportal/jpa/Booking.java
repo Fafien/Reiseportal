@@ -32,12 +32,15 @@ public class Booking implements Serializable {
     private Date ankunft;
     private Date ausreise;
     private int personenanzahl;
+    private boolean cancel;
 
-    public Booking(Long id, Date ankunft, Date ausreise, int personenanzahl) {
-        this.id = id;
+    public Booking(Hotel hotelId,Useraccount userId, Date ankunft, Date ausreise, int personenanzahl, boolean cancel) {
+        this.hotelId = hotelId;
+        this.userId = userId;
         this.ankunft = ankunft;
         this.ausreise = ausreise;
         this.personenanzahl = personenanzahl;
+        this.cancel = cancel;
     }
 
     public Long getId() {
