@@ -31,4 +31,12 @@ public class UserValuationBean {
         return em.merge(valuation);
     }
     
+     public void deleteValaution(UserValuation valuation) {
+        em.remove(valuation);
+     }
+        
+     public UserValuation updateValuation(UserValuation valuation) {
+        return em.merge(valuation);
+    }
+       
 }

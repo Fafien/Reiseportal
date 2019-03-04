@@ -41,11 +41,11 @@ public class BookingBean {
                 .getResultList();
     }
     
-   public Booking update(Booking booking) {
+   public Booking updateBooking(Booking booking) {
         return em.merge(booking);
     }
     
-    public void delete(Booking booking) {
+    public void deleteBooking(Booking booking) {
         em.remove(booking);
     }
     
