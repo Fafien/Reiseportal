@@ -32,102 +32,138 @@ public class CreateHotelServlet extends HttpServlet {
     HotelBean hotelbean;
     
    
-    //HttpSession session;
-    String error;
+    HttpSession session;
+    ArrayList <String> error;
    
-    Hotel hotel;
-    /*String hotelname;
+
+    String hotelname;
     String ort;
     String preisProNacht;
     String anzahlZimmer;
     String sterne;
     String entfernung;
-    */
     
+    // ppn = preisProNacht, az = anzahlZimmer...
+    int ppn;
+    int az;
+    int st;
+    int ent;
    
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        //session = request.getSession();
+        //Wenn der angemeldete User kein Admin ist, wird er zu der Index-Seite geleitet.
+        session = request.getSession();
+        //TODO -> FABIAN
         /*try{
-            if(!session.getAttribute("usr").admn == true){
-                request.getRequestDispatcher("/WEB-INF/createhotel.jsp").forward(request, response);
+            if(!session.getAttribute("usr").isAdmn() == true){
+                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
             }
         }catch(NullPointerException e){
             
         }
         */
-       if (hotel != null) { 
-       request.setAttribute("hotelname", hotel.getHotelname());
-       request.setAttribute("ort", hotel.getOrt());
-       request.setAttribute("preisProNacht", hotel.getPreisProNacht());
-       request.setAttribute("anzahlZimmer", hotel.getPreisProNacht());
-       request.setAttribute("sterne", hotel.getSterne());
-       request.setAttribute("entfernung", hotel.getEntfernung());
-       request.setAttribute("error", error);
-       }
+        
+       
+        /*Wenn der Benutzer das Form schon einmal mit unerlaubten Werten gepostet hat, 
+          werden die schon eingegebenen und gemerkten Werten angezeigt*/
       
-       request.getRequestDispatcher("/WEB-INF/createhotel.jsp").forward(request, response); 
+      if (hotelname!= null){
+          request.setAttribute("hotelname", this.hotelname);
+      }
+      if (ort != null){
+          request.setAttribute("ort", this.ort);
+      }
+      if (preisProNacht!= null){
+          request.setAttribute("preisProNacht", this.preisProNacht);
+      }
+      if (anzahlZimmer!= null){
+          request.setAttribute("anzahlZimmer", this.anzahlZimmer);
+      }
+      if (sterne!= null){
+          request.setAttribute("sterne", this.sterne);
+      }
+      if (entfernung!= null){
+          request.setAttribute("entfernung", this.entfernung);
+      }
+      if (error!= null){
+          request.setAttribute("error", this.error);
+      }
+      
+       
+   request.getRequestDispatcher("/WEB-INF/createhotel.jsp").forward(request, response); 
         
     }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
      
-       String hotelname = request.getParameter("hotelname");
-       String ort = request.getParameter("ort");
         
-       String preisProNacht = request.getParameter("preisProNacht");
-        if (preisProNacht.isEmpty()) {
-            preisProNacht = "0";
-        }
+        //TODO -> Gibt es das gleiche Hotel schon mal?
         
+        
+       /*Einzelne Felder des Formulars werden gelesen und überprüft, 
+       ggf. die entsprechende Fehlermedungen werden angezeigt.*/
        
-        String anzahlZimmer =  request.getParameter("anzahlZimmer");
-        if (anzahlZimmer.isEmpty()) {
-            anzahlZimmer = "0";
+       error = new ArrayList<String> ();
+       
+       hotelname = request.getParameter("hotelname");
+       ort = request.getParameter("ort"); 
+       preisProNacht = request.getParameter("preisProNacht");   
+       anzahlZimmer =  request.getParameter("anzahlZimmer");  
+       sterne = request.getParameter("sterne");   
+       entfernung = request.getParameter("entfernung");
+  
+       //Prüfung ob alle Felder belegt sind & ob für die Felder außer Hotelname und Ort nur Nummer eingeben wurde
+        if (hotelname.isEmpty()) {
+            error.add("Bitte geben Sie ein Hotelname ein");
         }
-        
-        String sterne = request.getParameter("sterne");
-        if (sterne.isEmpty()) {
-            sterne  = "0";
+        if (ort.isEmpty()) {
+            error.add("Bitte geben Sie ein Ort ein");
         }
-            
-        String entfernung = request.getParameter("entfernung");
-        if (entfernung.isEmpty()) {
-            entfernung = "0";
+        try {
+            ppn = Integer.parseInt(preisProNacht.trim());
+            }
+            catch (NumberFormatException nfe) {
+                preisProNacht = null;
+                error.add ("Bitte geben Sie eine Nummer für den Preis pro Nacht ein");
+            }
+        try {
+            az = Integer.parseInt(anzahlZimmer.trim());
+            }
+            catch (NumberFormatException nfe) {
+                anzahlZimmer = null;
+                error.add("Bitte geben Sie eine Nummer für den Anzahl der Zimmer ein");
+            }
+        try {
+            st = Integer.parseInt(sterne.trim());
+            }
+        catch (NumberFormatException nfe) {
+                sterne= null;
+                error.add("Bitte geben Sie eine Nummer für die Sterne ein");
         }
+        try {
+            ent = Integer.parseInt(entfernung.trim());
+            }
+            catch (NumberFormatException nfe) {
+                entfernung = null;
+                error.add("Bitte geben Sie eine Nummer für die Entfernung ein");
+            }
         
-                //TODO Exception beim parseInt!
-        
-        hotel = new Hotel (hotelname.trim(), ort.trim(), Integer.parseInt(preisProNacht.trim()), 
-            Integer.parseInt(anzahlZimmer.trim()), Integer.parseInt(sterne.trim()), Integer.parseInt(entfernung.trim()));
-
-        if (hotelname.isEmpty() || ort.isEmpty() || preisProNacht.equals("0") || 
-                anzahlZimmer.equals("0")  || sterne.equals("0") || entfernung.equals("0")) {
-            error = "Bitte alle Felder ausfüllen";
+        if (!error.isEmpty()) {
             response.sendRedirect(request.getContextPath() + this.URL);
         }
         else {
-            hotelbean.createNewHotel(hotelname.trim(), ort.trim(), Integer.parseInt(preisProNacht.trim()), 
-            Integer.parseInt(anzahlZimmer.trim()), Integer.parseInt(sterne.trim()), Integer.parseInt(entfernung.trim()));
-            //response.sendRedirect("/");
-        }
+        hotelbean.createNewHotel(hotelname, ort, ppn, az, st, ent);
+        response.sendRedirect("/hoteladministration");
+        }   
+           
+}
        
-        
-
-                
-                    
-                    
-                  
-                
-            
-            
-        
-        
+  
         
        
     }
     
-}
+

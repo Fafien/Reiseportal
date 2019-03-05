@@ -1,6 +1,6 @@
 <%-- 
-    Document   : createhotel
-    Created on : Feb 28, 2019, 3:57:02 PM
+    Document   : edithotel
+    Created on : Mar 1, 2019, 4:24:58 PM
     Author     : belizbalim
 --%>
 
@@ -13,12 +13,7 @@
     <jsp:attribute name="main">
         <div class="center">
             <form method="POST">
-                <div class="title">
-                    Neues Hotel anlegen
-                </div>
-                 <c:forEach items="${error}" var="error">
-                    <p><c:out value="${error}"></c:out></br>
-                </c:forEach>   
+                <p>${error}
                 </br>
                 <label> Hotelname </label>
                 <input  class="field_top" name="hotelname" value="${hotelname}">
@@ -27,20 +22,18 @@
                 <input class="field_middle" name="ort" value="${ort}">
                 </br>
                 <label> Preis Pro Nacht </label>
-                <input class="field_middle" type="preisProNacht" name="preisProNacht" value="${preisProNacht}">
+                <input class="field_middle" name="preisProNacht" value="${preisProNacht}">
                 </br>
                 <label> Anzahl Zimmer </label>
-                <input placeholder="" class="field_middle" type="anzahlZimmer" name="anzahlZimmer" value="${anzahlZimmer}">
+                <input placeholder="" class="field_middle" name="anzahlZimmer" value="${anzahlZimmer}">
                 </br>
                 <label> Anzahl Sterne </label>
                 <input class="field_middle" name="sterne" value="${sterne}">
                 </br>
                 <label> Entfernung zu der Stadtmitte </label>
-                <input class="field_middle" type="entfernung" name="entfernung" value="${entfernung}">
+                <input class="field_middle" name="entfernung" value="${entfernung}">
                 </br>
-                <button class="button">
-                    Hotel anlegen
-                </button>
+                <button class="button"> Aktualisieren </button>
             </form> 
         </div>
     </jsp:attribute>
