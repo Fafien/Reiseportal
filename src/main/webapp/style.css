@@ -13,13 +13,17 @@ html{
 }
 
 header{
-    display:    block;
     background-color: grey;
+    overflow: hidden;
 }
 
 header #title{
     font-weight: bold;
     width: 90%;
+}
+
+header .nav:hover{
+    background-color: greenyellow;
 }
 
 main{
