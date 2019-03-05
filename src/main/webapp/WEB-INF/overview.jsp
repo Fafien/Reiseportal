@@ -14,24 +14,25 @@
         <form method="POST" name="select">
             <div>
                 <label>
-                    <c:out value="${hotel.hotelname}"></c:out>
+                    Hotelname: <c:out value="${hotel.hotelname}"></c:out>
                 </label>
                 </br>
                 <label>
-                    <c:out value="${hotel.ort}"></c:out>
+                    Ort: <c:out value="${hotel.ort}"></c:out>
                 </label>
                 </br>
                 <label>
-                    <c:out value="${hotel.sterne}"></c:out>
+                    Sterne: <c:out value="${hotel.sterne}"></c:out>
                 </label>
                 </br>
                 <label>
-                    <c:out value="${hotel.entfernung}"></c:out>
+                    Entfernung zum Zentrum: <c:out value="${hotel.entfernung}"></c:out>
                 </label>
                 </br>
                 <label>
-                    <c:out value="${hotel.preisProNacht}"></c:out>
+                    Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>
                 </label>
+                </br>
                 <button name="buttonBooking" value="buttonBooking">
                     Buchen
                 </button>

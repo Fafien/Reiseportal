@@ -5,6 +5,7 @@
  */
 package reiseportal.ejb;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,11 +20,25 @@ import reiseportal.jpa.Hotel;
 public class HotelBean {
     
     @PersistenceContext
-    EntityManager em;
+    protected EntityManager em;
     
-    public List<Hotel> findHotels(String ort){
+    
+//    TODO
+//    bei Hotelsuche auch die dazugehörigen Ausstattungen anzeigen    
+    public Hotel findHotelById(Long id){
+        if (id == null) {
+            return null;
+        }
+        return em.find(Hotel.class, id);
+    }
+    
+    public List<Hotel> findHotelsByInput(String location, String from, String until, String persons){
         return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort")
-                .setParameter("ort", ort)
+                .setParameter("ort", location)
+//                TODO -> mit Buchungstabelle joinen
+//                .setParameter("von", from)
+//                .setParameter("bis", until)
+//                .setParameter("personen", persons)
                 .getResultList();
     }
     
@@ -32,11 +47,7 @@ public class HotelBean {
         em.persist(hotel);
         return em.merge(hotel);
     }
-    
-    public Hotel updateHotel(Hotel hotel){
-        return em.merge(hotel);
-    }
-    
+        
     public Hotel deleteHotel(long id) {
         Hotel hotel = em.find(Hotel.class, id);
         

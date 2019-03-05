@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,6 +22,9 @@ public class Hotel implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
+    
+//    @ManyToOne
+//    private Hotelausstattung hotelausstattung;
 
     private String hotelname;
     private String ort;
@@ -85,7 +89,6 @@ public class Hotel implements Serializable {
         this.preisProNacht = preisProNacht;
     }
    
-
     public void setAnzahlZimmer(int anzahlZimmer) {
         this.anzahlZimmer = anzahlZimmer;
     }
@@ -97,7 +100,6 @@ public class Hotel implements Serializable {
     public void setEntfernung(int entfernung) {
         this.entfernung = entfernung;
     }
-
     
     public Object getHotelAusstattung() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

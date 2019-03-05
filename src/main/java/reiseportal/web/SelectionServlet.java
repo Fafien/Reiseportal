@@ -6,7 +6,6 @@
 package reiseportal.web;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -31,6 +30,7 @@ public class SelectionServlet extends HttpServlet {
     HotelBean hotelbean;
     
     List<Hotel> hotellist;
+    Hotel hotel;
     HttpSession session;
     
     @Override
@@ -38,17 +38,8 @@ public class SelectionServlet extends HttpServlet {
             throws ServletException, IOException {
         
         session = request.getSession();
-        String ort = (String) session.getAttribute("location");
-        Date from = (Date) session.getAttribute("fromDate");
-        Date until = (Date) session.getAttribute("untilDate");
-        int person = (int) session.getAttribute("persons");
         
-        //TODO
-        //alle Hotels mit den session-Daten finden & anzeigen
-        //wenn die Liste leer ist, soll eine Fehlermeldung angezeigt werden & Weiterleitung auf index.html
-        //hotellist = new ArrayList<Hotel>();
-        hotellist = hotelbean.findHotels(ort);
-        
+        request.setAttribute("hotellist", session.getAttribute("hotels"));
         request.getRequestDispatcher("/WEB-INF/selection.jsp").forward(request, response);
     }
 
@@ -56,9 +47,11 @@ public class SelectionServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-//        switch (request.getParameter("button"))
-//            case "hotel1":
-        session.setAttribute("viewHotel", request.getParameter("buttonOverview"));
+        String str = request.getParameter("button");
+        Long id = Long.parseLong(str);
+        hotel = hotelbean.findHotelById(id);
+
+        session.setAttribute("viewHotel", hotel);
         
         response.sendRedirect(request.getContextPath() + OverviewServlet.URL);
     }
