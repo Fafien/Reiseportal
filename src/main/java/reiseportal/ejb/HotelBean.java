@@ -5,7 +5,6 @@
  */
 package reiseportal.ejb;
 
-import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,7 +21,6 @@ public class HotelBean {
     @PersistenceContext
     protected EntityManager em;
     
-    
 //    TODO
 //    bei Hotelsuche auch die dazugehörigen Ausstattungen anzeigen    
     public Hotel findHotelById(Long id){
@@ -32,8 +30,28 @@ public class HotelBean {
         return em.find(Hotel.class, id);
     }
     
-    public List<Hotel> findHotelsByInput(String location, String from, String until, String persons){
-        return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort")
+    public List<Hotel> findHotelsByInputOrderByPreis(String location, String from, String until, String persons){
+        return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.preisProNacht")
+                .setParameter("ort", location)
+//                TODO -> mit Buchungstabelle joinen
+//                .setParameter("von", from)
+//                .setParameter("bis", until)
+//                .setParameter("personen", persons)
+                .getResultList();
+    }
+    
+    public List<Hotel> findHotelsByInputOrderByEntfernung(String location, String from, String until, String persons){
+        return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.entfernung")
+                .setParameter("ort", location)
+//                TODO -> mit Buchungstabelle joinen
+//                .setParameter("von", from)
+//                .setParameter("bis", until)
+//                .setParameter("personen", persons)
+                .getResultList();
+    }
+    
+    public List<Hotel> findHotelsByInputOrderByBewertung(String location, String from, String until, String persons){
+        return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.sterne")
                 .setParameter("ort", location)
 //                TODO -> mit Buchungstabelle joinen
 //                .setParameter("von", from)

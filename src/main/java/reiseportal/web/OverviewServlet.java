@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.jpa.Hotel;
+import reiseportal.jpa.Hotelausstattung;
 
 /**
  *
@@ -37,9 +38,10 @@ public class OverviewServlet extends HttpServlet {
             throws ServletException, IOException {
         
         session = request.getSession();
-        hotel = (Hotel) session.getAttribute("viewHotel");
+        //hotel = (Hotel) session.getAttribute("viewHotel");
         
-        request.setAttribute("hotel", hotel);
+        request.setAttribute("hotel", session.getAttribute("viewHotel"));
+        request.setAttribute("hotelaus", session.getAttribute("HotelAusstattung"));
         request.getRequestDispatcher("/WEB-INF/overview.jsp").forward(request, response);
     }
 

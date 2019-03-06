@@ -10,7 +10,7 @@ package reiseportal.jpa;
  * @author jonas
  */
 public enum Ausstattung {
-    POOL, SAUNA, GYM, WLAN, WELLNESSCENTER;
+    POOL, SAUNA, GYM, WLAN, WELLNESS;
 
     public String getLabel() {
         switch (this) {
@@ -22,7 +22,7 @@ public enum Ausstattung {
                 return "Fitnesscenter";
             case WLAN:
                 return "WLAN";
-            case WELLNESSCENTER:
+            case WELLNESS:
                 return "Wellnesscenter";
             default:
                 return this.toString();

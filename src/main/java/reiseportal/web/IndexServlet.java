@@ -53,7 +53,7 @@ public class IndexServlet extends HttpServlet {
         
         if(!request.getParameter("fromDate").trim().isEmpty() && !request.getParameter("location").trim().isEmpty() && !request.getParameter("untilDate").trim().isEmpty() && !request.getParameter("persons").trim().isEmpty()) {
             
-            hotellist = hotelbean.findHotelsByInput(request.getParameter("location"), request.getParameter("fromDate"), request.getParameter("untilDate"), request.getParameter("persons"));
+            hotellist = hotelbean.findHotelsByInputOrderByPreis(request.getParameter("location"), request.getParameter("fromDate"), request.getParameter("untilDate"), request.getParameter("persons"));
             
             if(hotellist.isEmpty()) {
                 error = "Zu ihren Suchdaten gibt es keine passenden Ergebnisse";

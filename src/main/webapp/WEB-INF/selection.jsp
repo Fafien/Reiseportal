@@ -12,6 +12,28 @@
 <template:base>
     <jsp:attribute name="main">
         <form method="POST" name="select">
+            <div>
+                <label>
+                    Sortierung
+                </label>
+                <select name="sorting" type="submit">
+                    <option value="Preis">
+                        Preis
+                    </option>
+                    <option value="Entfernung">
+                        Entfernung
+                    </option>
+                    <option value="Bewertung">
+                        Bewertung
+                    </option>
+                </select>
+                <label>
+                    Filter
+                </label>
+                <button name="button" value="Anwenden">
+                    Anwenden
+                </button>
+            </div>
             <c:forEach items="${hotellist}" var="hotel">
                 <div>
                     <label>

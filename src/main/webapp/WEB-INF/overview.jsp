@@ -18,6 +18,17 @@
                 </label>
                 </br>
                 <label>
+                    Ausstattung: 
+                </label>
+                </br>
+                <c:forEach items="${hotelaus}" var="hotelausstattung">
+                    <ul>
+                        <li>
+                            <c:out value="${hotelausstattung.ausstattung}"></c:out> (<c:out value="${hotelausstattung.anzahl}"></c:out>x)
+                        </li>
+                    </ul>
+                </c:forEach>
+                <label>
                     Ort: <c:out value="${hotel.ort}"></c:out>
                 </label>
                 </br>
@@ -26,11 +37,11 @@
                 </label>
                 </br>
                 <label>
-                    Entfernung zum Zentrum: <c:out value="${hotel.entfernung}"></c:out>
+                    Entfernung zum Zentrum: <c:out value="${hotel.entfernung}"></c:out>km
                 </label>
                 </br>
                 <label>
-                    Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>
+                    Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>€
                 </label>
                 </br>
                 <button name="buttonBooking" value="buttonBooking">

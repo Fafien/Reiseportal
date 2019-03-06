@@ -6,16 +6,17 @@
 package reiseportal.jpa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Fabian Hupe
  */
-
 @Entity
 public class Hotel implements Serializable {
     
@@ -23,8 +24,8 @@ public class Hotel implements Serializable {
     @GeneratedValue
     private Long id;
     
-//    @ManyToOne
-//    private Hotelausstattung hotelausstattung;
+    @OneToMany(mappedBy="hotel")
+    List<Hotelausstattung> hotelausstattung = new ArrayList<>();
 
     private String hotelname;
     private String ort;
@@ -47,6 +48,10 @@ public class Hotel implements Serializable {
     
     public Long getId() {
         return id;
+    }
+
+    public List<Hotelausstattung> getHotelausstattung() {
+        return hotelausstattung;
     }
 
     public String getHotelname() {
@@ -75,6 +80,10 @@ public class Hotel implements Serializable {
     
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setHotelausstattung(List<Hotelausstattung> hotelausstattung) {
+        this.hotelausstattung = hotelausstattung;
     }
 
     public void setHotelname(String hotelname) {
