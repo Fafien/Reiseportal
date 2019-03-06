@@ -38,6 +38,7 @@ public class UseraccountServlet extends HttpServlet {
         session = request.getSession();
         session.removeAttribute("edit");
         session.removeAttribute("password");
+        session.removeAttribute("delete");
         try{
             session.getAttribute("usr");           
         }catch(NullPointerException e){
@@ -56,9 +57,17 @@ public class UseraccountServlet extends HttpServlet {
         
         switch(request.getParameter("button")){
             case "delete":
+                session.setAttribute("delete", true);
+                request.getRequestDispatcher("/WEB-INF/useraccount.jsp").forward(request, response);
+                break;
+            case "deletey":
                 userbean.deleteUser(usr.getId());
                 session.invalidate();
                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                break;
+            case "deleten":
+                session.removeAttribute("delete");
+                request.getRequestDispatcher("/WEB-INF/useraccount.jsp").forward(request, response);
                 break;
             case "edit":
                 session.setAttribute("edit", true);

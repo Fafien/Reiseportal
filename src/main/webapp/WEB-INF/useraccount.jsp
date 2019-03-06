@@ -15,6 +15,17 @@
         <form method="POST" name="edit">
             <table class="text_left">
             <c:choose>
+                <c:when test="${delete}">
+                    <div id="question">Wollen Sie den Account wirklich löschen?</div>
+                    <tr>
+                        <td>
+                            <button name="button" value="deletey" class="delete_button">Ja</button>
+                        </td>
+                        <td>
+                            <button name="button" value="deleten" class="delete_button">Nein</button>
+                        </td>
+                    </tr>
+                </c:when>
             <c:when test="${edit}">
             <tr>
                 <td>
