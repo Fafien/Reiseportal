@@ -120,8 +120,8 @@ public class RegistrationServlet extends HttpServlet {
                             + "Um die Registrierung abzuschließen und somit den Account freizuschalten klicke bitte auf folgenden Link:<br>"
                             + "<a href='"
                             + registrationLink
-                            + "'>Link</a></br></br>"
-                            + "Mit freundlichen Grüßen</br>"
+                            + "'>Link</a><br><br>"
+                            + "Mit freundlichen Grüßen<br>"
                             + "Ihr Reiseportal";
                     
                     EmailUtil.sendEmail(toMail, "Registrierung Reiseportal", contentEmail);
