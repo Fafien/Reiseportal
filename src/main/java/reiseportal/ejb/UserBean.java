@@ -6,6 +6,7 @@
 package reiseportal.ejb;
 
 import java.util.List;
+import javax.annotation.security.DeclareRoles;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +16,8 @@ import reiseportal.jpa.Useraccount;
  *
  * @author Fabian Hupe
  */
-@Stateless
+@Stateless  
+@DeclareRoles({"Admin", "Member"})
 public class UserBean {
 
     @PersistenceContext
@@ -28,7 +30,7 @@ public class UserBean {
         return em.merge(user);
     }
     
-    public Useraccount findUserbyID(String id) {
+    public Useraccount findUserbyID(long id) {
         return em.find(Useraccount.class, id);
     }
     

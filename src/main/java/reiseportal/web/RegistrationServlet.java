@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import reiseportal.ejb.UserBean;
 import reiseportal.jpa.Useraccount;
+import javax.*;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 
 /**
  *
@@ -35,6 +43,11 @@ public class RegistrationServlet extends HttpServlet {
     HttpSession session;
     ArrayList<String> error;
     
+    //Variablen für Mail-Versand
+    String toMail;
+    String contentEmail;
+    String registrationLink;
+    
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,6 +60,23 @@ public class RegistrationServlet extends HttpServlet {
             }
         }catch(NullPointerException e){
             //Kann ignoriert werden das dies nur als Bestätigung verwendet wird, das man nicht eingeloggt ist.
+        }
+        
+        try{
+            if(!request.getParameter("registrationConfirmation").isEmpty()){
+                try{
+                    usr = userBean.findUserbyID(Long.parseLong(request.getParameter("registrationConfirmation"), 2));
+                    if(usr != null){
+                        usr.setActivated(true);
+                        userBean.updateUser(usr);
+                        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+                    }
+                }catch(Exception e){
+                    //Erstmal ignorieren
+                }
+            }
+        }catch(Exception ex){
+            
         }
   
         if(usr != null){
@@ -61,6 +91,7 @@ public class RegistrationServlet extends HttpServlet {
             request.setAttribute("errors", error);
             request.getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, response);
         }
+       
     }
     
     @Override
@@ -79,8 +110,25 @@ public class RegistrationServlet extends HttpServlet {
             }
             if(userBean.findUserByEmailOrUsername(request.getParameter("email"), request.getParameter("username")).isEmpty()){
                 if(error.isEmpty()){
-                    userBean.createNewUser(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"), request.getParameter("password"), request.getParameter("username"));
+                    usr = userBean.createNewUser(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"), request.getParameter("password"), request.getParameter("username"));
+                    
+                    toMail = usr.getEmail();
+                    registrationLink = "http://localhost:8080/Reiseportal/registration?registrationConfirmation="+ Long.toBinaryString(usr.getId());
+                    
+                    contentEmail = "Vielen Dank " + usr.getFirstname() + " für deine Registrierung.<br>" 
+                            + "Dein Username lautet: " + usr.getUsername() + "<br>"
+                            + "Um die Registrierung abzuschließen und somit den Account freizuschalten klicke bitte auf folgenden Link:<br>"
+                            + "<a href='"
+                            + registrationLink
+                            + "'>Link</a></br></br>"
+                            + "Mit freundlichen Grüßen</br>"
+                            + "Ihr Reiseportal";
+                    
+                    EmailUtil.sendEmail(toMail, "Registrierung Reiseportal", contentEmail);
+                    
                     session.invalidate();
+                    usr = null;
+                    
                     response.sendRedirect(request.getContextPath() + IndexServlet.URL);
                 }
             }

@@ -100,7 +100,7 @@ main{
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px; 
-    width: 50%;
+    width: 10em;
     margin: 0.5em;
     padding:    0.3em;
 }
@@ -118,4 +118,17 @@ main{
     text-align: left;
     padding: 0.3em;
     
+}
+
+.text_left{
+    text-align: left;
+}
+
+.text_left button{
+    text-align: center;
+    align-content: right;
+}
+
+.text_left td{
+    width: 50%;
 }

@@ -28,10 +28,12 @@ public class Useraccount implements Serializable {
     private String lastname;
     private String firstname;
     private String password;
-    private boolean admn = false;
-    private boolean blocked = false;
+    private boolean admin;
+    private boolean blocked;
+    private boolean activated;
 
 
+//<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Useraccount(){
         
     }
@@ -42,13 +44,18 @@ public class Useraccount implements Serializable {
         this.email = email;
         this.password = password;
         this.username = username;
+        this.admin = false;
+        this.blocked = false;
+        this.activated = false;
         
     }
+//</editor-fold>
     
+//<editor-fold defaultstate="collapsed" desc="Setter & Getter">
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
@@ -94,20 +101,29 @@ public class Useraccount implements Serializable {
     }
     
     public boolean isAdmn() {
-        return admn;
+        return admin;
     }
-
+    
     public void setAdmn(boolean admin) {
-        this.admn = admn;
+        this.admin = admin;
     }
-
+    
     public boolean isBlocked() {
         return blocked;
     }
-
+    
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+//</editor-fold>
     
     public boolean checkValues(){
         if(firstname.trim().isEmpty() || lastname.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty() || email.trim().isEmpty()){
