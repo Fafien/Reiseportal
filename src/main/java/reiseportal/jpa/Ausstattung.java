@@ -5,48 +5,27 @@
  */
 package reiseportal.jpa;
 
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
-
 /**
  *
  * @author jonas
  */
-class Ausstattung {
-    @Id
-    @GeneratedValue
-    private Long id;
-    
-    private String bezeichnung;
-    
-    @ManyToOne
-    private Hotelausstattung hotelausstattung;
-    
-    public Ausstattung() {
-    }
+public enum Ausstattung {
+    POOL, SAUNA, GYM, WLAN, WELLNESSCENTER;
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getBezeichnung() {
-        return bezeichnung;
-    }
-
-    public Hotelausstattung getHotelausstattung() {
-        return hotelausstattung;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setBezeichnung(String bezeichnung) {
-        this.bezeichnung = bezeichnung;
-    }
-
-    public void setHotelausstattung(Hotelausstattung hotelausstattung) {
-        this.hotelausstattung = hotelausstattung;
+    public String getLabel() {
+        switch (this) {
+            case POOL:
+                return "Schwimmbad";
+            case SAUNA:
+                return "Sauna";
+            case GYM:
+                return "Fitnesscenter";
+            case WLAN:
+                return "WLAN";
+            case WELLNESSCENTER:
+                return "Wellnesscenter";
+            default:
+                return this.toString();
+        }
     }
 }
