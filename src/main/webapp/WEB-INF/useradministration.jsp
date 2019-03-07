@@ -11,14 +11,14 @@
 <!DOCTYPE html>
 <template:base>
     <jsp:attribute name="main">
-        <form method="POST" name="adminuseredit">
+        <form method="POST" name="useradministration">
         <table>
             <tr>
                 <td>
                     Vorname:
                 </td>
                 <td>
-                    <c:out value="${usr.firstname}"></c:out>
+                    <c:out value="${founduser.firstname}"></c:out>
                 </td>
             </tr>
             <tr>
@@ -26,7 +26,7 @@
                     Nachname:
                 </td>
                 <td>
-                    <c:out value="${usr.lastname}"></c:out>
+                    <c:out value="${founduser.lastname}"></c:out>
                 </td>
             </tr>
             <tr>
@@ -34,25 +34,73 @@
                     Username:
                 </td>
                 <td>
-                    <c:out value="${usr.username}"></c:out>
+                    <c:out value="${founduser.username}"></c:out>
                 </td>
             </tr>
             <tr>
-                <td></td>
                 <td>
-                    <button name="button" value="admin">Zum Admin ernennen</button>
+                    Username:
+                </td>
+                <td>
+                    <c:out value="${founduser.username}"></c:out>
                 </td>
             </tr>
+            <tr>    
+                <td>
+                    Admin:
+                </td>
+                <td>
+                    <c:out value="${founduser.admn}"></c:out>
+                </td>
+            </tr>
+             <tr>    
+                <td>
+                    Gesperrt:
+                </td>
+                <td>
+                    <c:out value="${founduser.blocked}"></c:out>
+                </td>
+            </tr>
+            <c:choose> 
+                <c:when test="${founduser.admn ==true}"> 
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" name="button" value="noadmin">Adminrechte entfernen</button>
+                        </td>  
+                    </tr>
+                </c:when>
+                <c:otherwise> 
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" name="button" value="admin">Zum Admin ernennen</button>
+                        </td>  
+                    </tr>
+                </c:otherwise>     
+            </c:choose> 
+            <c:choose>   
+                <c:when test="${founduser.blocked ==true}">     
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" name="button" value="entsperren">Entperren</button>
+                        </td>
+                    </tr>
+                </c:when>    
+                <c:otherwise>
+                     <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" name="button" value="sperren">Sperren</button>
+                        </td>
+                    </tr>
+                </c:otherwise>
+            </c:choose> 
             <tr>
                 <td></td>
                 <td>
-                    <button name="button" value="sperren">Sperren</button>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button name="button" value="löschen">Löschen</button>
+                    <button type="submit" name="button" value="loeschen">Löschen</button>
                 </td>
             </tr>          
         </table>

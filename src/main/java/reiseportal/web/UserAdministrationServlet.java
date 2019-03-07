@@ -23,13 +23,59 @@ import reiseportal.jpa.Useraccount;
  */
 @WebServlet(name = "UserAdministrationServlet", urlPatterns = {"/useradministration"})
 public class UserAdministrationServlet extends HttpServlet{
-HttpSession session;
+
+     public static final String URL = "/useradministration";
     
+    HttpSession session;
     Useraccount usr;
+    Useraccount founduser;
   
     @EJB
     UserBean userbean;
   
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        session = request.getSession();  
+        founduser = (Useraccount) session.getAttribute("founduser");
+        
+        request.setAttribute("founduser", founduser);
+        request.getRequestDispatcher("/WEB-INF/useradministration.jsp").forward(request, response);
+        
+        
+    }
     
-   
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+       founduser = (Useraccount) session.getAttribute("founduser");
+        
+        switch(request.getParameter("button")){
+            case "admin":
+               userbean.setAdmin(founduser, true); 
+               response.sendRedirect(request.getContextPath() + this.URL);
+               break;
+            case "noadmin":
+              userbean.setAdmin(founduser, false); 
+              response.sendRedirect(request.getContextPath() + this.URL);
+                break;
+            case "sperren":
+                userbean.setBlocked(founduser, true); 
+                response.sendRedirect(request.getContextPath() + this.URL);
+                break;
+            case "entsperren":
+                userbean.setBlocked(founduser, false);
+                response.sendRedirect(request.getContextPath() + this.URL);
+                break;
+            case "loeschen":
+                userbean.deleteUser(founduser.getId());
+                response.sendRedirect(request.getContextPath() + UserSearch.URL);
+                break;
+        }
+        
+       
+           
+    }
 }

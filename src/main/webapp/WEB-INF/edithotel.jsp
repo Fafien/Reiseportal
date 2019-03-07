@@ -33,7 +33,9 @@
                 <label> Entfernung zu der Stadtmitte </label>
                 <input class="field_middle" name="entfernung" value="${entfernung}">
                 </br>
-                <button class="button"> Aktualisieren </button>
+                <button type="submit" class="button" name="button" value="aktualisieren"> Aktualisieren </button>
+                </br>
+                <button type="submit" class="button" name="button" value="Löschen"> Löschen </button>
             </form> 
         </div>
     </jsp:attribute>

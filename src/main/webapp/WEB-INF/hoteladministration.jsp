@@ -11,16 +11,16 @@
 <!DOCTYPE html>
 <template:base>
    <jsp:attribute name="main">
-       <div class="center">      
-            <a href = "<c:url value="/createhotel"/>"> 
-               <button class="button">Neues Hotel Anlegen</button>
-            </a>
-            <form method="POST" name="AdminHotelSearch">
+       <div class="center">   
+            <form method="POST" name="hoteladministration">
+                <button type="submit" class="button" name="button" value="new">Neues Hotel Anlegen</button>
+                <p> ${error} </p>
+                <br>
                 <input class="field_top" name="hotelname" placeholder="Hotelname">
                 <br>
                 <input class="field_top" name="ort" placeholder="Ort">
                 <br>
-                <button class="button">Suchen</button>
+                <button type="submit" class="button" name="button" value="suche">Suchen</button>
             </form>
        </div>
    </jsp:attribute>            

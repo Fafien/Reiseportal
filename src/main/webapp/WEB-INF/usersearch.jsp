@@ -13,8 +13,11 @@
 <template:base>
    <jsp:attribute name="main">
        <div class="center">      
-            <form method="POST" name="UserSearch" action="/adminUserEdit">
-                <input class="field_top" name="benutzername" placeholder="Benutzername">
+            <form method="POST" name="UserSearch">
+                <p>${error}</p>
+                <input class="field_top" name="username" placeholder="Benutzername">
+                <br>
+                 <input class="field_top" name="email" placeholder="E-Mail">
                 <br>
                 <button class="button">Suchen</button>
             </form>

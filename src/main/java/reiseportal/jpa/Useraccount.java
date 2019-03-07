@@ -97,7 +97,7 @@ public class Useraccount implements Serializable {
         return admn;
     }
 
-    public void setAdmn(boolean admin) {
+    public void setAdmn(boolean admn) {
         this.admn = admn;
     }
 
