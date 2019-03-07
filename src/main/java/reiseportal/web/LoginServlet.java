@@ -63,18 +63,21 @@ public class LoginServlet extends HttpServlet {
             userlist = this.userbean.findUserByEmailOrUsername(" ", request.getParameter("username"));
         
         if(userlist.size() > 0){
-        
-            if(userlist.get(0).getPassword().compareTo(request.getParameter("password")) == 0){
-                session = request.getSession();  
-                session.setAttribute("usr", userlist.get(0));
-                response.sendRedirect(request.getContextPath() + IndexServlet.URL);
-            }
+            if(userlist.get(0).isActivated())
+                if(userlist.get(0).getPassword().compareTo(request.getParameter("password")) == 0){
+                    session = request.getSession();  
+                    session.setAttribute("usr", userlist.get(0));
+                    response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+                }
+                else{
+                    //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden
+                    error = "Unter den Angaben konnte kein Konto gefunden werden";
+                    response.sendRedirect(request.getContextPath() + LoginServlet.URL);
+                }
             else{
-                //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden
-                error = "Unter den Angaben konnte kein Konto gefunden werden";
+                error = "Bitte aktvieren Sie Ihren Account mit dem Link in Ihrer Registrierungsemail.";
                 response.sendRedirect(request.getContextPath() + LoginServlet.URL);
             }
-        
         }
         else{
             //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden

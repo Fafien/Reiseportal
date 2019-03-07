@@ -13,13 +13,17 @@ html{
 }
 
 header{
-    display:    block;
     background-color: grey;
+    overflow: hidden;
 }
 
 header #title{
     font-weight: bold;
     width: 90%;
+}
+
+header .nav:hover{
+    background-color: greenyellow;
 }
 
 main{
@@ -30,7 +34,7 @@ main{
 .center{
     margin-left:auto;
     margin-right:auto;
-    margin-top: 15%;
+    margin-top: 10%;
     magin-bottom: auto;
     width: 60%;
     height: 50%;
@@ -96,7 +100,7 @@ main{
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px; 
-    width: 50%;
+    width: 10em;
     margin: 0.5em;
     padding:    0.3em;
 }
@@ -114,4 +118,32 @@ main{
     text-align: left;
     padding: 0.3em;
     
+}
+
+.text_left{
+    text-align: left;
+}
+
+.text_left>button{
+    text-align: center;
+    align-content: right;
+}
+
+.text_left td{
+    width: 50%;
+}
+
+#question{
+    text-align: center;
+}
+
+.delete_button{
+        margin-left: 9em;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px; 
+        width: 10em;
+        padding: 0.3em;
+        margin-top: 1em;
 }

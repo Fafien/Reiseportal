@@ -32,13 +32,13 @@
                     </td>
                     <c:choose>
                         <c:when test="${empty usr}">
-                            <td id="login">
+                            <td class="nav">
                                 <a href="<c:url value="/login"/>">Anmelden</a>
                             </td>
                             <td>
                                 |
                             </td>
-                            <td id="registration">
+                            <td class="nav">
                                 <a href="<c:url value="/registration"/>">Registrieren</a>
                             </td>
                         </c:when>

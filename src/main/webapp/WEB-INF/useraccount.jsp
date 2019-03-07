@@ -11,9 +11,21 @@
 <!DOCTYPE html>
 <template:base>
     <jsp:attribute name="main">
+        <div class="center">
         <form method="POST" name="edit">
-        <table>
+            <table class="text_left">
             <c:choose>
+                <c:when test="${delete}">
+                    <div id="question">Wollen Sie den Account wirklich löschen?</div>
+                    <tr>
+                        <td>
+                            <button name="button" value="deletey" class="delete_button">Ja</button>
+                        </td>
+                        <td>
+                            <button name="button" value="deleten" class="delete_button">Nein</button>
+                        </td>
+                    </tr>
+                </c:when>
             <c:when test="${edit}">
             <tr>
                 <td>
@@ -50,7 +62,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <button name="button" value="save">Speichern</button>
+                    <button class="button" name="button" value="save">Speichern</button>
                 </td>
             </tr>
             </c:when>
@@ -82,7 +94,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <button name="button" value="savep">Speichern</button>
+                    <button class="button" name="button" value="savep">Speichern</button>
                 </td>
             </tr>
             <div class="error">
@@ -127,24 +139,25 @@
             <tr>
                 <td></td>
                 <td>
-                    <button name="button" value="edit">Bearbeiten</button>
+                    <button class="button" name="button" value="edit">Bearbeiten</button>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button name="button" value="password">Passwort ändern</button>
+                    <button class="button" name="button" value="password">Passwort ändern</button>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button name="button" value="delete">Löschen</button>
+                    <button class="button" name="button" value="delete">Löschen</button>
                 </td>
             </tr>
             </c:otherwise>
             </c:choose>
         </table>
         </form>
+        </div>
     </jsp:attribute>
 </template:base>

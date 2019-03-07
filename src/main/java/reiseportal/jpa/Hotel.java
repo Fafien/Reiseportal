@@ -6,21 +6,26 @@
 package reiseportal.jpa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Fabian Hupe
  */
-
 @Entity
 public class Hotel implements Serializable {
     
     @Id
     @GeneratedValue
     private Long id;
+    
+    @OneToMany(mappedBy="hotel")
+    List<Hotelausstattung> hotelausstattung = new ArrayList<>();
 
     private String hotelname;
     private String ort;
@@ -43,6 +48,10 @@ public class Hotel implements Serializable {
     
     public Long getId() {
         return id;
+    }
+
+    public List<Hotelausstattung> getHotelausstattung() {
+        return hotelausstattung;
     }
 
     public String getHotelname() {
@@ -73,6 +82,10 @@ public class Hotel implements Serializable {
         this.id = id;
     }
 
+    public void setHotelausstattung(List<Hotelausstattung> hotelausstattung) {
+        this.hotelausstattung = hotelausstattung;
+    }
+
     public void setHotelname(String hotelname) {
         this.hotelname = hotelname;
     }
@@ -85,7 +98,6 @@ public class Hotel implements Serializable {
         this.preisProNacht = preisProNacht;
     }
    
-
     public void setAnzahlZimmer(int anzahlZimmer) {
         this.anzahlZimmer = anzahlZimmer;
     }
@@ -97,7 +109,6 @@ public class Hotel implements Serializable {
     public void setEntfernung(int entfernung) {
         this.entfernung = entfernung;
     }
-
     
     public Object getHotelAusstattung() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

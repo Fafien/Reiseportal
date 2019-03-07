@@ -19,11 +19,44 @@ import reiseportal.jpa.Hotel;
 public class HotelBean {
     
     @PersistenceContext
-    EntityManager em;
+    protected EntityManager em;
     
-    public List<Hotel> findHotels(String ort){
-        return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort")
-                .setParameter("ort", ort)
+//    TODO
+//    bei Hotelsuche auch die dazugehörigen Ausstattungen anzeigen    
+    public Hotel findHotelById(Long id){
+        if (id == null) {
+            return null;
+        }
+        return em.find(Hotel.class, id);
+    }
+    
+    public List<Hotel> findHotelsByInputOrderByPreis(String location, String from, String until, String persons){
+        return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.preisProNacht")
+                .setParameter("ort", location)
+//                TODO -> mit Buchungstabelle joinen
+//                .setParameter("von", from)
+//                .setParameter("bis", until)
+//                .setParameter("personen", persons)
+                .getResultList();
+    }
+    
+    public List<Hotel> findHotelsByInputOrderByEntfernung(String location, String from, String until, String persons){
+        return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.entfernung")
+                .setParameter("ort", location)
+//                TODO -> mit Buchungstabelle joinen
+//                .setParameter("von", from)
+//                .setParameter("bis", until)
+//                .setParameter("personen", persons)
+                .getResultList();
+    }
+    
+    public List<Hotel> findHotelsByInputOrderByBewertung(String location, String from, String until, String persons){
+        return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.sterne")
+                .setParameter("ort", location)
+//                TODO -> mit Buchungstabelle joinen
+//                .setParameter("von", from)
+//                .setParameter("bis", until)
+//                .setParameter("personen", persons)
                 .getResultList();
     }
     
@@ -32,11 +65,7 @@ public class HotelBean {
         em.persist(hotel);
         return em.merge(hotel);
     }
-    
-    public Hotel updateHotel(Hotel hotel){
-        return em.merge(hotel);
-    }
-    
+        
     public Hotel deleteHotel(long id) {
         Hotel hotel = em.find(Hotel.class, id);
         

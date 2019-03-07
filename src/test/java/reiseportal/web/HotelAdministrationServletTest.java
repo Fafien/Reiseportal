@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
  *
  * @author belizbalim
  */
+/*
 public class HotelAdministrationServletTest {
     
    /* public HotelAdministrationServletTest() {
@@ -44,3 +45,4 @@ public class HotelAdministrationServletTest {
     }
     */
 }
+*/

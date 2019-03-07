@@ -12,28 +12,51 @@
 <template:base>
     <jsp:attribute name="main">
         <form method="POST" name="select">
+            <div>
+                <label>
+                    Sortierung
+                </label>
+                <select name="sorting" type="submit">
+                    <option value="Preis">
+                        Preis
+                    </option>
+                    <option value="Entfernung">
+                        Entfernung
+                    </option>
+                    <option value="Bewertung">
+                        Bewertung
+                    </option>
+                </select>
+                <label>
+                    Filter
+                </label>
+                <button name="button" value="Anwenden">
+                    Anwenden
+                </button>
+            </div>
             <c:forEach items="${hotellist}" var="hotel">
                 <div>
                     <label>
-                        <c:out value="${hotel.hotelname}"></c:out>
+                        Hotelname: <c:out value="${hotel.hotelname}"></c:out>
                     </label>
                     </br>
                     <label>
-                        <c:out value="${hotel.ort}"></c:out>
+                        Ort: <c:out value="${hotel.ort}"></c:out>
                     </label>
                     </br>
                     <label>
-                        <c:out value="${hotel.sterne}"></c:out>
+                        Sterne: <c:out value="${hotel.sterne}"></c:out>
                     </label>
                     </br>
                     <label>
-                        <c:out value="${hotel.entfernung}"></c:out>
+                        Entfernung zum Zentrum:<c:out value="${hotel.entfernung}"></c:out>
                     </label>
                     </br>
                     <label>
-                        <c:out value="${hotel.preisProNacht}"></c:out>
+                        Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>
                     </label>
-                    <button name="buttonOverview" value="<c:out value="${hotel.id}"></c:out>">
+                    </br>
+                    <button name="button" value="${hotel.id}">
                         Anzeigen
                     </button>
                 </div>

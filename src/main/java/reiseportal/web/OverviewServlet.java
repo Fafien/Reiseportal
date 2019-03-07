@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.jpa.Hotel;
+import reiseportal.jpa.Hotelausstattung;
 
 /**
  *
@@ -30,18 +31,17 @@ public class OverviewServlet extends HttpServlet {
     HotelBean hotelbean;
     
     HttpSession session;
+    Hotel hotel;
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         session = request.getSession();
-        int hotelID = (int) session.getAttribute("viewHotel");
+        //hotel = (Hotel) session.getAttribute("viewHotel");
         
-        //TODO
-        //finde 1 Hotel über die ID (Methode in HotelBean implementieren)
-        //Hotel hotel = hotelbean.findHotelByID(ID);
-        
+        request.setAttribute("hotel", session.getAttribute("viewHotel"));
+        request.setAttribute("hotelaus", session.getAttribute("HotelAusstattung"));
         request.getRequestDispatcher("/WEB-INF/overview.jsp").forward(request, response);
     }
 
