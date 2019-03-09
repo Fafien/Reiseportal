@@ -17,13 +17,13 @@
                     Sortierung
                 </label>
                 <select name="sorting" type="submit">
-                    <option value="Preis">
+                    <option <c:out value="${PreisSelected}"></c:out> value="Preis">
                         Preis
                     </option>
-                    <option value="Entfernung">
+                    <option <c:out value="${EntfernungSelected}"></c:out> value="Entfernung">
                         Entfernung
                     </option>
-                    <option value="Bewertung">
+                    <option <c:out value="${BewertungSelected}"></c:out> value="Bewertung">
                         Bewertung
                     </option>
                 </select>
@@ -49,11 +49,11 @@
                     </label>
                     </br>
                     <label>
-                        Entfernung zum Zentrum:<c:out value="${hotel.entfernung}"></c:out>
+                        Entfernung zum Zentrum:<c:out value="${hotel.entfernung}"></c:out>km
                     </label>
                     </br>
                     <label>
-                        Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>
+                        Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>€
                     </label>
                     </br>
                     <button name="button" value="${hotel.id}">
