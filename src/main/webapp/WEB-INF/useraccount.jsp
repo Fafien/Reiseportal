@@ -11,6 +11,7 @@
 <!DOCTYPE html>
 <template:base>
     <jsp:attribute name="main">
+        <div class="padding10">
         <div class="center">
         <form method="POST" name="edit">
             <table class="text_left">
@@ -158,6 +159,7 @@
             </c:choose>
         </table>
         </form>
+        </div>
         </div>
     </jsp:attribute>
 </template:base>

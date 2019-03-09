@@ -44,5 +44,4 @@ public class HotelAdministrationServletTest {
         fail("The test case is a prototype.");
     }
     */
-}
-*/
+
