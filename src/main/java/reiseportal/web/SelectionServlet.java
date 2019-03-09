@@ -34,7 +34,6 @@ public class SelectionServlet extends HttpServlet {
     HotelausstattungBean hotausbean;
     
     List<Hotel> hotellist;
-    List<String> sortlist;
     Hotel hotel;
     HttpSession session;
     String error = new String();
@@ -46,6 +45,9 @@ public class SelectionServlet extends HttpServlet {
         session = request.getSession();
         
         request.setAttribute("hotellist", session.getAttribute("hotels"));
+        request.setAttribute("PreisSelected", session.getAttribute("PreisSelected"));
+        request.setAttribute("EntfernungSelected", session.getAttribute("EntfernungSelected"));
+        request.setAttribute("BewertungSelected", session.getAttribute("BewertungSelected"));
         request.getRequestDispatcher("/WEB-INF/selection.jsp").forward(request, response);
     }
 
@@ -66,12 +68,21 @@ public class SelectionServlet extends HttpServlet {
             switch(sort) {
                 case"Preis":
                     hotellist = hotelbean.findHotelsByInputOrderByPreis(location, from, until, persons);
+                    session.setAttribute("PreisSelected", "selected");
+                    session.setAttribute("EntfernungSelected", "");
+                    session.setAttribute("BewertungSelected", "");
                     break;
                 case "Entfernung":
                     hotellist = hotelbean.findHotelsByInputOrderByEntfernung(location, from, until, persons);
+                    session.setAttribute("PreisSelected", "");
+                    session.setAttribute("EntfernungSelected", "selected");
+                    session.setAttribute("BewertungSelected", "");
                     break;
                 case "Bewertung":
                     hotellist = hotelbean.findHotelsByInputOrderByBewertung(location, from, until, persons);
+                    session.setAttribute("PreisSelected", "");
+                    session.setAttribute("EntfernungSelected", "");
+                    session.setAttribute("BewertungSelected", "selected");
                     break;
             }
             
