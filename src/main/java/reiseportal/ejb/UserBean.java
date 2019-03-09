@@ -54,5 +54,32 @@ public class UserBean {
     public Useraccount updateUser(Useraccount user) {
         return em.merge(user);
     }
+    
+    //TODO
+    public Useraccount setAdmin(Useraccount user, boolean set) {
+       if (set == true) {
+            user.setAdmn(true);
+            return updateUser(user);
+       }
+       else {
+           user.setAdmn(false);
+           return updateUser(user);
+       } 
+    }
+    
+   
+    public Useraccount setBlocked (Useraccount user, boolean block) {
+        if (block == true) {
+            user.setBlocked(true);
+            return updateUser(user);
+       }
+       else {
+           user.setBlocked(false);
+           return updateUser(user);
+       } 
+    }
+    
+    
+
 
 }

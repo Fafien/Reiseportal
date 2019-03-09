@@ -6,6 +6,7 @@
 package reiseportal.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,37 +15,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import reiseportal.ejb.HotelBean;
-import reiseportal.jpa.Hotel;
-
+import reiseportal.ejb.UserBean;
+import reiseportal.jpa.Useraccount;
 
 /**
  *
  * @author belizbalim
  */
-@WebServlet(name = "HotelAdministrationServlet", urlPatterns = {"/hoteladministration"})
-public class HotelAdministrationServlet extends HttpServlet {
-
-   public static final String URL = "/hoteladministration";
-     
-    @EJB
-    HotelBean hotelbean;
+@WebServlet(name = "UserSearch", urlPatterns = {"/usersearch"})
+public class UserSearch extends HttpServlet {
     
+    public static final String URL = "/usersearch";
+    
+    @EJB
+    UserBean userbean;
     HttpSession session;
     
   
-    List<Hotel> hotelist;
-    String hotelname;
-    String ort;
+    List<Useraccount> userlist;
+    String username;
+    String email;
     String error;
     
-    
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         session = request.getSession();
-        
+
         /*try{
             session.getAttribute("usr");           
         }catch(NullPointerException e){
@@ -52,38 +49,27 @@ public class HotelAdministrationServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
         }*/
         
-         if(hotelname!=null){
-            request.setAttribute("hotelname",hotelname);
+        if(username!=null){
+            request.setAttribute("username",username);
         }
-        if(ort!=null){
-            request.setAttribute("ort",ort);
+        if(email!=null){
+            request.setAttribute("email",email);
         }
         if(error!=null){
             request.setAttribute("error",error);
         }
-        request.getRequestDispatcher("/WEB-INF/hoteladministration.jsp").forward(request, response);
-   }
+        request.getRequestDispatcher("/WEB-INF/usersearch.jsp").forward(request, response);
+    }
     
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        
-        
-        switch(request.getParameter("button")){
-            case "new":
-               response.sendRedirect(request.getContextPath() + CreateHotelServlet.URL);
-               break;
-            case "suche":
-               hotelname = request.getParameter("hotelname");
-               ort = request.getParameter("ort");
-                break;
-            
-        
-        
-        //userlist = userbean.findUserByEmailOrUsername(email, username);
+    
+        username = request.getParameter("username");
+        email = request.getParameter("email");
+        userlist = userbean.findUserByEmailOrUsername(email, username);
 
-       /*if (userlist.isEmpty()) {
+       if (userlist.isEmpty()) {
             error = "Kein Benutzer gefunden";
             request.setAttribute("error",error);
             request.setAttribute("username", username);
@@ -93,14 +79,9 @@ public class HotelAdministrationServlet extends HttpServlet {
         else {
            session.setAttribute ("founduser", userlist.get(0));
            response.sendRedirect(request.getContextPath() + UserAdministrationServlet.URL);
-        request.getRequestDispatcher("/WEB-INF/edithotel.jsp").forward(request, response);*/
+          
+        }
         
-        
-       
-    }
-
-    
     }
     
-    }
-
+}

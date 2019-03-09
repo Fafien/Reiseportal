@@ -55,6 +55,7 @@ public class CreateHotelServlet extends HttpServlet {
         
         //Wenn der angemeldete User kein Admin ist, wird er zu der Index-Seite geleitet.
         session = request.getSession();
+        
         //TODO -> FABIAN
         /*try{
             if(!session.getAttribute("usr").isAdmn() == true){
@@ -91,7 +92,7 @@ public class CreateHotelServlet extends HttpServlet {
           request.setAttribute("error", this.error);
       }
       
-       
+   
    request.getRequestDispatcher("/WEB-INF/createhotel.jsp").forward(request, response); 
         
     }
@@ -152,11 +153,11 @@ public class CreateHotelServlet extends HttpServlet {
             }
         
         if (!error.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + this.URL);
+            response.sendRedirect(this.URL);
         }
         else {
         hotelbean.createNewHotel(hotelname, ort, ppn, az, st, ent);
-        response.sendRedirect("/hoteladministration");
+        response.sendRedirect(request.getContextPath() + HotelAdministrationServlet.URL);
         }   
            
 }
