@@ -20,7 +20,12 @@
 
         <title>Reiseportal</title>
         <link rel="stylesheet" href="<c:url value="/style.css"/>" />
-
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="<c:url value="/userinteraction.js"/>"></script>
+        <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        
         <jsp:invoke fragment="head"/>
     </head>
     <body>

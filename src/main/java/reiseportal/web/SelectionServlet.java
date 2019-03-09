@@ -64,7 +64,7 @@ public class SelectionServlet extends HttpServlet {
             String persons = (String) session.getAttribute("persons");
             //hotellist.clear();
             
-            String sort = request.getParameter("button");
+            String sort = request.getParameter("sorting");
             
             switch(sort) {
                 case"Preis":
