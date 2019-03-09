@@ -53,8 +53,6 @@ public class SelectionServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-//        String anwenden = request.getParameter("button1");
-//        String sort = request.getParameter("sorting");
         String str = request.getParameter("button");
         
         if(str.equals("Anwenden")) {
@@ -62,7 +60,6 @@ public class SelectionServlet extends HttpServlet {
             String from = (String) session.getAttribute("fromDate");
             String until = (String) session.getAttribute("untilDate");
             String persons = (String) session.getAttribute("persons");
-            //hotellist.clear();
             
             String sort = request.getParameter("sorting");
             
