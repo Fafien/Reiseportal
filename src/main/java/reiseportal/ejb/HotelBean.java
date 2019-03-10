@@ -30,6 +30,13 @@ public class HotelBean {
         return em.find(Hotel.class, id);
     }
     
+    public List<Hotel> findHotelByNameOrPlace (String hotelname, String ort) {
+         return em.createQuery("SELECT h FROM Hotel h WHERE h.hotelname = :hotelname OR h.ort = :ort")
+                .setParameter("hotelname", hotelname)
+                .setParameter("ort", ort)
+                .getResultList();
+    }
+    
     public List<Hotel> findHotelsByInputOrderByPreis(String location, String from, String until, String persons){
         return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.preisProNacht")
                 .setParameter("ort", location)

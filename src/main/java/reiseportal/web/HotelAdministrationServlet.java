@@ -33,7 +33,7 @@ public class HotelAdministrationServlet extends HttpServlet {
     HttpSession session;
     
   
-    List<Hotel> hotelist;
+    List<Hotel> hotellist;
     String hotelname;
     String ort;
     String error;
@@ -68,34 +68,42 @@ public class HotelAdministrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        
+        /* Wenn der Benutzer ein neues Hotel anlegen wollte, wird er zu dem Hotelanlage-Formular weitergeleitet 
+        Wenn der Benutzer das Feld Name oder Ort einfüllt und die Suche startet, wird aus der Datenbank 
+        der entsprechende Datensatz gefunden und angezeigt. Wenn kein Datensatz gefunden wurde, wird Fehler angezeigt.
+        */
         
         switch(request.getParameter("button")){
-            case "new":
+            
+            //Neues Hotelanlage
+            case "neu":
                response.sendRedirect(request.getContextPath() + CreateHotelServlet.URL);
                break;
+               
+            //Hotelsuche   
             case "suche":
                hotelname = request.getParameter("hotelname");
                ort = request.getParameter("ort");
-                break;
+               hotellist = hotelbean.findHotelByNameOrPlace(hotelname, ort);
+               
+               if (hotellist.isEmpty()) {
+                    error = "Kein Hotel gefunden";
+                    request.setAttribute("error", error);
+                    request.setAttribute("hotelname", hotelname);
+                    request.setAttribute("ort", ort);
+                    response.sendRedirect(request.getContextPath() + this.URL);
+                }
+               
+               else {
+                    session.setAttribute ("foundhotel", hotellist.get(0));
+                     response.sendRedirect(request.getContextPath() + HotelEditServlet.URL);
+                 }
+               
+               break;
             
         
         
-        //userlist = userbean.findUserByEmailOrUsername(email, username);
-
-       /*if (userlist.isEmpty()) {
-            error = "Kein Benutzer gefunden";
-            request.setAttribute("error",error);
-            request.setAttribute("username", username);
-            request.setAttribute("email", email);
-            response.sendRedirect(request.getContextPath() + this.URL);
-        }
-        else {
-           session.setAttribute ("founduser", userlist.get(0));
-           response.sendRedirect(request.getContextPath() + UserAdministrationServlet.URL);
-        request.getRequestDispatcher("/WEB-INF/edithotel.jsp").forward(request, response);*/
-        
-        
+ 
        
     }
 

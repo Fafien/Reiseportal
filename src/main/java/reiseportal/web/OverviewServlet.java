@@ -6,7 +6,6 @@
 package reiseportal.web;
 
 import java.io.IOException;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.jpa.Hotel;
-import reiseportal.jpa.Hotelausstattung;
 
 /**
  *
@@ -38,7 +36,6 @@ public class OverviewServlet extends HttpServlet {
             throws ServletException, IOException {
         
         session = request.getSession();
-        //hotel = (Hotel) session.getAttribute("viewHotel");
         
         request.setAttribute("hotel", session.getAttribute("viewHotel"));
         request.setAttribute("hotelaus", session.getAttribute("HotelAusstattung"));
@@ -51,7 +48,6 @@ public class OverviewServlet extends HttpServlet {
         
         //TODO
         //Weiterleitung zur Buchungsseite
-        
         //response.sendRedirect(request.getContextPath() + BookingServlet.URL);
     }
 }
