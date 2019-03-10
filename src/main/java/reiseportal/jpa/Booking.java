@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 
 /**
  *
- * @author Fabian Hupe
+ * @author Marwa Alqataa
  */
 @Entity
 public class Booking implements Serializable {

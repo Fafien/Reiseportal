@@ -34,10 +34,10 @@ public class BookingBean {
         return em.find(Booking.class, id);
     }
      
-     // ich bin mir nicht sich, ob wir die wirklich brauchen werden 
-    public List<Booking> findBookingByUserId(Long userId){
+ 
+    public List<Booking> findBookingByUserId(Useraccount user){
         return em.createQuery("SELECT b FROM Booking WHERE b.userID LIKE :userID ")
-                .setParameter("userId", userId)
+                .setParameter("userId", user)
                 .getResultList();
     }
     
@@ -46,11 +46,8 @@ public class BookingBean {
     }
     
     public void deleteBooking(Booking booking) {
+        
         em.remove(booking);
     }
     
-    
-    
-   //muss ich die Methode zum Befüllen cancel-Felder hier schreiben 
-   //if auf den Button Stornieren gedrückt wurde ist es "true" else immer "no"
 }
