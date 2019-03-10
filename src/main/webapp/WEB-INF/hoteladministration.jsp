@@ -12,10 +12,13 @@
 <template:base>
    <jsp:attribute name="main">
        <div class="center">   
-            <form method="POST" name="hoteladministration">
-                <button type="submit" class="button" name="button" value="new">Neues Hotel Anlegen</button>
+            <form method="POST" name="hoteladministrationneu">
+                <button type="submit" class="button" name="button" value="neu">Neues Hotel Anlegen</button>
+            </form>
+            <form method="POST" name="hoteladministrationsearch">
                 <p> ${error} </p>
                 <br>
+                
                 <input class="field_top" name="hotelname" placeholder="Hotelname">
                 <br>
                 <input class="field_top" name="ort" placeholder="Ort">
