@@ -76,16 +76,16 @@ public class IndexServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + IndexServlet.URL);
         }
         
-        session.setAttribute("location", request.getParameter("location"));
+        session.setAttribute("location", request.getParameter("location").trim());
         session.setAttribute("fromDateOriginal", request.getParameter("fromDate"));
         session.setAttribute("untilDateOriginal", request.getParameter("untilDate"));
         session.setAttribute("fromDate", von);
         session.setAttribute("untilDate", bis);
-        session.setAttribute("persons", request.getParameter("persons"));
+        session.setAttribute("persons", request.getParameter("persons").trim());
         
         if(!request.getParameter("fromDate").trim().isEmpty() && !request.getParameter("location").trim().isEmpty() && !request.getParameter("untilDate").trim().isEmpty() && !request.getParameter("persons").trim().isEmpty()) {
             
-            hotellist = hotelbean.findHotelsByInputOrderByPreis(request.getParameter("location"), von, bis, request.getParameter("persons"));
+            hotellist = hotelbean.findHotelsByInputOrderByPreis(request.getParameter("location").trim(), von, bis, request.getParameter("persons").trim());
             session.setAttribute("PreisSelected", "selected");
             session.setAttribute("EntfernungSelected", "");
             session.setAttribute("BewertungSelected", "");

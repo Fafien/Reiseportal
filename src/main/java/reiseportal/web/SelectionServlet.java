@@ -118,7 +118,6 @@ public class SelectionServlet extends HttpServlet {
             
             List<Hotel> hotellist2 = new ArrayList<>();
             hotellist2.addAll(hotellist);
-            Collections.shuffle(hotellist2);
             Iterator<Hotel> iter = hotellist2.listIterator();
             while(iter.hasNext()) {
                 Hotel h = iter.next();
