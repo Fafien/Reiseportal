@@ -31,12 +31,12 @@
                     <label>
                         Filter: 
                     </label>
-                        <c:forEach items="${filterLabel}" var="filterLabel">
-                            <label>
-                                <input type="checkbox" name="${filterLabel}" value="${filterLabel}">
-                                ${filterLabel}
-                            </label>
-                        </c:forEach>
+                    <c:forEach items="${filterLabel}" var="filter">
+                        <label for="${filter.filterLabel}">
+                            ${filter.filterLabel}
+                        </label>
+                        <input type="checkbox" name="${filter.filterLabel}" ${filter.filterChecked} value="${filter.filterLabel}">
+                    </c:forEach>
                     <button name="button" value="Anwenden">
                         Anwenden
                     </button>

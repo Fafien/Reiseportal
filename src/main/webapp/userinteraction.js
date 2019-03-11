@@ -5,6 +5,7 @@
  */
 
 $(document).ready(function() {
+    
     $(function() {
         $("#datum1").datepicker({
             dateFormat: "dd.mm.yy",

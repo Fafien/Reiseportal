@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.ejb.HotelausstattungBean;
 import reiseportal.jpa.Ausstattung;
+import reiseportal.jpa.Filter;
 import reiseportal.jpa.Hotel;
 import reiseportal.jpa.Hotelausstattung;
 
@@ -43,7 +44,7 @@ public class SelectionServlet extends HttpServlet {
     HttpSession session;
     String error = "";
     Ausstattung[] facilities = Ausstattung.values();
-    String[] facilitiesLabel = new String[facilities.length];
+    Filter[] facilitiesLabel;
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,14 +52,19 @@ public class SelectionServlet extends HttpServlet {
         
         session = request.getSession();
         
-        int i = 0;
-        while(i < facilities.length) {
-            facilitiesLabel[i] = facilities[i].getLabel();
-            i++;
+        if(facilitiesLabel == null || facilitiesLabel.length == 0) {
+            int i = 0;
+            facilitiesLabel = new Filter[facilities.length];
+            while(i < facilities.length) {
+                Filter fil = new Filter();
+                fil.setFilterLabel(facilities[i].getLabel());
+                fil.setFilterChecked("");
+                facilitiesLabel[i] = fil;
+                i++;
+            }
         }
         
         request.setAttribute("filterLabel", facilitiesLabel);
-        request.setAttribute("filter", facilities);
         request.setAttribute("hotellist", session.getAttribute("hotels"));
         request.setAttribute("PreisSelected", session.getAttribute("PreisSelected"));
         request.setAttribute("EntfernungSelected", session.getAttribute("EntfernungSelected"));
@@ -79,6 +85,7 @@ public class SelectionServlet extends HttpServlet {
             String persons = (String) session.getAttribute("persons");
             
             String sort = request.getParameter("sorting");
+            facilitiesLabel = new Filter[facilities.length];
             
             switch(sort) {
                 case"Preis":
@@ -103,15 +110,20 @@ public class SelectionServlet extends HttpServlet {
             
             int i = 0;
             while(i < facilities.length) {
-                facilitiesLabel[i] = facilities[i].getLabel();
+                Filter fil = new Filter();
+                fil.setFilterLabel(facilities[i].getLabel());
+                fil.setFilterChecked("");
+                facilitiesLabel[i] = fil;
                 i++;
             }
             List<String> requiredFacilities = new ArrayList<>();
             int j = 0;
             while(j < facilities.length) {
-                if(request.getParameter(facilitiesLabel[j]) == null) {
+                if(request.getParameter(facilitiesLabel[j].getFilterLabel()) == null) {
+                    facilitiesLabel[j].setFilterChecked("");
                 } else {
                     requiredFacilities.add(facilities[j].toString());
+                    facilitiesLabel[j].setFilterChecked("checked");
                 }
                 j++;
             }
@@ -139,11 +151,13 @@ public class SelectionServlet extends HttpServlet {
             if(hotellist2.isEmpty()) {
                 error = "Für die gewählten Filtern gibt es keine passenden Ergebnisse";
                 session.setAttribute("errors", error);
+                facilitiesLabel = null;
                 response.sendRedirect(request.getContextPath() + IndexServlet.URL);
             } else {
                 error = "";
                 session.setAttribute("errors", error);
                 session.setAttribute("hotels", hotellist2);
+                session.setAttribute("filter", facilitiesLabel);
                 response.sendRedirect(request.getContextPath() + SelectionServlet.URL);
             }
         } else {
