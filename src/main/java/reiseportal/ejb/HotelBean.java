@@ -5,6 +5,7 @@
  */
 package reiseportal.ejb;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -20,9 +21,7 @@ public class HotelBean {
     
     @PersistenceContext
     protected EntityManager em;
-    
-//    TODO
-//    bei Hotelsuche auch die dazugehörigen Ausstattungen anzeigen    
+     
     public Hotel findHotelById(Long id){
         if (id == null) {
             return null;
@@ -47,14 +46,32 @@ public class HotelBean {
     public List<Hotel> findHotelsByInputOrderByPreis(String location, String from, String until, String persons){
         return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.preisProNacht")
                 .setParameter("ort", location)
-//                TODO -> mit Buchungstabelle joinen
+//        int person = Integer.parseInt(persons);
+//        location = "%" + location + "%";
+//        return em.createQuery(  "SELECT h "
+//                                + "FROM Hotel h "
+//                                + "WHERE h.id NOT IN ("
+//                                    + "SELECT help.hotelId "
+//                                    + "FROM ( "
+//                                        + "SELECT h2.id AS hotelId, SUM(b.personenanzahl) AS Personenanzahl, h2.anzahlZimmer AS anzahlzimmer "
+//                                        + "FROM Hotel h2, Booking b "
+//                                            + "WHERE h2 = b.hotelId "
+//                                            + "AND h2.ort LIKE :ort "
+//                                            + "AND b.ausreise >= :von "
+//                                            + "AND b.ankunft <= :bis "
+//                                            + "GROUP BY h2.id, h2.anzahlZimmer "
+//                                        + ") help "
+//                                        + "WHERE ((help.anzahlzimmer*2) - help.Personenanzahl) < :persons "
+//                                    + ") "
+//                                + "ORDER BY h.preisProNacht", Hotel.class)
+//                .setParameter("ort", location)
 //                .setParameter("von", from)
 //                .setParameter("bis", until)
-//                .setParameter("personen", persons)
+//                .setParameter("persons", person)
                 .getResultList();
     }
     
-    public List<Hotel> findHotelsByInputOrderByEntfernung(String location, String from, String until, String persons){
+    public List<Hotel> findHotelsByInputOrderByEntfernung(String location, Date from, Date until, String persons){
         return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.entfernung")
                 .setParameter("ort", location)
 //                TODO -> mit Buchungstabelle joinen
@@ -64,7 +81,7 @@ public class HotelBean {
                 .getResultList();
     }
     
-    public List<Hotel> findHotelsByInputOrderByBewertung(String location, String from, String until, String persons){
+    public List<Hotel> findHotelsByInputOrderByBewertung(String location, Date from, Date until, String persons){
         return em.createQuery("SELECT h FROM Hotel h WHERE h.ort LIKE :ort ORDER BY h.sterne")
                 .setParameter("ort", location)
 //                TODO -> mit Buchungstabelle joinen

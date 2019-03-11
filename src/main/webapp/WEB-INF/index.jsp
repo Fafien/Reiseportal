@@ -13,42 +13,44 @@
 <template:base>
     <jsp:attribute name="main">
         <form method="POST" class="square">
-            <table>
-                <tr>
-                    <td class="label">
-                        <label for="location">Ort:</label>
-                    </td>
-                    <td>
-                        <input name="location" type="text" value="${location}"/>
-                    </td>
-                    <td class="label">
-                        <label for="fromDate">von:</label>
-                    </td>
-                    <td>
-                        <input type="text" id="datum1" name="fromDate" value="${fromDate}"/>
-                    </td>
-                    <td class="label">
-                        <label for="untilDate">bis:</label>
-                    </td>
-                    <td>
-                        <input type="text" id="datum2" name="untilDate" value="${untilDate}"/>
-                    </td>
-                    <td class="label">
-                        <label for="persons">Personen:</label>
-                    </td>
-                    <td>
-                        <input name="persons" type="number" value="${persons}"/>
-                    </td>
-                    <td>
-                        <button>Suchen</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <div class="error">
-            <c:forEach items="${errors}" var="error">
-                <label><c:out value="${error}"></c:out></br></label>
-            </c:forEach>
+            <div>
+                <table>
+                    <tr>
+                        <td class="label">
+                            <label for="location">Ort:</label>
+                        </td>
+                        <td>
+                            <input name="location" type="text" value="${location}"/>
+                        </td>
+                        <td class="label">
+                            <label for="fromDate">von:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="datum1" name="fromDate" value="${fromDate}"/>
+                        </td>
+                        <td class="label">
+                            <label for="untilDate">bis:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="datum2" name="untilDate" value="${untilDate}"/>
+                        </td>
+                        <td class="label">
+                            <label for="persons">Personen:</label>
+                        </td>
+                        <td>
+                            <input name="persons" type="number" value="${persons}"/>
+                        </td>
+                        <td>
+                            <button>Suchen</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div class="error">
+                <c:forEach items="${errors}" var="error">
+                    <label><c:out value="${error}"></c:out></br></label>
+                </c:forEach>
+            </div>
         </div>
     </jsp:attribute>
 </template:base>
