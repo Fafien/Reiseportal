@@ -31,11 +31,10 @@ public class CreateHotelServlet extends HttpServlet {
     @EJB
     HotelBean hotelbean;
     
-   
     HttpSession session;
     ArrayList <String> error;
    
-
+    /*Eingegebene Variablen gespeichert, für die Vorbelegung des Formulars*/
     String hotelname;
     String ort;
     String preisProNacht;
@@ -43,6 +42,7 @@ public class CreateHotelServlet extends HttpServlet {
     String sterne;
     String entfernung;
     
+    //Hotelattribute nach dem Überprüfung und Konvertierung
     // ppn = preisProNacht, az = anzahlZimmer...
     int ppn;
     int az;
@@ -91,24 +91,19 @@ public class CreateHotelServlet extends HttpServlet {
       if (error!= null){
           request.setAttribute("error", this.error);
       }
-      
    
-   request.getRequestDispatcher("/WEB-INF/createhotel.jsp").forward(request, response); 
-        
+    request.getRequestDispatcher("/WEB-INF/createhotel.jsp").forward(request, response); 
     }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     
-        
-        //TODO -> Gibt es das gleiche Hotel schon mal?
-        
-        
+   
        /*Einzelne Felder des Formulars werden gelesen und überprüft, 
        ggf. die entsprechende Fehlermedungen werden angezeigt.*/
        
        error = new ArrayList<String> ();
        
+       //Einlesen der Formulareingaben
        hotelname = request.getParameter("hotelname");
        ort = request.getParameter("ort"); 
        preisProNacht = request.getParameter("preisProNacht");   
@@ -123,41 +118,45 @@ public class CreateHotelServlet extends HttpServlet {
         if (ort.isEmpty()) {
             error.add("Bitte geben Sie ein Ort ein");
         }
-        try {
-            ppn = Integer.parseInt(preisProNacht.trim());
-            }
-            catch (NumberFormatException nfe) {
-                preisProNacht = null;
-                error.add ("Bitte geben Sie eine Nummer für den Preis pro Nacht ein");
-            }
-        try {
-            az = Integer.parseInt(anzahlZimmer.trim());
-            }
-            catch (NumberFormatException nfe) {
-                anzahlZimmer = null;
-                error.add("Bitte geben Sie eine Nummer für den Anzahl der Zimmer ein");
-            }
-        try {
-            st = Integer.parseInt(sterne.trim());
-            }
-        catch (NumberFormatException nfe) {
-                sterne= null;
-                error.add("Bitte geben Sie eine Nummer für die Sterne ein");
-        }
-        try {
-            ent = Integer.parseInt(entfernung.trim());
-            }
-            catch (NumberFormatException nfe) {
-                entfernung = null;
-                error.add("Bitte geben Sie eine Nummer für die Entfernung ein");
-            }
-        
-        if (!error.isEmpty()) {
-            response.sendRedirect(this.URL);
+        if (!hotelbean.findHotelByNameAndPlace(hotelname, ort).isEmpty()) {
+            error.add("Ein Hotel mit dem gleichen Namen und Ort schon vorhanden");
         }
         else {
-        hotelbean.createNewHotel(hotelname, ort, ppn, az, st, ent);
-        response.sendRedirect(request.getContextPath() + HotelAdministrationServlet.URL);
+            try {
+                ppn = Integer.parseInt(preisProNacht.trim());
+                }
+                catch (NumberFormatException nfe) {
+                    preisProNacht = null;
+                    error.add ("Bitte geben Sie eine Nummer für den Preis pro Nacht ein");
+                }
+            try {
+                az = Integer.parseInt(anzahlZimmer.trim());
+            }
+                catch (NumberFormatException nfe) {
+                    anzahlZimmer = null;
+                    error.add("Bitte geben Sie eine Nummer für den Anzahl der Zimmer ein");
+                }
+            try {
+                st = Integer.parseInt(sterne.trim());
+                }
+            catch (NumberFormatException nfe) {
+                sterne= null;
+                error.add("Bitte geben Sie eine Nummer für die Sterne ein");
+             }
+            try {
+                ent = Integer.parseInt(entfernung.trim());
+                }
+                catch (NumberFormatException nfe) {
+                    entfernung = null;
+                    error.add("Bitte geben Sie eine Nummer für die Entfernung ein");
+                }
+        }
+        if (!error.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + CreateHotelServlet.URL);
+        }
+        else {
+            hotelbean.createNewHotel(hotelname, ort, ppn, az, st, ent);
+            response.sendRedirect(request.getContextPath() + HotelAdministrationServlet.URL);
         }   
            
 }
