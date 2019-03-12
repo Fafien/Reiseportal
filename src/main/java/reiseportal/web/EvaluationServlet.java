@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import reiseportal.ejb.BookingBean;
 import reiseportal.ejb.UserEvaluationBean;
+import reiseportal.jpa.Booking;
 import reiseportal.jpa.UserEvaluation;
 
 /**
@@ -24,44 +26,53 @@ import reiseportal.jpa.UserEvaluation;
 
 @WebServlet(name = "EvaluationServlet", urlPatterns = {"/evaluation"})
 public class EvaluationServlet extends HttpServlet {
+    
     public final String URL = "/evaluation";
     
     @EJB
     UserEvaluationBean evaluationBean;
     
     @EJB
-    
-    
-    UserEvaluation evaluation;
+     BookingBean bookingbean;
+            
     
     HttpSession session;
-    ArrayList<String> error;
+    Booking booking;
     
     @Override
     public void doGet (HttpServletRequest request, HttpServletResponse response )
         throws ServletException, IOException{
-          session = request.getSession();
-          
-          request.getRequestDispatcher("/WEB-INF/evaluation.jsp").forward(request, response);
-              }
+        session = request.getSession();
+        
+        request.getRequestDispatcher("/WEB-INF/evaluation.jsp").forward(request, response);
+          }
+    
+   @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+         String error;
+         if(request.getParameter("bewertung").isEmpty() || request.getParameter("bewertungsarea").isEmpty()){
+             error = "Bitte alle Felder ausfühlen";
+             
+             //TODO:
+             // String Eingabe beschränken
+             
+         }else{
+             error = "";
+             String str = request.getParameter("button_evaluation");
+              Long id = Long.parseLong(str);
+              booking = bookingbean.findById(id);
+             int bewertung = Integer.parseInt(request.getParameter("bewertung"));
+             String bewertungsarea = request.getParameter("bewertungsarea");
 
-         public void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-     
-            if(request.getParameter("button_evaluation").equals("absenden")){
-               if(request.getParameter("bewertung").isEmpty() || request.getParameter("bewertungstext").isEmpty()){
-                 error.add("Bitte alle Felder ausfüllen");
-           /* }else{
-                   
-                evaluationBean.createNewValuation(734685, request.getParameter("bewertung"), request.getParameter("bewertungstext"));
-                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-                }
-                    session.invalidate();*/
-                    response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+             evaluationBean.createNewEvaluation(booking, bewertung, bewertungsarea);
+         }
+           request.setAttribute("error", error);   
+           response.sendRedirect(request.getContextPath() + IndexServlet.URL);
             }
                 
         }
-}}    
+
     
     
     
