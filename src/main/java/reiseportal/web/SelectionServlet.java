@@ -6,6 +6,9 @@
 package reiseportal.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -16,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.ejb.HotelausstattungBean;
+import reiseportal.jpa.Ausstattung;
+import reiseportal.jpa.Filter;
 import reiseportal.jpa.Hotel;
 import reiseportal.jpa.Hotelausstattung;
 
@@ -36,7 +41,9 @@ public class SelectionServlet extends HttpServlet {
     List<Hotel> hotellist;
     Hotel hotel;
     HttpSession session;
-    String error = new String();
+    String error = "";
+    Ausstattung[] facilities = Ausstattung.values();
+    Filter[] facilitiesLabel;
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,6 +51,19 @@ public class SelectionServlet extends HttpServlet {
         
         session = request.getSession();
         
+        if(facilitiesLabel == null || facilitiesLabel.length == 0) {
+            int i = 0;
+            facilitiesLabel = new Filter[facilities.length];
+            while(i < facilities.length) {
+                Filter fil = new Filter();
+                fil.setFilterLabel(facilities[i].getLabel());
+                fil.setFilterChecked("");
+                facilitiesLabel[i] = fil;
+                i++;
+            }
+        }
+        
+        request.setAttribute("filterLabel", facilitiesLabel);
         request.setAttribute("hotellist", session.getAttribute("hotels"));
         request.setAttribute("PreisSelected", session.getAttribute("PreisSelected"));
         request.setAttribute("EntfernungSelected", session.getAttribute("EntfernungSelected"));
@@ -55,15 +75,16 @@ public class SelectionServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String str = request.getParameter("button");
+        String requestButton = request.getParameter("button");
         
-        if(str.equals("Anwenden")) {
+        if(requestButton.equals("Anwenden")) {
             String location = (String) session.getAttribute("location");
-            String from = (String) session.getAttribute("fromDate");
-            String until = (String) session.getAttribute("untilDate");
+            Date from = (Date) session.getAttribute("fromDate");
+            Date until = (Date) session.getAttribute("untilDate");
             String persons = (String) session.getAttribute("persons");
             
             String sort = request.getParameter("sorting");
+            facilitiesLabel = new Filter[facilities.length];
             
             switch(sort) {
                 case"Preis":
@@ -86,16 +107,60 @@ public class SelectionServlet extends HttpServlet {
                     break;
             }
             
-            if(hotellist.isEmpty()) {
-                error = "Zu ihren Suchdaten gibt es keine passenden Ergebnisse";
+            int i = 0;
+            while(i < facilities.length) {
+                Filter fil = new Filter();
+                fil.setFilterLabel(facilities[i].getLabel());
+                fil.setFilterChecked("");
+                facilitiesLabel[i] = fil;
+                i++;
+            }
+            List<String> requiredFacilities = new ArrayList<>();
+            int j = 0;
+            while(j < facilities.length) {
+                if(request.getParameter(facilitiesLabel[j].getFilterLabel()) == null) {
+                    facilitiesLabel[j].setFilterChecked("");
+                } else {
+                    requiredFacilities.add(facilities[j].toString());
+                    facilitiesLabel[j].setFilterChecked("checked");
+                }
+                j++;
+            }
+            
+            List<Hotel> hotellist2 = new ArrayList<>();
+            hotellist2.addAll(hotellist);
+            Iterator<Hotel> iter = hotellist2.listIterator();
+            while(iter.hasNext()) {
+                Hotel h = iter.next();
+                int found = 0;
+                List<Hotelausstattung> hotelausstattung = hotausbean.findHotelausstattungByHotel(h);
+                for(Hotelausstattung ha : hotelausstattung) {
+                    String help = ha.getAusstattung().toString();
+                    for(String s : requiredFacilities) {
+                        if(s.equals(help)) {
+                            found++;
+                        }
+                    }
+                }
+                if(found != requiredFacilities.size()) {
+                    iter.remove();
+                }
+            }
+            
+            if(hotellist2.isEmpty()) {
+                error = "Für die gewählten Filtern gibt es keine passenden Ergebnisse";
+                session.setAttribute("errors", error);
+                facilitiesLabel = null;
                 response.sendRedirect(request.getContextPath() + IndexServlet.URL);
             } else {
                 error = "";
-                session.setAttribute("hotels", hotellist);
+                session.setAttribute("errors", error);
+                session.setAttribute("hotels", hotellist2);
+                session.setAttribute("filter", facilitiesLabel);
                 response.sendRedirect(request.getContextPath() + SelectionServlet.URL);
             }
         } else {
-            Long id = Long.parseLong(str);
+            Long id = Long.parseLong(requestButton);
             hotel = hotelbean.findHotelById(id);
             List<Hotelausstattung> hotelaus = hotausbean.findHotelausstattungByHotel(hotel);
         

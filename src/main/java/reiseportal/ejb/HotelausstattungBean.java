@@ -22,9 +22,9 @@ public class HotelausstattungBean {
     @PersistenceContext
     protected EntityManager em;
     
-    public List<Hotelausstattung> findHotelausstattungByHotel(Hotel ho){
+    public List<Hotelausstattung> findHotelausstattungByHotel(Hotel hotel){
         return em.createQuery("SELECT ha FROM Hotelausstattung ha WHERE ha.hotel = :hotelid")
-                .setParameter("hotelid", ho)
+                .setParameter("hotelid", hotel)
                 .getResultList();
     }
     

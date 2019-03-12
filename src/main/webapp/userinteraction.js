@@ -5,12 +5,14 @@
  */
 
 $(document).ready(function() {
+    
     $(function() {
         $("#datum1").datepicker({
             dateFormat: "dd.mm.yy",
             changeMonth: true,
             changeYear: true,
             firstDay: 1,
+            minDate: 0,
             showOtherMonths: true,
             selectOtherMonths: true,
             dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
@@ -24,6 +26,7 @@ $(document).ready(function() {
             changeMonth: true,
             changeYear: true,
             firstDay: 1,
+            minDate: 0,
             showOtherMonths: true,
             selectOtherMonths: true,
             dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
