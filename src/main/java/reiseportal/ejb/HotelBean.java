@@ -131,4 +131,8 @@ public class HotelBean {
         return hotel;
     }
     
+     public Hotel updateHotel(Hotel hotel) {
+        return em.merge(hotel);
+    }
+    
 }

@@ -29,6 +29,8 @@ public class HotelEditServlet extends HttpServlet {
     HttpSession session;
     Useraccount usr;
     Hotel foundhotel;
+    
+    boolean disabled = true;
   
     @EJB
     HotelBean hotelbean;
@@ -41,8 +43,8 @@ public class HotelEditServlet extends HttpServlet {
         foundhotel = (Hotel) session.getAttribute("foundhotel");
         
         request.setAttribute("foundhotel", foundhotel);
+        request.setAttribute("disabled", disabled);
         request.getRequestDispatcher("/WEB-INF/edithotel.jsp").forward(request, response);
-      
     } 
     
     
@@ -54,8 +56,13 @@ public class HotelEditServlet extends HttpServlet {
         
         switch(request.getParameter("button")){
             case "bearbeiten":
-               //TODO
-                break;
+               disabled = false;
+               response.sendRedirect(request.getContextPath() + HotelEditServlet.URL);
+               break;
+            case "speichern":
+                disabled = true;
+                //TODO speichern in DB
+                response.sendRedirect(request.getContextPath() + HotelEditServlet.URL);
             case "loeschen":
                 hotelbean.deleteHotel(foundhotel.getId());
                 response.sendRedirect(request.getContextPath() + HotelAdministrationServlet.URL);
