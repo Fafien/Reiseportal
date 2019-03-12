@@ -15,13 +15,22 @@
         <form method="POST" class="square">
             <div>
                 <table>
-                    <tr>
+                    <tr id="search-bar">
                         <td class="label">
                             <label for="location">Ort:</label>
                         </td>
                         <td>
-                            <input name="location" type="text" value="${location}"/>
+                            <input name="location" id="location" type="text" value="${location}"/>
                         </td>
+                        
+                        <td class="label">
+                            <label for="persons">Personen:</label>
+                        </td>
+                        <td>
+                            <input name="persons" id="persons" type="number" value="${persons}"/>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="label">
                             <label for="fromDate">von:</label>
                         </td>
@@ -34,14 +43,8 @@
                         <td>
                             <input type="text" id="datum2" name="untilDate" value="${untilDate}"/>
                         </td>
-                        <td class="label">
-                            <label for="persons">Personen:</label>
-                        </td>
                         <td>
-                            <input name="persons" type="number" value="${persons}"/>
-                        </td>
-                        <td>
-                            <button>Suchen</button>
+                            <button id="search">Suchen</button>
                         </td>
                     </tr>
                 </table>

@@ -44,6 +44,7 @@ public class IndexServlet extends HttpServlet {
         
         session = request.getSession();
         request.setAttribute("errors", session.getAttribute("errors"));
+        session.removeAttribute("errors");
         request.setAttribute("fromDate", session.getAttribute("fromDateOriginal"));
         request.setAttribute("untilDate", session.getAttribute("untilDateOriginal"));
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
