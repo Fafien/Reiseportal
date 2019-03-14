@@ -39,27 +39,17 @@ public class HotelEditServlet extends HttpServlet {
     @EJB
     HotelBean hotelbean;
    
-    /*Eingegebene Variablen gespeichert, für die Vorbelegung des Formulars*/
-    String hotelname;
-    String ort;
-    String preisProNacht;
-    String anzahlZimmer;
-    String sterne;
-    String entfernung;
     
-    //Hotelattribute nach dem Überprüfung und Konvertierung
-    // ppn = preisProNacht, az = anzahlZimmer...
-    int ppn;
-    int az;
-    int st;
-    int ent;
   
    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+        
         session = request.getSession();  
         foundhotel = (Hotel) session.getAttribute("foundhotel");
+        
         
         request.setAttribute("hotelname", foundhotel.getHotelname());
         request.setAttribute("ort", foundhotel.getOrt());
@@ -69,7 +59,10 @@ public class HotelEditServlet extends HttpServlet {
         request.setAttribute("anzahlZimmer", foundhotel.getEntfernung());
         
         request.setAttribute("disabled", disabled);
-        request.setAttribute("error", error);
+        if (error != null && !error.isEmpty()) {
+            request.setAttribute("error", error);
+        } 
+        
         request.getRequestDispatcher("/WEB-INF/edithotel.jsp").forward(request, response);
     } 
     
@@ -79,7 +72,8 @@ public class HotelEditServlet extends HttpServlet {
             throws ServletException, IOException {
         
        foundhotel = (Hotel) session.getAttribute("foundhotel");
-        
+       error = new ArrayList <String> ();
+       
         switch(request.getParameter("button")){
             case "bearbeiten":
                disabled = false;
@@ -87,15 +81,21 @@ public class HotelEditServlet extends HttpServlet {
                break;
             
             case "speichern":
-                error = new ArrayList <String> ();
+                
+               
                 
                 //Einlesen der Formulareingaben
-                hotelname = request.getParameter("hotelname");
-                ort = request.getParameter("ort"); 
-                preisProNacht = request.getParameter("preisProNacht");   
-                anzahlZimmer =  request.getParameter("anzahlZimmer");  
-                sterne = request.getParameter("sterne");   
-                entfernung = request.getParameter("entfernung");
+                String hotelname = request.getParameter("hotelname");
+                String ort = request.getParameter("ort"); 
+                String preisProNacht = request.getParameter("preisProNacht");   
+                String anzahlZimmer =  request.getParameter("anzahlZimmer");  
+                String sterne = request.getParameter("sterne");   
+                String entfernung = request.getParameter("entfernung");
+                
+                int ppn;
+                int az;
+                int st;
+                int ent;
                 
                 //Prüfung ob alle Felder belegt sind & ob für die Felder außer Hotelname und Ort nur Nummer eingeben wurde
                 if (hotelname.isEmpty()) {
@@ -107,45 +107,47 @@ public class HotelEditServlet extends HttpServlet {
                 if (!hotelbean.findHotelByNameAndPlace(hotelname, ort).isEmpty()) {
                     error.add("Ein Hotel mit dem gleichen Namen und Ort schon vorhanden");
                 }
-        
                 else {
+                    foundhotel.setHotelname(hotelname);
+                    foundhotel.setOrt(ort);
                     try {
                         ppn = Integer.parseInt(preisProNacht.trim());
+                        foundhotel.setPreisProNacht(ppn);
                     }
                     catch (NumberFormatException nfe) {
-                        preisProNacht = null;
                         error.add ("Bitte geben Sie eine Nummer für den Preis pro Nacht ein");
-                    }   
+                    }
                     try {
                         az = Integer.parseInt(anzahlZimmer.trim());
+                        foundhotel.setAnzahlZimmer(az);
                      }
                     catch (NumberFormatException nfe) {
-                        anzahlZimmer = null;
                         error.add("Bitte geben Sie eine Nummer für den Anzahl der Zimmer ein");
                     }
+                   
                     try {
                         st = Integer.parseInt(sterne.trim());
+                         foundhotel.setSterne(st);
                     }
                     catch (NumberFormatException nfe) {
-                        sterne= null;
                         error.add("Bitte geben Sie eine Nummer für die Sterne ein");
                     }
                     try {
                         ent = Integer.parseInt(entfernung.trim());
+                        foundhotel.setEntfernung(ent);
                     }
                     catch (NumberFormatException nfe) {
-                        entfernung = null;
                         error.add("Bitte geben Sie eine Nummer für die Entfernung ein");
                     }
                 }
-                if (!error.isEmpty()) {  
-                }
-                else {
+                if (error.isEmpty()) {
                     disabled = true;
-                    Hotel hotel = new Hotel (hotelname, ort, ppn, az, st, ent);
-                    foundhotel = hotelbean.updateHotel(hotel);
-                    session.setAttribute("foundhotel", foundhotel);
-                } 
+                    foundhotel = hotelbean.updateHotel(foundhotel);  
+                }
+                else { 
+                    
+                }
+                session.setAttribute("foundhotel", foundhotel);
                 response.sendRedirect(request.getContextPath() + HotelEditServlet.URL);
            break;
             

@@ -15,7 +15,7 @@
             <form method="POST">
                 <table> 
                     <c:if test="${disabled}">
-                        <tr> ${error} </tr>
+                        
                         <tr>
                             <td> Hotelname </td>
                             <td>
