@@ -27,7 +27,7 @@ import reiseportal.jpa.UserEvaluation;
 @WebServlet(name = "EvaluationServlet", urlPatterns = {"/evaluation"})
 public class EvaluationServlet extends HttpServlet {
     
-    public final String URL = "/evaluation";
+    public static final String URL = "/evaluation";
     
     @EJB
     UserEvaluationBean evaluationBean;

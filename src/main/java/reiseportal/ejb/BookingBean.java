@@ -24,8 +24,8 @@ public class BookingBean {
     @PersistenceContext
     protected EntityManager em;
     
-    public Booking createNewBooking(Hotel hotelId, Useraccount userId, Date ankunft, Date ausreise, int personenanzahl, boolean cancel ){
-        Booking booking = new Booking(hotelId, userId, ankunft, ausreise, personenanzahl, cancel);
+    public Booking createNewBooking(Hotel hotel, Useraccount user, Date ankunft, Date ausreise, int personenanzahl, boolean cancel ){
+        Booking booking = new Booking(hotel, user, ankunft, ausreise, personenanzahl, cancel);
         em.persist(booking);
         return em.merge(booking);
     }
@@ -33,11 +33,10 @@ public class BookingBean {
      public Booking findById(long id) {
         return em.find(Booking.class, id);
     }
-     
  
-    public List<Booking> findBookingByUserId(Useraccount user){
-        return em.createQuery("SELECT b FROM Booking WHERE b.userID LIKE :userID ")
-                .setParameter("userId", user)
+    public List<Booking> findBookingByUseraccount(Useraccount useraccount){
+        return em.createQuery("SELECT b FROM Booking b " + " WHERE b.useraccount = :useraccount ")
+                .setParameter("useraccount", useraccount)
                 .getResultList();
     }
     

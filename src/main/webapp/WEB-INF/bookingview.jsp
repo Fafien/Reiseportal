@@ -1,7 +1,7 @@
 <%-- 
     Document   : BookingView
     Created on : 10.03.2019, 18:40:22
-    Author     : dar
+    Author     : Marwa Alqataa
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,7 +12,7 @@
 <template:base>
     <jsp:attribute name="main">
         <form method="POST" name="bewerten">
-            <c:forEach items="${bookinglist}" var="hotel">
+            <c:forEach items="${bookinglist}">
                 <div>
                     <label>
                         Hotelname: <c:out value="${bookinglist.hotelname}"></c:out>
@@ -25,6 +25,7 @@
                     <label>
                         Sterne: <c:out value="${bookinglis.sterne}"></c:out>
                     </label>
+                    <%-- TODO: If( abreise < heute) --%>
                     <button name="buttonEvaluation" >
                         Bewerten
                     </button>

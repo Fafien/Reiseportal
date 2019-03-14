@@ -30,6 +30,9 @@
                   </br></br>
                 <button name="button_evaluation">Absenden</button>
             </form>
+                  <div class="error">
+                    <c:out value="${error}"></c:out>
+                </div>
         </div>
     </jsp:attribute>
 </template:base> 

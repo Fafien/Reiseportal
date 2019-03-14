@@ -12,7 +12,11 @@ package reiseportal.web;
 
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,8 +57,8 @@ public class ConfirmServlet extends HttpServlet {
             
         request.setAttribute("hotel", session.getAttribute("viewHotel"));
         request.setAttribute("persons", session.getAttribute("persons"));
-        request.setAttribute("ankunft", session.getAttribute("fromDate"));
-        request.setAttribute("abreise", session.getAttribute("untilDate"));
+        request.setAttribute("ankunft", session.getAttribute("fromDateOriginal"));
+        request.setAttribute("abreise", session.getAttribute("untilDateOriginal"));
         request.getRequestDispatcher("/WEB-INF/confirm.jsp").forward(request, response);
         
     }
@@ -63,18 +67,32 @@ public class ConfirmServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //Das Speicher in den Datenbank funktioniert nicht ein Problem mit dem Datum
-//            session = request.getSession();
+           session = request.getSession();
             Hotel hotel = (Hotel) session.getAttribute("viewHotel"); 
             Useraccount usr = (Useraccount) session.getAttribute("usr");
-            Date anfahrt = (Date) session.getAttribute("fromDate");
-            Date abreise =(Date) session.getAttribute("untilDate");
-            int personen = (int)   session.getAttribute("persons");
-         
-        this.bookingBean.createNewBooking(hotel, usr, anfahrt, abreise  ,personen, true);
-       
-         //response.sendRedirect(request.getContextPath() + BookingViewServlet.URL);
+            String ankunft = (String) session.getAttribute("fromDateOriginal");
+            String abreise = (String) session.getAttribute("untilDateOriginal");
+            String ankunftE = ankunft.substring(0,2) + "/" + ankunft.substring(3,5) + "/" + ankunft.substring(6,10);
+            String abreiseE = abreise.substring(0,2) + "/" + abreise.substring(3,5) + "/" + abreise.substring(6,10);
+            Date ankunftDatum = new Date();
+            Date abreiseDatum = new Date();
+        try {
+            ankunftDatum = new SimpleDateFormat("dd/MM/yyyy").parse(ankunftE);
+            abreiseDatum = new SimpleDateFormat("dd/MM/yyyy").parse(abreiseE);
+        } catch (ParseException ex) {
+           
+            System.out.print("Datum Speicher hat nicht funkioniert ");
+            
+        }
+            String personen = (String)   session.getAttribute("persons");
+                 int personenInt = Integer.parseInt(personen);	
+
+        this.bookingBean.createNewBooking(hotel, usr, ankunftDatum, abreiseDatum  ,personenInt, false);
+        
+       //TODO: 
+       //Email-Versand
+         response.sendRedirect(request.getContextPath() + BookingViewServlet.URL);
          //response.sendRedirect(request.getContextPath() + EvaluationServlet.URL);
-         response.sendRedirect(request.getContextPath() + AfterConfirmServlet.URL);
+         //response.sendRedirect(request.getContextPath() + AfterConfirmServlet.URL);
     }
 }

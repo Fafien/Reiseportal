@@ -37,16 +37,18 @@ import reiseportal.jpa.Useraccount;
         
         HttpSession session = request.getSession();
         Useraccount usr = (Useraccount) session.getAttribute("usr");
-        List<Booking> bookingList = bookingBean.findBookingByUserAccount(usr);
+        List<Booking> bookingList;
+        bookingList = bookingBean.findBookingByUseraccount(usr);
         String  error;
+        
         if(bookingList == null){
          error= "Sie haben kein Hotel gebucht";
-         request.setAttribute("bookinglist.hotelname", " " );
-         request.setAttribute("bookinglist.ort", " " );
-         request.setAttribute("bookinglist.sterne", " " );
+         request.setAttribute("bookinglist.hotelname", "" );
+         request.setAttribute("bookinglist.ort", "" );
+         request.setAttribute("bookinglist.sterne", "" );
         }else{
-            Booking booking = new Booking();
-            Hotel hotel = booking.getHotel(); 
+         Booking booking = new Booking();
+         Hotel hotel = booking.getHotel(); 
          request.setAttribute("bookinglist", hotel );
          error = "";
         }
@@ -59,6 +61,6 @@ import reiseportal.jpa.Useraccount;
          public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
              
-           //response.sendRedirect(request.getContextPath() + EvaluationServlet.URL);
+           response.sendRedirect(request.getContextPath() + EvaluationServlet.URL);
     }
   }
