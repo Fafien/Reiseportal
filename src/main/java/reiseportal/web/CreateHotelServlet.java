@@ -165,5 +165,3 @@ public class CreateHotelServlet extends HttpServlet {
         
        
     }
-    
-

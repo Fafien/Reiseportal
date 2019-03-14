@@ -14,7 +14,7 @@
         <div class="center">
             <form method="POST">
                 <div class="title">
-                    Neues Hotel anlegen
+                    Neues Hotel Anlegen
                 </div>
                  <c:forEach items="${error}" var="error">
                     <p><c:out value="${error}"></c:out></br>
@@ -39,7 +39,7 @@
                 <input class="field_middle" type="entfernung" name="entfernung" value="${entfernung}">
                 </br>
                 <button class="button">
-                    Hotel anlegen
+                    Hotel speichern
                 </button>
             </form> 
         </div>
