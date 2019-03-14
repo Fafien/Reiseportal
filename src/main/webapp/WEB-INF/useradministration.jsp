@@ -3,6 +3,7 @@
     Created on : Feb 28, 2019, 1:16:05 PM
     Author     : belizbalim
 --%>
+<%--  Diese JSP wird verwendet, wenn der Admin Benutzer verwalten will. --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
@@ -61,7 +62,8 @@
                     <c:out value="${founduser.blocked}"></c:out>
                 </td>
             </tr>
-            <c:choose> 
+            <c:choose>  
+              <%--  Auswahl der anzuzeigenden Buttons für verschiedene Faelle --%>
                 <c:when test="${founduser.admn ==true}"> 
                     <tr>
                         <td></td>

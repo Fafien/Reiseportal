@@ -4,6 +4,8 @@
     Author     : belizbalim
 --%>
 
+<%--  Die Einstiegsseite für Admins bezüglich der Hotelanlage und Hoteldatenaenderungen --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

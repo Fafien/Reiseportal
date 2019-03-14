@@ -20,7 +20,7 @@ import reiseportal.jpa.Useraccount;
 import reiseportal.jpa.Hotel;
 
 /**
- *
+ * 
  * @author belizbalim
  */
 @WebServlet(name="CreateHotelServlet", urlPatterns = {"/createhotel"})
@@ -155,6 +155,7 @@ public class CreateHotelServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + CreateHotelServlet.URL);
         }
         else {
+            //Wenn die Prüfung ohne Fehler abgewickelt wird, wird das Hotel erzeugt. 
             hotelbean.createNewHotel(hotelname, ort, ppn, az, st, ent);
             response.sendRedirect(request.getContextPath() + HotelAdministrationServlet.URL);
         }   

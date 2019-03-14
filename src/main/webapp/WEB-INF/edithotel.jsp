@@ -3,7 +3,7 @@
     Created on : Mar 1, 2019, 4:24:58 PM
     Author     : belizbalim
 --%>
-
+<%--  Diese JSP wird verwendet, wenn der Admin die Daten eines bestehenden Hotels aendern will. --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -14,6 +14,7 @@
         <div class="center">
             <form method="POST">
                 <table> 
+                    <%--  Inputfelder im Formular gesperrt anzeigen --%>
                     <c:if test="${disabled}">
                         <tr>
                             <td> Hotelname </td>
@@ -60,7 +61,9 @@
                         <tr>
                         <button type="submit" class="button" name="button" value="löschen"> Löschen </button>
                         </tr>
-                    </c:if>   
+                    </c:if>  
+                        
+                    <%--  Inputfelder im Formular ungesperrt anzeigen --%>
                     <c:if test="${!disabled}">
                         <tr class="error"> 
                            <c:forEach items="${error}" var="error">
