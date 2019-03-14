@@ -15,7 +15,6 @@
             <form method="POST">
                 <table> 
                     <c:if test="${disabled}">
-                        
                         <tr>
                             <td> Hotelname </td>
                             <td>
@@ -53,6 +52,9 @@
                              </td>
                         </tr>
                         <tr>
+                        <button type="submit" class="button" name="button" value="zuruck"> Zurück </button>
+                        </tr>
+                        <tr>
                         <button type="submit" class="button" name="button" value="bearbeiten"> Bearbeiten </button>
                         </tr>
                         <tr>
@@ -60,7 +62,11 @@
                         </tr>
                     </c:if>   
                     <c:if test="${!disabled}">
-                        <tr> ${error} </tr>
+                        <tr class="error"> 
+                           <c:forEach items="${error}" var="error">
+                             <p class="error"><c:out value="${error}"></c:out></br>
+                           </c:forEach>  
+                        </tr>
                         <tr>
                             <td> Hotelname </td>
                             <td>
@@ -96,6 +102,9 @@
                             <td>
                                 <input class="field_middle" name="entfernung" value="<c:out value="${foundhotel.entfernung}"></c:out>">
                              </td>
+                        </tr>
+                        <tr>
+                        <button type="submit" class="button" name="button" value="zuruck"> Zurück </button>
                         </tr>
                         <tr>
                         <button type="submit" class="button" name="button" value="speichern"> Speichern </button>

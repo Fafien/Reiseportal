@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <template:base>
     <jsp:attribute name="main">
-        <form method="POST" name="useradministration">
+        <form method="POST" name="useradministration">   
         <table>
             <tr>
                 <td>
@@ -66,7 +66,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <button type="submit" name="button" value="noadmin">Adminrechte entfernen</button>
+                            <button class="button" type="submit" name="button" value="noadmin">Adminrechte entfernen</button>
                         </td>  
                     </tr>
                 </c:when>
@@ -74,7 +74,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <button type="submit" name="button" value="admin">Zum Admin ernennen</button>
+                            <button class="button" type="submit" name="button" value="admin">Zum Admin ernennen</button>
                         </td>  
                     </tr>
                 </c:otherwise>     
@@ -84,7 +84,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <button type="submit" name="button" value="entsperren">Entperren</button>
+                            <button class="button" type="submit" name="button" value="entsperren">Entperren</button>
                         </td>
                     </tr>
                 </c:when>    
@@ -92,7 +92,7 @@
                      <tr>
                         <td></td>
                         <td>
-                            <button type="submit" name="button" value="sperren">Sperren</button>
+                            <button class="button" type="submit" name="button" value="sperren">Sperren</button>
                         </td>
                     </tr>
                 </c:otherwise>
@@ -100,7 +100,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <button type="submit" name="button" value="loeschen">Löschen</button>
+                    <button class="button" type="submit" name="button" value="loeschen">Löschen</button>
                 </td>
             </tr>          
         </table>

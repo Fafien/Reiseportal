@@ -17,7 +17,7 @@
                     Neues Hotel Anlegen
                 </div>
                  <c:forEach items="${error}" var="error">
-                    <p><c:out value="${error}"></c:out></br>
+                    <p class="error"><c:out value="${error}"></c:out></br>
                 </c:forEach>   
                 </br>
                 <label> Hotelname </label>
