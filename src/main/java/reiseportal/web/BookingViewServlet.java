@@ -37,15 +37,17 @@ import reiseportal.jpa.Useraccount;
         
         HttpSession session = request.getSession();
         Useraccount usr = (Useraccount) session.getAttribute("usr");
-        List<Booking> booking = bookingBean.findBookingByUserId(usr);
+        List<Booking> bookingList = bookingBean.findBookingByUserAccount(usr);
         String  error;
-        if(booking == null){
+        if(bookingList == null){
          error= "Sie haben kein Hotel gebucht";
          request.setAttribute("bookinglist.hotelname", " " );
          request.setAttribute("bookinglist.ort", " " );
          request.setAttribute("bookinglist.sterne", " " );
         }else{
-         request.setAttribute("bookinglist", booking);
+            Booking booking = new Booking();
+            Hotel hotel = booking.getHotel(); 
+         request.setAttribute("bookinglist", hotel );
          error = "";
         }
         

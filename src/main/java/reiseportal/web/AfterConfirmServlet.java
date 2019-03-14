@@ -42,8 +42,8 @@ public class AfterConfirmServlet extends HttpServlet {
         
         request.setAttribute("hotel", session.getAttribute("viewHotel"));
         request.setAttribute("persons", session.getAttribute("persons"));
-        request.setAttribute("ankunft", session.getAttribute("fromDate"));
-        request.setAttribute("abreise", session.getAttribute("untilDate"));
+        request.setAttribute("ankunft", session.getAttribute("fromDateOriginal"));
+        request.setAttribute("abreise", session.getAttribute("untilDateOriginal"));
         request.getRequestDispatcher("/WEB-INF/afterconfirm.jsp").forward(request, response);
         
     }

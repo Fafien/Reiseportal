@@ -19,7 +19,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class SearchTest {
     
-    public SearchTest() {
+   /* public SearchTest() {
     }
     
     @BeforeClass
@@ -58,6 +58,6 @@ public class SearchTest {
         button.click();
         
         driver.quit();
-    }
+    }*/
 }
 

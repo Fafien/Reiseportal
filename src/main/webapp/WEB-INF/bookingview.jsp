@@ -25,7 +25,7 @@
                     <label>
                         Sterne: <c:out value="${bookinglis.sterne}"></c:out>
                     </label>
-                    <button name="buttonEvaluation" value="${bookinghotel.id}">
+                    <button name="buttonEvaluation" >
                         Bewerten
                     </button>
                 </div>
