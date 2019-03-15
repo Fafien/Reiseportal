@@ -40,7 +40,7 @@ public class SearchTest {
 
     @Test
     public void hello() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver",
+        /*System.setProperty("webdriver.chrome.driver",
                      "/Users/jonas/Downloads/chromedriver"); 
         WebDriver driver  = new ChromeDriver();
         driver.get("http://localhost:8080/Reiseportal/");
@@ -57,7 +57,7 @@ public class SearchTest {
         input4.sendKeys("2");
         button.click();
         
-        driver.quit();
+        driver.quit();*/
     }
 }
 

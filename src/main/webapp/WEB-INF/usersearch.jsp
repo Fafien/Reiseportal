@@ -4,6 +4,7 @@
     Author     : belizbalim
 --%>
 
+<%--  Die Einstiegsseite für Admins bezüglich der Hotelanlage und Benutzerdatenaenderungen. --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
@@ -14,7 +15,8 @@
    <jsp:attribute name="main">
        <div class="center">      
             <form method="POST" name="UserSearch">
-                <p>${error}</p>
+                <div class="title">Usersuche</div>
+                <p class="error">${error}</p>
                 <input class="field_top" name="username" placeholder="Benutzername">
                 <br>
                  <input class="field_top" name="email" placeholder="E-Mail">
