@@ -12,7 +12,7 @@
 <template:base>
     <jsp:attribute name="main">
         <form method="POST" name="bewerten">
-            <c:forEach items="${bookinglist}">
+            <c:forEach items="${bookinglist}" var="bookinglist">
                 <div>
                     <label>
                         Hotelname: <c:out value="${bookinglist.hotelname}"></c:out>
@@ -23,7 +23,7 @@
                     </label>
                     
                     <label>
-                        Sterne: <c:out value="${bookinglis.sterne}"></c:out>
+                        Sterne: <c:out value="${bookinglist.sterne}"></c:out>
                     </label>
                     <%-- TODO: If( abreise < heute) --%>
                     <button name="buttonEvaluation" >

@@ -58,7 +58,7 @@
             <div class="w3-bar-block">
                 <a href="<c:url value="/index.html"/>" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Hotels suchen</a>
                 <c:if test="${!empty usr}">
-                    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Meine Buchungen</a>
+                    <a href="<c:url value="/bookingview"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Meine Buchungen</a>
                     <c:if test="${usr.admn}">
                         <a href="<c:url value="/usersearch"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Benutzer verwalten</a>
                         <a href="<c:url value="/hoteladministration"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Hotels verwalten</a>                            

@@ -6,6 +6,8 @@
 package reiseportal.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -40,16 +42,20 @@ import reiseportal.jpa.Useraccount;
         List<Booking> bookingList;
         bookingList = bookingBean.findBookingByUseraccount(usr);
         String  error;
-        
+         
         if(bookingList == null){
          error= "Sie haben kein Hotel gebucht";
          request.setAttribute("bookinglist.hotelname", "" );
          request.setAttribute("bookinglist.ort", "" );
          request.setAttribute("bookinglist.sterne", "" );
         }else{
-         Booking booking = new Booking();
-         Hotel hotel = booking.getHotel(); 
-         request.setAttribute("bookinglist", hotel );
+         Iterator<Booking> iter = bookingList.listIterator();
+         List<Hotel> bookingHotelList = new ArrayList<>();
+            while(iter.hasNext()){ 
+                  Hotel hotel =  iter.next().getHotel();
+                  bookingHotelList.add(hotel);
+        }
+         request.setAttribute("bookinglist", bookingHotelList );
          error = "";
         }
         
