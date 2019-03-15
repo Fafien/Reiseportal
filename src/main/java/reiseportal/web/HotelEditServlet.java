@@ -32,6 +32,7 @@ public class HotelEditServlet extends HttpServlet {
     Hotel foundhotel;
     
     boolean disabled = true;
+    boolean delete = false;
     
     ArrayList <String> error;
    
@@ -58,6 +59,7 @@ public class HotelEditServlet extends HttpServlet {
         request.setAttribute("sterne", foundhotel.getSterne());
         request.setAttribute("anzahlZimmer", foundhotel.getEntfernung());
         request.setAttribute("disabled", disabled);
+        request.setAttribute ("delete", delete);
         
         if (error != null) {
             request.setAttribute("error", error);
@@ -74,12 +76,15 @@ public class HotelEditServlet extends HttpServlet {
        //foundhotel = (Hotel) session.getAttribute("foundhotel");
        error = new ArrayList <String> ();
        
+   
+       
        //Ermittlung auf welches Button geklickt wurde
         switch(request.getParameter("button")){
             
             //Bei Bearbeitung die Input Felder unsperren
             case "bearbeiten":
                disabled = false;
+               delete = false;
                response.sendRedirect(request.getContextPath() + HotelEditServlet.URL);
                break;
             
@@ -87,6 +92,7 @@ public class HotelEditServlet extends HttpServlet {
                Wenn keine Fehlermeldung vorhanden ist, das Hotel in Datenbank aktualiseren*/  
                
             case "speichern":
+                delete = false;
                 //Einlesen der Formulareingaben
                 String hotelname = request.getParameter("hotelname");
                 String ort = request.getParameter("ort"); 
@@ -155,15 +161,28 @@ public class HotelEditServlet extends HttpServlet {
            //Zurück zur Suche
             case "zuruck":
                 disabled = true;
+                delete = false;
                 response.sendRedirect(request.getContextPath() + HotelAdministrationServlet.URL);
                 break;
                 
-            //Das Hotel von der Datenbank löschen.    
-           case "loeschen":
+            //Das Hotel von der Datenbank löschen. Vor dem Löschen noch mal fragen, ob der Anwender wirklich das Hotel löschen will.   
+            case "loeschen":
+               disabled = true;
+               delete = true;
+               response.sendRedirect(request.getContextPath() + HotelEditServlet.URL);
+               break;
+            case "loeschenja":
                 disabled = true;
+                delete = false;
                 hotelbean.deleteHotel(foundhotel.getId());
                 response.sendRedirect(request.getContextPath() + HotelAdministrationServlet.URL);
                 break;
+            case "loeschennein":
+                delete = false;
+                response.sendRedirect(request.getContextPath() + HotelEditServlet.URL);
+                break;
+               
+               
            
                 
         }

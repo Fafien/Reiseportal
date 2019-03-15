@@ -32,6 +32,8 @@ public class UserAdministrationServlet extends HttpServlet{
   
     @EJB
     UserBean userbean;
+    
+    boolean delete = false;
   
     //Gesuchte und gefundene Benutzer mit seinen Attributen angezeigt. 
     @Override
@@ -42,6 +44,7 @@ public class UserAdministrationServlet extends HttpServlet{
         founduser = (Useraccount) session.getAttribute("founduser");
         
         request.setAttribute("founduser", founduser);
+        request.setAttribute ("delete", delete);
         request.getRequestDispatcher("/WEB-INF/useradministration.jsp").forward(request, response);
         
         
@@ -77,8 +80,17 @@ public class UserAdministrationServlet extends HttpServlet{
                 break;
             // Den Benutzer löschen     
             case "loeschen":
+                delete = true;
+                response.sendRedirect(request.getContextPath() + UserAdministrationServlet.URL);
+                break;
+            case "loeschenja":
+                delete = false;
                 userbean.deleteUser(founduser.getId());
                 response.sendRedirect(request.getContextPath() + UserSearch.URL);
+                break;
+            case "loeschennein":
+                delete = false;
+                response.sendRedirect(request.getContextPath() + UserAdministrationServlet.URL);
                 break;
         }
         
