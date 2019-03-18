@@ -12,10 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
- * @author Fabian Hupe
+ * @author Marwa Alqataa
  */
 @Entity
 public class Booking implements Serializable {
@@ -24,19 +26,27 @@ public class Booking implements Serializable {
     private Long id;
     
     @ManyToOne
-    private Hotel hotelId = null;
+    private Hotel hotel = null;
     
     @ManyToOne
-    private Useraccount userId = null;
+    private Useraccount userAccount = null;
     
-    private Date ankunft;
-    private Date ausreise;
+    @Temporal(TemporalType.DATE)
+    private Date ankunft= new Date();
+    
+    @Temporal(TemporalType.DATE)
+    private Date ausreise= new Date();
     private int personenanzahl;
-    private boolean cancel;
+    private boolean cancel= false;
+    
+    
+    public Booking(){
+        
+    }
 
-    public Booking(Hotel hotelId,Useraccount userId, Date ankunft, Date ausreise, int personenanzahl, boolean cancel) {
-        this.hotelId = hotelId;
-        this.userId = userId;
+    public Booking(Hotel hotel, Useraccount userAccount, Date ankunft, Date ausreise, int personenanzahl, boolean cancel) {
+        this.hotel = hotel;
+        this.userAccount = userAccount;
         this.ankunft = ankunft;
         this.ausreise = ausreise;
         this.personenanzahl = personenanzahl;
@@ -51,20 +61,20 @@ public class Booking implements Serializable {
         this.id = id;
     }
 
-    public Hotel getHotelId() {
-        return hotelId;
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public void setHotelId(Hotel hotelId) {
-        this.hotelId = hotelId;
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
-    public Useraccount getUserId() {
-        return userId;
+    public Useraccount getUserAccount() {
+        return userAccount;
     }
 
-    public void setUserId(Useraccount userId) {
-        this.userId = userId;
+    public void setUserAccount(Useraccount userAccount) {
+        this.userAccount = userAccount;
     }
 
     public Date getAnkunft() {

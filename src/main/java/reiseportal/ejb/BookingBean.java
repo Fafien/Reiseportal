@@ -24,8 +24,8 @@ public class BookingBean {
     @PersistenceContext
     protected EntityManager em;
     
-    public Booking createNewBooking(Hotel hotelId, Useraccount userId, Date ankunft, Date ausreise, int personenanzahl, boolean cancel ){
-        Booking booking = new Booking(hotelId, userId, ankunft, ausreise, personenanzahl, cancel);
+    public Booking createNewBooking(Hotel hotel, Useraccount user, Date ankunft, Date ausreise, int personenanzahl, boolean cancel ){
+        Booking booking = new Booking(hotel, user, ankunft, ausreise, personenanzahl, cancel);
         em.persist(booking);
         return em.merge(booking);
     }
@@ -33,11 +33,10 @@ public class BookingBean {
      public Booking findById(long id) {
         return em.find(Booking.class, id);
     }
-     
-     // ich bin mir nicht sich, ob wir die wirklich brauchen werden 
-    public List<Booking> findBookingByUserId(Long userId){
-        return em.createQuery("SELECT b FROM Booking WHERE b.userID LIKE :userID ")
-                .setParameter("userId", userId)
+ 
+    public List<Booking> findBookingByUseraccount(Useraccount useraccount){
+        return em.createQuery("SELECT b FROM Booking b " + " WHERE b.useraccount = :useraccount ")
+                .setParameter("useraccount", useraccount)
                 .getResultList();
     }
     
@@ -46,11 +45,8 @@ public class BookingBean {
     }
     
     public void deleteBooking(Booking booking) {
+        
         em.remove(booking);
     }
     
-    
-    
-   //muss ich die Methode zum Befüllen cancel-Felder hier schreiben 
-   //if auf den Button Stornieren gedrückt wurde ist es "true" else immer "no"
 }

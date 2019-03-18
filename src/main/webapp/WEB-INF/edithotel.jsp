@@ -44,13 +44,13 @@
                                 <tr>
                                     <td> Preis Pro Nacht </td>
                                     <td>
-                                        <input class="field_middle" name="preisProNacht" value="<c:out value="${foundhotel.preisProNacht}"></c:out>" disabled>
+                                        <input class="field_middle" name="preisProNacht" id="preisProNacht" value="<c:out value="${foundhotel.preisProNacht}"></c:out>" disabled>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> Anzahl Zimmer </td>
                                     <td>
-                                        <input placeholder="" class="field_middle" name="anzahlZimmer" value="<c:out value="${foundhotel.anzahlZimmer}"></c:out>"  disabled>
+                                        <input placeholder="" class="field_middle" name="anzahlZimmer" id=anzahlZimmer" value="<c:out value="${foundhotel.anzahlZimmer}"></c:out>"  disabled>
                                     </td>
                                 </tr>  
                                 <tr>
@@ -69,7 +69,7 @@
                                     <button type="submit" class="button" name="button" value="zuruck"> Zurück </button>
                                 </tr>
                                 <tr>
-                                    <button type="submit" class="button" name="button" value="bearbeiten"> Bearbeiten </button>
+                                    <button type="submit" class="button" name="button" value="bearbeiten" id="bearbeiten"> Bearbeiten </button>
                                 </tr>
                                 <tr>
                                     <button type="submit" class="button" name="button" value="loeschen"> Löschen </button>
@@ -123,7 +123,7 @@
                                     <button type="submit" class="button" name="button" value="zuruck"> Zurück </button>
                                 </tr>
                                 <tr>
-                                    <button type="submit" class="button" name="button" value="speichern"> Speichern </button>
+                                    <button type="submit" class="button" name="button" value="speichern" id="speichern"> Speichern </button>
                                 </tr>
                             </c:if>
                         </c:otherwise>     

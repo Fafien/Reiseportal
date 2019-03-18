@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.jpa.Hotel;
+import reiseportal.jpa.Useraccount;
 
 /**
  *
@@ -30,6 +31,8 @@ public class OverviewServlet extends HttpServlet {
     
     HttpSession session;
     Hotel hotel;
+    Useraccount usr;
+    String error= new String();
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,15 +42,22 @@ public class OverviewServlet extends HttpServlet {
         
         request.setAttribute("hotel", session.getAttribute("viewHotel"));
         request.setAttribute("hotelaus", session.getAttribute("HotelAusstattung"));
+        request.setAttribute("error", error);
         request.getRequestDispatcher("/WEB-INF/overview.jsp").forward(request, response);
+        
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        //TODO
-        //Weiterleitung zur Buchungsseite
-        //response.sendRedirect(request.getContextPath() + BookingServlet.URL);
+ 
+         usr = (Useraccount) session.getAttribute("usr");
+        if(usr == null){
+            error = "Bitte loggen Sie sich erst ein"; 
+            response.sendRedirect(request.getContextPath() + LoginServlet.URL);
+        } else{
+            error = "";
+        response.sendRedirect(request.getContextPath() + ConfirmServlet.URL);
+    }
     }
 }

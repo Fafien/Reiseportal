@@ -13,10 +13,10 @@ import javax.persistence.OneToOne;
 
 /**
  *
- * @author Fabian Hupe
+ * @author Marwa Alqataa
  */
 @Entity
-public class UserValuation implements Serializable{
+public class UserEvaluation implements Serializable{
     @Id
     @GeneratedValue ()
     private Long id;
@@ -24,12 +24,12 @@ public class UserValuation implements Serializable{
     @OneToOne
     private Booking buchungId = null;
     
-    private int sterne;
-    private char bewertungstext;
+    private int punkte;
+    private String bewertungstext;
 
-    public UserValuation(Booking buchungId, int sterne, char bewertungstext) {
-        this.buchungId = buchungId;
-        this.sterne = sterne;
+    public UserEvaluation(Booking buchungId, int punkte, String bewertungstext) {
+        this.buchungId= buchungId;
+        this.punkte = punkte;
         this.bewertungstext = bewertungstext;
     }
 
@@ -50,18 +50,18 @@ public class UserValuation implements Serializable{
     }
 
     public int getPunkte() {
-        return sterne;
+        return punkte;
     }
 
     public void setPunkte(int punkte) {
-        this.sterne = punkte;
+        this.punkte = punkte;
     }
 
-    public char getBewertungstext() {
+    public String getBewertungstext() {
         return bewertungstext;
     }
 
-    public void setBewertungstext(char bewertungstext) {
+    public void setBewertungstext(String bewertungstext) {
         this.bewertungstext = bewertungstext;
     }
      
