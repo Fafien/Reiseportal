@@ -43,9 +43,9 @@ public class EditHotelTest {
     @Test
     public void test() throws InterruptedException {
         
-        /* 
-        //System.setProperty("webdriver.chrome.driver",
-                     //"/Users/jonas/Downloads/chromedriver"); 
+         
+        System.setProperty("webdriver.chrome.driver",
+                     "/Users/jonas/Downloads/chromedriver"); 
         
         WebDriver driver  = new ChromeDriver();
         driver.get("http://localhost:8181/Reiseportal/");
@@ -61,13 +61,13 @@ public class EditHotelTest {
         speichern.click();
         
         
-        if (input1.getAttribute("value")equals("15") && input2.getAttribute("value")equals("20")){
+        if (input1.getAttribute("value").equals("15") && input2.getAttribute("value").equals("20")){
             System.out.println("Test Passed!");
         } else {
             System.out.println("Test Failed");
         }
         
        
-        driver.quit();*/
+        driver.quit();
     }
 }

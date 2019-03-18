@@ -56,15 +56,16 @@ public class CreateHotelServlet extends HttpServlet {
         //Wenn der angemeldete User kein Admin ist, wird er zu der Index-Seite geleitet.
         session = request.getSession();
         
-        //TODO -> FABIAN
-        /*try{
-            if(!session.getAttribute("usr").isAdmn() == true){
+        
+        try{
+            Useraccount usr = (Useraccount) session.getAttribute("usr");
+            if(!usr.isAdmn()){
                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
             }
         }catch(NullPointerException e){
             
         }
-        */
+       
         
        
         /*Wenn der Benutzer das Form schon einmal mit unerlaubten Werten gepostet hat, 

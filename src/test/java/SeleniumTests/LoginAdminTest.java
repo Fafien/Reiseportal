@@ -6,6 +6,7 @@
 package SeleniumTests;
 
 import org.junit.Test;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
@@ -16,9 +17,9 @@ public class LoginAdminTest {
     @Test
     public void test() throws InterruptedException {
         
-        /* 
-        //System.setProperty("webdriver.chrome.driver",
-                     //"/Users/jonas/Downloads/chromedriver"); 
+         
+        System.setProperty("webdriver.chrome.driver",
+                     "/Users/jonas/Downloads/chromedriver"); 
         
         WebDriver driver  = new ChromeDriver();
         driver.get("http://localhost:8181/Reiseportal/");
@@ -33,6 +34,6 @@ public class LoginAdminTest {
         signin.click();
         
       
-        driver.quit();*/
+        driver.quit();
     }
 }
