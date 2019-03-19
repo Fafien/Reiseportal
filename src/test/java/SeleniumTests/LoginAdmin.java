@@ -24,10 +24,9 @@ public class LoginAdmin {
         WebElement password = driver.findElement(By.id("password"));
         WebElement signin = driver.findElement(By.id("signin"));
         
-        //username.sendKeys("Jo15");
-        //password.sendKeys("testtest");
-        username.sendKeys("beliz");
-        password.sendKeys("beliz");
+        username.sendKeys("Jo15");
+        password.sendKeys("testtest");
+
         signin.click();
     }
 }

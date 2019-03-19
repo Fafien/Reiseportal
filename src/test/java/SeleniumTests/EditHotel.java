@@ -42,6 +42,7 @@ public class EditHotel {
 
     @Test
     public void test(WebDriver driver) throws InterruptedException {
+
         
         driver.get("http://localhost:8080/Reiseportal/hoteladministration");
         
