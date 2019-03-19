@@ -4,6 +4,8 @@
     Author     : belizbalim
 --%>
 
+<%--  Die Einstiegsseite für Admins bezüglich der Hotelanlage und Hoteldatenaenderungen --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -11,19 +13,22 @@
 <!DOCTYPE html>
 <template:base>
    <jsp:attribute name="main">
-       <div class="center">   
+       <div class="center">
+           <div class="title">
+                   Hotelverwaltung
+           </div>
             <form method="POST" name="hoteladministrationneu">
-                <button type="submit" class="button" name="button" value="neu">Neues Hotel Anlegen</button>
+                <button type="submit" class="button" name="button" value="neu">Neues Hotel</button>
             </form>
             <form method="POST" name="hoteladministrationsearch">
-                <p> ${error} </p>
+                <p class="error"> ${error} </p>
                 <br>
                 
-                <input class="field_top" name="hotelname" placeholder="Hotelname">
+                <input class="field_top" name="hotelname" placeholder="Hotelname" id="shotelname">
                 <br>
-                <input class="field_top" name="ort" placeholder="Ort">
+                <input class="field_middle" name="ort" placeholder="Ort">
                 <br>
-                <button type="submit" class="button" name="button" value="suche">Suchen</button>
+                <button type="submit" class="button" name="button" value="suche" id="adminhotelsuche">Hotel Suchen</button>
             </form>
        </div>
    </jsp:attribute>            

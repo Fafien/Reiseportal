@@ -11,15 +11,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
 
 /**
  *
  * @author jonas
  */
-public class SearchTest {
-    
-   /* public SearchTest() {
+public class Search {
+    public Search() {
     }
     
     @BeforeClass
@@ -39,11 +38,9 @@ public class SearchTest {
     }
 
     @Test
-    public void hello() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver",
-                     "/Users/jonas/Downloads/chromedriver"); 
-        WebDriver driver  = new ChromeDriver();
-        driver.get("http://localhost:8080/Reiseportal/");
+    public void test(WebDriver driver) throws InterruptedException {
+        //driver.get("http://localhost:8080/Reiseportal/");
+        driver.get("http://localhost:8181/Reiseportal/");
         
         WebElement button = driver.findElement(By.id("search"));
         WebElement input1 = driver.findElement(By.id("location"));
@@ -57,7 +54,21 @@ public class SearchTest {
         input4.sendKeys("2");
         button.click();
         
-        driver.quit();
-    }*/
+        //Dropdown für Sortierung testen
+        driver.findElement(By.id("sorting")).click();
+        driver.findElement(By.id("sorting")).sendKeys("Entfernung"+Keys.ENTER);
+        driver.findElement(By.id("anwenden")).click();
+        Thread.sleep(5000);
+        
+        //Filter testen
+        driver.findElement(By.id("Sauna")).click();
+        driver.findElement(By.id("anwenden")).click();
+        Thread.sleep(5000);
+        
+        //Overview aufrufen
+        driver.findElement(By.id("buttonAnzeigen")).click();
+        Thread.sleep(5000);
+    }
 }
+
 

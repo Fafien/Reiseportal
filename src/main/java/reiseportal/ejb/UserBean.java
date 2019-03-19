@@ -55,7 +55,6 @@ public class UserBean {
         return em.merge(user);
     }
     
-    //TODO
     public Useraccount setAdmin(Useraccount user, boolean set) {
        if (set == true) {
             user.setAdmn(true);
@@ -67,7 +66,6 @@ public class UserBean {
        } 
     }
     
-   
     public Useraccount setBlocked (Useraccount user, boolean block) {
         if (block == true) {
             user.setBlocked(true);

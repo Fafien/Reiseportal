@@ -10,7 +10,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <template:base>
-    <jsp:attribute name="main">
+   <jsp:attribute name="main">
         <form method="POST" name="select">
             <div>
                 <label>
@@ -21,13 +21,14 @@
                     Ausstattung: 
                 </label>
                 </br>
-                <c:forEach items="${hotelaus}" var="hotelausstattung">
-                    <ul>
-                        <li>
-                            <c:out value="${hotelausstattung.ausstattung}"></c:out> (<c:out value="${hotelausstattung.anzahl}"></c:out>x)
+                <ul style="text-align: center">
+                    <c:forEach items="${hotelaus}" var="hotelausstattung">
+                        <li style="display: inline">
+                            • <c:out value="${hotelausstattung.ausstattung}"></c:out> (<c:out value="${hotelausstattung.anzahl}"></c:out>x)
                         </li>
-                    </ul>
-                </c:forEach>
+                        </br>
+                    </c:forEach>
+                </ul>
                 <label>
                     Ort: <c:out value="${hotel.ort}"></c:out>
                 </label>
