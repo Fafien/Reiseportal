@@ -24,11 +24,11 @@
                 <p class="error"> ${error} </p>
                 <br>
                 
-                <input class="field_top" name="hotelname" placeholder="Hotelname">
+                <input class="field_top" name="hotelname" placeholder="Hotelname" id="shotelname">
                 <br>
                 <input class="field_middle" name="ort" placeholder="Ort">
                 <br>
-                <button type="submit" class="button" name="button" value="suche">Hotel Suchen</button>
+                <button type="submit" class="button" name="button" value="suche" id="adminhotelsuche">Hotel Suchen</button>
             </form>
        </div>
    </jsp:attribute>            

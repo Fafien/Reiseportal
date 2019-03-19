@@ -28,7 +28,8 @@ header .nav:hover{
 
 
 main{
-    text-align: center; 
+    text-align: center;
+    
 }
 
 
@@ -49,6 +50,14 @@ main{
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 5%;
+}
+
+.filterLabel {
+    margin-left: 1em;
+}
+
+.hotel {
+    float: left;
 }
 
 .title{
@@ -203,5 +212,5 @@ span.sternebewertung > input:checked ~ label:hover ~ label,
 span.sternebewertung > label:hover ~ input:checked ~ label { 
  color: #F9B500; 
  text-shadow: 1px 1px #F8BA01, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5); 
-} 
+}
 

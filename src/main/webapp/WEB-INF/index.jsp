@@ -12,48 +12,25 @@
 <!DOCTYPE html>
 <template:base>
     <jsp:attribute name="main">
-        <form method="POST" class="square">
-            <div>
-                <table>
-                    <tr id="search-bar">
-                        <td class="label">
-                            <label for="location">Ort:</label>
-                        </td>
-                        <td>
-                            <input name="location" id="location" type="text" value="${location}"/>
-                        </td>
-                        
-                        <td class="label">
-                            <label for="persons">Personen:</label>
-                        </td>
-                        <td>
-                            <input name="persons" id="persons" type="number" value="${persons}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="label">
-                            <label for="fromDate">von:</label>
-                        </td>
-                        <td>
-                            <input type="text" id="datum1" name="fromDate" value="${fromDate}"/>
-                        </td>
-                        <td class="label">
-                            <label for="untilDate">bis:</label>
-                        </td>
-                        <td>
-                            <input type="text" id="datum2" name="untilDate" value="${untilDate}"/>
-                        </td>
-                        <td>
-                            <button id="search">Suchen</button>
-                        </td>
-                    </tr>
-                </table>
+        <div class="center">
+            <form method="POST" class="square">
+                <div>
+                    <input placeholder="Ort" class="field_top" name="location" id="location" type="text" value="${location}"/>
+                    </br>
+                    <input placeholder="Personen" class="field_middle" name="persons" id="persons" type="number" value="${persons}"/>
+                    </br>
+                    <input placeholder="von" class="field_middle" type="text" id="datum1" name="fromDate" value="${fromDate}"/>
+                    </br>
+                    <input placeholder="bis" class="field_bottom" type="text" id="datum2" name="untilDate" value="${untilDate}"/>
+                    </br>
+                    <button class="button" id="search">Suchen</button>
+                    <div class="error">
+                        <c:forEach items="${errors}" var="error">
+                            <label><c:out value="${error}"></c:out></br></label>
+                        </c:forEach>
+                    </div>
+                </div>
             </form>
-            <div class="error">
-                <c:forEach items="${errors}" var="error">
-                    <label><c:out value="${error}"></c:out></br></label>
-                </c:forEach>
-            </div>
         </div>
     </jsp:attribute>
 </template:base>

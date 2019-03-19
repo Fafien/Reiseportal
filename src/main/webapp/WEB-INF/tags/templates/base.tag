@@ -61,7 +61,7 @@
                     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Meine Buchungen</a>
                     <c:if test="${usr.admn}">
                         <a href="<c:url value="/usersearch"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Benutzer verwalten</a>
-                        <a href="<c:url value="/hoteladministration"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Hotels verwalten</a>                            
+                        <a href="<c:url value="/hoteladministration"/>" class="w3-bar-item w3-button w3-padding" id="hoteladm"><i class="fa fa-bank fa-fw"></i>  Hotels verwalten</a>                            
                     </c:if>
                     <a href="<c:url value="/useraccount"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Kontoeinstellungen</a><br><br>
                 </c:if>
