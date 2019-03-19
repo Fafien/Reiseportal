@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,7 +25,8 @@ public class EditHotelTest {
     }
     
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() throws InterruptedException {
+       
     }
     
     @AfterClass
@@ -43,23 +45,34 @@ public class EditHotelTest {
     @Test
     public void test() throws InterruptedException {
         
-         
         System.setProperty("webdriver.chrome.driver",
                      "/Users/jonas/Downloads/chromedriver"); 
         
         WebDriver driver  = new ChromeDriver();
-        driver.get("http://localhost:8181/Reiseportal/");
+        new LoginAdminTest().test(driver);
+        
+//        WebElement hoteladm = driver.findElement(By.id("hoteladm"));
+//        hoteladm.click();
+        driver.get("http://localhost:8080/Reiseportal/hoteladministration");
+        
+        WebElement shotelname = driver.findElement(By.id("shotelname"));
+        WebElement adminhotelsuche = driver.findElement(By.id("adminhotelsuche"));
+        
+        shotelname.sendKeys("Smart Stay Hotel Berlin");
+        adminhotelsuche.click();
         
         WebElement bearbeiten = driver.findElement(By.id("bearbeiten"));
+        bearbeiten.click();
+        
         WebElement input1 = driver.findElement(By.id("preisProNacht"));
         WebElement input2 = driver.findElement(By.id("anzahlZimmer"));
         WebElement speichern = driver.findElement(By.id("speichern"));
-        
-        bearbeiten.click();
+      
+        input1.clear();
         input1.sendKeys("15");
+        input2.clear();
         input2.sendKeys("20");
         speichern.click();
-        
         
         if (input1.getAttribute("value").equals("15") && input2.getAttribute("value").equals("20")){
             System.out.println("Test Passed!");
@@ -67,7 +80,6 @@ public class EditHotelTest {
             System.out.println("Test Failed");
         }
         
-       
         driver.quit();
     }
 }

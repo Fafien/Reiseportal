@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class SearchTest {
     
-   /* public SearchTest() {
+    public SearchTest() {
     }
     
     @BeforeClass
@@ -72,6 +72,6 @@ public class SearchTest {
         driver.findElement(By.id("anwenden")).click();
         Thread.sleep(5000);
         driver.quit();
-    }*/
+    }
 }
 

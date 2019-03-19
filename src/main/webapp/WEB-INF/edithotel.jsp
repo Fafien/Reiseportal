@@ -44,13 +44,13 @@
                                 <tr>
                                     <td> Preis Pro Nacht </td>
                                     <td>
-                                        <input class="field_middle" name="preisProNacht" id="preisProNacht" value="<c:out value="${foundhotel.preisProNacht}"></c:out>" disabled>
+                                        <input class="field_middle" name="preisProNacht" value="<c:out value="${foundhotel.preisProNacht}"></c:out>" disabled>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> Anzahl Zimmer </td>
                                     <td>
-                                        <input placeholder="" class="field_middle" name="anzahlZimmer" id=anzahlZimmer" value="<c:out value="${foundhotel.anzahlZimmer}"></c:out>"  disabled>
+                                        <input placeholder="" class="field_middle" name="anzahlZimmer"  value="<c:out value="${foundhotel.anzahlZimmer}"></c:out>"  disabled>
                                     </td>
                                 </tr>  
                                 <tr>
@@ -98,13 +98,13 @@
                                 <tr>
                                     <td> Preis Pro Nacht </td>
                                     <td>
-                                        <input class="field_middle" name="preisProNacht" value="<c:out value="${foundhotel.preisProNacht}"></c:out>">
+                                        <input class="field_middle" name="preisProNacht" id="preisProNacht" value="<c:out value="${foundhotel.preisProNacht}"></c:out>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> Anzahl Zimmer </td>
                                     <td>
-                                        <input placeholder="" class="field_middle" name="anzahlZimmer" value="<c:out value="${foundhotel.anzahlZimmer}"></c:out>">
+                                        <input placeholder="" class="field_middle" name="anzahlZimmer" id="anzahlZimmer" value="<c:out value="${foundhotel.anzahlZimmer}"></c:out>">
                                     </td>
                                 </tr>  
                                 <tr>
