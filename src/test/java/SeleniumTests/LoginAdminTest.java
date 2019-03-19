@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
@@ -19,11 +18,6 @@ public class LoginAdminTest {
     
     @Test
     public void test(WebDriver driver) throws InterruptedException {
-        
-        //System.setProperty("webdriver.chrome.driver",
-                    // "/Users/jonas/Downloads/chromedriver"); 
-        
-        //WebDriver driver  = new ChromeDriver();
         driver.get("http://localhost:8080/Reiseportal/login");
         
         WebElement username = driver.findElement(By.id("username"));
@@ -33,6 +27,5 @@ public class LoginAdminTest {
         username.sendKeys("Jo15");
         password.sendKeys("testtest");
         signin.click();
-        
     }
 }

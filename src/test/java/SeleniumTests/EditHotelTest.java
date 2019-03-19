@@ -11,10 +11,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
@@ -43,16 +41,7 @@ public class EditHotelTest {
     }
 
     @Test
-    public void test() throws InterruptedException {
-        
-        System.setProperty("webdriver.chrome.driver",
-                     "/Users/jonas/Downloads/chromedriver"); 
-        
-        WebDriver driver  = new ChromeDriver();
-        new LoginAdminTest().test(driver);
-        
-//        WebElement hoteladm = driver.findElement(By.id("hoteladm"));
-//        hoteladm.click();
+    public void test(WebDriver driver) throws InterruptedException {
         driver.get("http://localhost:8080/Reiseportal/hoteladministration");
         
         WebElement shotelname = driver.findElement(By.id("shotelname"));
@@ -74,12 +63,10 @@ public class EditHotelTest {
         input2.sendKeys("20");
         speichern.click();
         
-        if (input1.getAttribute("value").equals("15") && input2.getAttribute("value").equals("20")){
-            System.out.println("Test Passed!");
-        } else {
-            System.out.println("Test Failed");
-        }
-        
-        driver.quit();
+//        if (input1.getAttribute("value").equals("15") && input2.getAttribute("value").equals("20")){
+//            System.out.println("Test Passed!");
+//        } else {
+//            System.out.println("Test Failed");
+//        }
     }
 }
