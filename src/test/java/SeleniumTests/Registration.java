@@ -5,43 +5,39 @@
  */
 package SeleniumTests;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import java.util.List;
+import javax.ejb.EJB;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import reiseportal.ejb.UserBean;
+import reiseportal.jpa.Useraccount;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import reiseportal.web.RegistrationServlet;
 
 /**
  *
  * @author Fabian Hupe
  */
-public class UseraccountTest {
-    public void SearchTest() {
-    }
+public class Registration {
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
+    @EJB
+    UserBean userbean;
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     @Test
-    public void hello() throws InterruptedException {
+    public void test(WebDriver driver) throws InterruptedException {
         WebElement input1;
         WebElement input2;
         WebElement input3;
@@ -50,11 +46,7 @@ public class UseraccountTest {
         WebElement input6;
         WebElement input7;
         WebElement button;
-        
-        System.setProperty("webdriver.chrome.driver",
-                     "C:/DHBW/Software/chromedriver.exe"); 
-        WebDriver driver  = new ChromeDriver();
-        driver.get("http://localhost:8080/Reiseportal/");
+        Useraccount usr;
 
         driver.findElement(By.linkText("Registrieren")).click();
         
@@ -67,8 +59,8 @@ public class UseraccountTest {
         input6 = driver.findElement(By.id("password"));
         input7 = driver.findElement(By.id("passwordb"));
         
-        input1.sendKeys("Test"+Keys.TAB);
-        input2.sendKeys("Test"+Keys.TAB);
+        input1.sendKeys("TestVorname"+Keys.TAB);
+        input2.sendKeys("TestNachname"+Keys.TAB);
         input3.sendKeys("ihrreiseportal@googlemail.com"+Keys.TAB);
         input4.sendKeys("ihrreiseportal@googlemail.com"+Keys.TAB);
         input5.sendKeys("Test"+Keys.TAB);
@@ -77,27 +69,25 @@ public class UseraccountTest {
         
         button.click();
         
-        driver.findElement(By.linkText("Anmelden")).click();
+        driver.get("https://accounts.google.com/ServiceLogin?hl=de&service=mail");
+        input1 = driver.findElement(By.id("identifierId"));
+        input1.sendKeys("ihrreiseportal@googlemail.com"+Keys.ENTER);
         
-        button = driver.findElement(By.id("login_submit"));
-        input1 = driver.findElement(By.id("username"));
-        input2 = driver.findElement(By.id("password"));
+        Thread.sleep(5000);
+        input2 = driver.findElement(By.name("password"));
+        input2.sendKeys("AbC1234!"+Keys.ENTER);
         
-        input1.sendKeys("Test");
-        input2.sendKeys("test");
+        Thread.sleep(8000);
         
-        button.click();
+        List<WebElement> emailThreads = driver.findElements(By.xpath("//span[@class='bog']"));
         
-        driver.findElement(By.linkText("Kontoeinstellungen")).click();
+        for (int i = 0; i < emailThreads.size(); i++) {
+            if (emailThreads.get(i).getText().contains("Registrierung Reiseportal")) {
+                emailThreads.get(i).click();
+            }
+        }
         
-        button = driver.findElement(By.id("delete"));
+        driver.findElement(By.linkText("Link")).click();
         
-        button.click();
-        
-        button = driver.findElement(By.id("delete_submit"));
-        
-        button.click();
-        
-        driver.quit();
     }
 }

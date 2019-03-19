@@ -15,18 +15,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
  *
  * @author Fabian Hupe
  */
-public class LoginTest {
+public class Login {
     
     @Test
-    public static void test() throws InterruptedException {
+    public static void test(WebDriver driver) throws InterruptedException {
         WebElement input1;
         WebElement input2;
         WebElement button;
-        
-        System.setProperty("webdriver.chrome.driver",
-                     "C:/DHBW/Software/chromedriver.exe"); 
-        WebDriver driver  = new ChromeDriver();
 
+        driver.get("http://localhost:8080/Reiseportal/index.html");
         driver.findElement(By.linkText("Anmelden")).click();
         
         button = driver.findElement(By.id("login_submit"));

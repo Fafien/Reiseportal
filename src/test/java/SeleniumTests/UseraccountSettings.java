@@ -16,18 +16,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
  *
  * @author Fabian Hupe
  */
-public class UseraccountSettingsTest {
+public class UseraccountSettings {
  
     @Test
-    public void test() throws InterruptedException {
+    public void test(WebDriver driver) throws InterruptedException {
         WebElement input1;
         WebElement input2;
         WebElement input3;
         WebElement button;
-        
-        System.setProperty("webdriver.chrome.driver",
-                     "C:/DHBW/Software/chromedriver.exe"); 
-        WebDriver driver  = new ChromeDriver();
     
         driver.findElement(By.linkText("Kontoeinstellungen")).click();
         

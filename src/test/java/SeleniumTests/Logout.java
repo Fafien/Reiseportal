@@ -15,15 +15,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
  *
  * @author Fabian Hupe
  */
-public class LogoutTest {
+public class Logout {
    
     @Test
-    public static void test() throws InterruptedException {
+    public static void test(WebDriver driver) throws InterruptedException {
         WebElement button;
-        
-        System.setProperty("webdriver.chrome.driver",
-                     "C:/DHBW/Software/chromedriver.exe"); 
-        WebDriver driver  = new ChromeDriver();
         
         driver.findElement(By.linkText("Ausloggen")).click();
     }

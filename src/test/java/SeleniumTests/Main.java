@@ -21,13 +21,20 @@ public class Main {
         //System.setProperty("webdriver.chrome.driver",
                      //"/Users/jonas/Downloads/chromedriver");
         //Beliz
+        //System.setProperty("webdriver.chrome.driver",
+        //             "/Users/belizbalim/Downloads");
+        //Fabian
         System.setProperty("webdriver.chrome.driver",
-                     "/Users/belizbalim/Downloads");
+                     "C:/DHBW/Software/chromedriver.exe"); 
         
         WebDriver driver  = new ChromeDriver();
         
-        //registrieren
-        //anmelden
+        driver.get("http://localhost:8080/Reiseportal/login");
+        //driver.get("http://localhost:8181/Reiseportal/login");
+        
+        new Registration().test(driver);
+        new Login().test(driver);
+        new UseraccountSettings().test(driver);
         //User-Settings ändern
         //logout
         
@@ -38,6 +45,8 @@ public class Main {
         
         //buchen
         //bewerten
+        
+        new Logout().test(driver);
         
         driver.quit();
     }
