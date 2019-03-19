@@ -27,8 +27,8 @@ public class MainTest {
         //User-Settings ändern
         //logout
         
-        new LoginAdminTest().test(driver);
-        new EditHotelTest().test(driver);
+        new LoginAdmin().test(driver);
+        new EditHotel().test(driver);
         
         new SearchTest().test(driver);
         

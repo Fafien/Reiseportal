@@ -18,8 +18,8 @@ import org.openqa.selenium.WebElement;
  *
  * @author belizbalim
  */
-public class EditHotelTest {
-    public EditHotelTest() {
+public class EditHotel {
+    public EditHotel() {
     }
     
     @BeforeClass
@@ -42,6 +42,7 @@ public class EditHotelTest {
 
     @Test
     public void test(WebDriver driver) throws InterruptedException {
+        
         driver.get("http://localhost:8080/Reiseportal/hoteladministration");
         
         WebElement shotelname = driver.findElement(By.id("shotelname"));

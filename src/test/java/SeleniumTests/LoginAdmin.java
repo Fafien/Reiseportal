@@ -14,7 +14,7 @@ import org.openqa.selenium.WebElement;
  *
  * @author belizbalim
  */
-public class LoginAdminTest {
+public class LoginAdmin {
     
     @Test
     public void test(WebDriver driver) throws InterruptedException {
@@ -24,8 +24,10 @@ public class LoginAdminTest {
         WebElement password = driver.findElement(By.id("password"));
         WebElement signin = driver.findElement(By.id("signin"));
         
-        username.sendKeys("Jo15");
-        password.sendKeys("testtest");
+        //username.sendKeys("Jo15");
+        //password.sendKeys("testtest");
+        username.sendKeys("beliz");
+        password.sendKeys("beliz");
         signin.click();
     }
 }
