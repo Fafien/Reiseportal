@@ -19,7 +19,7 @@
                 <p class="error">${error}</p>
                 <input class="field_top" name="username" placeholder="Benutzername">
                 <br>
-                 <input class="field_top" name="email" placeholder="E-Mail">
+                 <input class="field_middle" name="email" placeholder="E-Mail">
                 <br>
                 <button class="button">Suchen</button>
             </form>

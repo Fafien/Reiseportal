@@ -40,7 +40,17 @@ public class UserAdministrationServlet extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        session = request.getSession();  
+        session = request.getSession();
+        
+        try{
+            Useraccount usr = (Useraccount) session.getAttribute("usr");
+            if(!usr.isAdmn()){
+                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            }
+        }catch(NullPointerException e){
+            
+        }
+        
         founduser = (Useraccount) session.getAttribute("founduser");
         
         request.setAttribute("founduser", founduser);

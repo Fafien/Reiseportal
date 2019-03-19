@@ -54,10 +54,9 @@ public class CreateHotelServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         //Wenn der angemeldete User kein Admin ist, wird er zu der Index-Seite geleitet.
-        session = request.getSession();
+       session = request.getSession();
         
-        
-        try{
+       try{
             Useraccount usr = (Useraccount) session.getAttribute("usr");
             if(!usr.isAdmn()){
                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
@@ -65,8 +64,6 @@ public class CreateHotelServlet extends HttpServlet {
         }catch(NullPointerException e){
             
         }
-       
-        
        
         /*Wenn der Benutzer das Form schon einmal mit unerlaubten Werten gepostet hat, 
           werden die schon eingegebenen und gemerkten Werten angezeigt*/

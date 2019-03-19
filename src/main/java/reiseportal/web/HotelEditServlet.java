@@ -46,10 +46,18 @@ public class HotelEditServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        session = request.getSession(); 
+         
+        try{
+            Useraccount usr = (Useraccount) session.getAttribute("usr");
+            if(!usr.isAdmn()){
+                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            }
+        }catch(NullPointerException e){
+            
+        }
         
-        
-        session = request.getSession();  
-        foundhotel = (Hotel) session.getAttribute("foundhotel");
+       foundhotel = (Hotel) session.getAttribute("foundhotel");
         
         // Anzeige der Attribute der gefundenen Hotel & ggf. Fehlermeldungen
         request.setAttribute("hotelname", foundhotel.getHotelname());

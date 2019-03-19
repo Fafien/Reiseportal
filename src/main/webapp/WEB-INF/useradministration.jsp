@@ -29,6 +29,11 @@
                         </c:when>
                         <c:otherwise> 
                             <tr>
+                                <div class="title">
+                                    User Informationen
+                                </div>
+                            </tr>
+                            <tr>
                                 <td>Vorname:</td>
                                 <td>
                                     <c:out value="${founduser.firstname}"></c:out>

@@ -17,34 +17,71 @@ Der Admin gibt alle relevante Daten ein--%>
     <jsp:attribute name="main">
         <div class="center">
             <form method="POST">
-                <div class="title">
-                    Neues Hotel Anlegen
-                </div>
-                 <c:forEach items="${error}" var="error">
-                    <p class="error"><c:out value="${error}"></c:out></br>
-                </c:forEach>   
-                </br>
-                <label> Hotelname </label>
-                <input  class="field_top" name="hotelname" value="${hotelname}">
-                </br>
-                <label> Ort </label>
-                <input class="field_middle" name="ort" value="${ort}">
-                </br>
-                <label> Preis Pro Nacht </label>
-                <input class="field_middle" type="preisProNacht" name="preisProNacht" value="${preisProNacht}">
-                </br>
-                <label> Anzahl Zimmer </label>
-                <input placeholder="" class="field_middle" type="anzahlZimmer" name="anzahlZimmer" value="${anzahlZimmer}">
-                </br>
-                <label> Anzahl Sterne </label>
-                <input class="field_middle" name="sterne" value="${sterne}">
-                </br>
-                <label> Entfernung zu der Stadtmitte </label>
-                <input class="field_middle" type="entfernung" name="entfernung" value="${entfernung}">
-                </br>
-                <button class="button">
-                    Hotel speichern
-                </button>
+                <table>
+                    <tr>
+                        <div class="title">
+                            Neues Hotel Anlegen
+                        </div>
+                    </tr>
+                    <tr>
+                        <c:forEach items="${error}" var="error">
+                            <p class="error"><c:out value="${error}"></c:out></br>
+                        </c:forEach>  
+                    </tr>        
+                    <tr>
+                        <td> 
+                            <label> Hotelname </label>
+                        </td>
+                        <td>
+                            <input  class="field_top" name="hotelname" value="${hotelname}">
+                        </td>
+                    </tr>  
+                    <tr>
+                        <td> 
+                            <label> Ort </label>
+                        </td>
+                        <td>
+                            <input class="field_middle" name="ort" value="${ort}">
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Preis Pro Nacht </label>
+                        </td>
+                        <td>
+                            <input class="field_middle" type="preisProNacht" name="preisProNacht" value="${preisProNacht}">
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Anzahl Zimmer </label>
+                        </td> 
+                        <td>
+                            <input placeholder="" class="field_middle" type="anzahlZimmer" name="anzahlZimmer" value="${anzahlZimmer}">
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Anzahl Sterne </label>
+                        </td>
+                        <td>
+                            <input class="field_middle" name="sterne" value="${sterne}">
+                        </td>    
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Entfernung zu der Stadtmitte </label>
+                        </td>
+                        <td>
+                            <input class="field_bottom" type="entfernung" name="entfernung" value="${entfernung}">
+                        </td>    
+                    </tr>
+                    <tr>
+                        <button class="button">
+                            Hotel speichern
+                        </button>   
+                    </tr>
+                </table>
             </form> 
         </div>
     </jsp:attribute>
