@@ -25,8 +25,8 @@ public class UserEvaluationBean {
        return em.find(UserEvaluation.class, id);
     }
     
-    public UserEvaluation createNewEvaluation( Booking buchungId,int sterne, String bewertungstext){
-        UserEvaluation evaluation = new UserEvaluation( buchungId ,sterne, bewertungstext);
+    public UserEvaluation createNewEvaluation( Booking buchung,int sterne, String bewertungstext){
+        UserEvaluation evaluation = new UserEvaluation( buchung ,sterne, bewertungstext);
            em.persist(evaluation);
         return em.merge(evaluation);
     }

@@ -6,6 +6,7 @@
 package reiseportal.web;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,15 +33,21 @@ import reiseportal.jpa.Useraccount;
         
        @EJB
        BookingBean bookingBean;
-     
+       String evaluationButtonId;
+       HttpSession session;
+       
        @Override
        public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession();
+        session = request.getSession();
         Useraccount usr = (Useraccount) session.getAttribute("usr");
         List<Booking> bookingList;
         bookingList = bookingBean.findBookingByUseraccount(usr);
+        List<Booking> bookingIntoHotel = new ArrayList<>();
+        bookingIntoHotel.addAll(bookingList);
+        session.setAttribute("bookingEvaluationList", bookingList);
+        
         String  error;
          
         if(bookingList == null){
@@ -49,7 +56,7 @@ import reiseportal.jpa.Useraccount;
          request.setAttribute("bookinglist.ort", "" );
          request.setAttribute("bookinglist.sterne", "" );
         }else{
-         Iterator<Booking> iter = bookingList.listIterator();
+         Iterator<Booking> iter = bookingIntoHotel.listIterator();
          List<Hotel> bookingHotelList = new ArrayList<>();
             while(iter.hasNext()){ 
                   Hotel hotel =  iter.next().getHotel();
@@ -67,6 +74,7 @@ import reiseportal.jpa.Useraccount;
          public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
              
+             session.setAttribute("evaluationButtonId", request.getParameter("buttonEvaluation"));
            response.sendRedirect(request.getContextPath() + EvaluationServlet.URL);
     }
   }

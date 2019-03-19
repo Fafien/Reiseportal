@@ -42,7 +42,7 @@ public class OverviewServlet extends HttpServlet {
         
         request.setAttribute("hotel", session.getAttribute("viewHotel"));
         request.setAttribute("hotelaus", session.getAttribute("HotelAusstattung"));
-        request.setAttribute("error", error);
+       
         request.getRequestDispatcher("/WEB-INF/overview.jsp").forward(request, response);
         
     }
@@ -54,10 +54,10 @@ public class OverviewServlet extends HttpServlet {
          usr = (Useraccount) session.getAttribute("usr");
         if(usr == null){
             error = "Bitte loggen Sie sich erst ein"; 
+            session.setAttribute("error", error);
             response.sendRedirect(request.getContextPath() + LoginServlet.URL);
         } else{
-            error = "";
-        response.sendRedirect(request.getContextPath() + ConfirmServlet.URL);
+            response.sendRedirect(request.getContextPath() + ConfirmServlet.URL);
     }
     }
 }

@@ -1,7 +1,7 @@
 <%-- 
     Document   : valuation
     Created on : 19.02.2019, 16:39:45
-    Author     : Fabian Hupe
+    Author     : Marwa Alqataa
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,10 +28,11 @@
                   <p> Was hat Ihnen gut und was hat Ihnen weniger gut gefallen? </p>
                   <textarea type="text" class="text_box" name="bewertungstext" value="${bewertungstext}"></textarea>
                   </br></br>
-                <button name="button_evaluation">Absenden</button>
+                <button name="button_evaluation" value="${bookingHotel}">Absenden</button>
             </form>
                   <div class="error">
                     <c:out value="${error}"></c:out>
+                    </br>
                 </div>
         </div>
     </jsp:attribute>

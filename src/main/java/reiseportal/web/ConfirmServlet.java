@@ -89,10 +89,6 @@ public class ConfirmServlet extends HttpServlet {
 
         this.bookingBean.createNewBooking(hotel, usr, ankunftDatum, abreiseDatum  ,personenInt, false);
         
-       //TODO: 
-       //Email-Versand
-         //response.sendRedirect(request.getContextPath() + BookingViewServlet.URL);
-         //response.sendRedirect(request.getContextPath() + EvaluationServlet.URL);
          response.sendRedirect(request.getContextPath() + AfterConfirmServlet.URL);
     }
 }

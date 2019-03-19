@@ -22,13 +22,13 @@ public class UserEvaluation implements Serializable{
     private Long id;
     
     @OneToOne
-    private Booking buchungId = null;
+    private Booking buchung = null;
     
     private int punkte;
     private String bewertungstext;
 
-    public UserEvaluation(Booking buchungId, int punkte, String bewertungstext) {
-        this.buchungId= buchungId;
+    public UserEvaluation(Booking buchung, int punkte, String bewertungstext) {
+        this.buchung= buchung;
         this.punkte = punkte;
         this.bewertungstext = bewertungstext;
     }
@@ -41,12 +41,12 @@ public class UserEvaluation implements Serializable{
         this.id = id;
     }
 
-    public Booking getBuchungId() {
-        return buchungId;
+    public Booking getBuchung() {
+        return buchung;
     }
 
-    public void setBuchungId(Booking buchungId) {
-        this.buchungId = buchungId;
+    public void setBuchung(Booking buchung) {
+        this.buchung = buchung;
     }
 
     public int getPunkte() {
