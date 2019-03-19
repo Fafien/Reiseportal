@@ -4,6 +4,10 @@
     Author     : belizbalim
 --%>
 
+
+<%--  Diese JSP wird verwendet, wenn der Admin ein neues Hotel anlegen will. Es enthaelt das Hotelanlageformular
+Der Admin gibt alle relevante Daten ein--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -17,7 +21,7 @@
                     Neues Hotel Anlegen
                 </div>
                  <c:forEach items="${error}" var="error">
-                    <p><c:out value="${error}"></c:out></br>
+                    <p class="error"><c:out value="${error}"></c:out></br>
                 </c:forEach>   
                 </br>
                 <label> Hotelname </label>

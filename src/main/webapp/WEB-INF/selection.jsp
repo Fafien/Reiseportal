@@ -17,7 +17,7 @@
                     <label>
                         Sortierung
                     </label>
-                    <select name="sorting" type="submit">
+                    <select id="sorting" name="sorting">
                         <option <c:out value="${PreisSelected}"></c:out> value="Preis">
                             Preis
                         </option>
@@ -25,52 +25,54 @@
                             Entfernung
                         </option>
                         <option <c:out value="${BewertungSelected}"></c:out> value="Bewertung">
-                            Bewertung
+                            Sterne
                         </option>
                     </select>
-                    <label>
+                    <label class="filterLabel">
                         Filter: 
                     </label>
                     <c:forEach items="${filterLabel}" var="filter">
-                        <label for="${filter.filterLabel}">
+                        <label for="${filter.filterLabel}" class="filterLabel">
                             ${filter.filterLabel}
                         </label>
-                        <input type="checkbox" name="${filter.filterLabel}" ${filter.filterChecked} value="${filter.filterLabel}">
+                        <input type="checkbox" id="${filter.filterLabel}" name="${filter.filterLabel}" ${filter.filterChecked} value="${filter.filterLabel}">
                     </c:forEach>
-                    <button name="button" value="Anwenden">
+                    <button class="button" name="button" id="anwenden" value="Anwenden">
                         Anwenden
                     </button>
                 </div>
                 </br>
-                <c:forEach items="${hotellist}" var="hotel">
-                    <div>
-                        <label>
-                            Hotelname: <c:out value="${hotel.hotelname}"></c:out>
-                        </label>
-                        </br>
-                        <label>
-                            Ort: <c:out value="${hotel.ort}"></c:out>
-                        </label>
-                        </br>
-                        <label>
-                            Sterne: <c:out value="${hotel.sterne}"></c:out>
-                        </label>
-                        </br>
-                        <label>
-                            Entfernung zum Zentrum: <c:out value="${hotel.entfernung}"></c:out>km
-                        </label>
-                        </br>
-                        <label>
-                            Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>€
-                        </label>
-                        </br>
-                        <button name="button" value="${hotel.id}">
-                            Anzeigen
-                        </button>
+                <div class="hotellist">
+                    <c:forEach items="${hotellist}" var="hotel">
+                        <div class="hotel">
+                            <label>
+                                Hotelname: <c:out value="${hotel.hotelname}"></c:out>
+                            </label>
+                            </br>
+                            <label>
+                                Ort: <c:out value="${hotel.ort}"></c:out>
+                            </label>
+                            </br>
+                            <label>
+                                <c:out value="${hotel.sterne}"></c:out> Sterne
+                            </label>
+                            </br>
+                            <label>
+                                Entfernung zum Zentrum: <c:out value="${hotel.entfernung}"></c:out>km
+                            </label>
+                            </br>
+                            <label>
+                                Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>€
+                            </label>
+                            </br>
+                            <button name="button" value="${hotel.id}">
+                                Anzeigen
+                            </button>
+                        </div>
+                            </br>
                     </div>
-                        </br>
-                </div>
-            </c:forEach>
+                </c:forEach>
+            </div>
         </form>
     </jsp:attribute>
 </template:base>

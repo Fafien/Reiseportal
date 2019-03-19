@@ -17,11 +17,11 @@
                 <div class="title">
                     Einloggen
                 </div>
-                <input class="field_top" placeholder="Username" name="username" value="${user_form.username}">
+                <input class="field_top" placeholder="Username" name="username" value="${user_form.username}" id="username">
                 </br>
-                <input class="field_bottom" placeholder="Passwort" type="password" name="password" value="${user_form.username}">
+                <input class="field_bottom" placeholder="Passwort" type="password" name="password" value="${user_form.username}" id="password">
                 </br>
-                <button class="button">Anmelden</button>
+                <button class="button" id="signin">Anmelden</button>
             </form>
             <div id="zusatztext">
                 <div class="error">

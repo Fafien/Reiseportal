@@ -1,16 +1,14 @@
 <%-- 
-    Document   : overview
-    Created on : 19.02.2019, 16:34:22
-    Author     : Fabian Hupe
+    Document   : booking
+    Created on : 08.03.2019, 13:55:48
+    Author     : Marwa Alqataa
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
+
 <template:base>
-    <jsp:attribute name="main">
+<jsp:attribute name="main">
         <form method="POST" name="select">
             <div>
                 <label>
@@ -21,14 +19,13 @@
                     Ausstattung: 
                 </label>
                 </br>
-                <ul style="text-align: center">
-                    <c:forEach items="${hotelaus}" var="hotelausstattung">
-                        <li style="display: inline">
-                            • <c:out value="${hotelausstattung.ausstattung}"></c:out> (<c:out value="${hotelausstattung.anzahl}"></c:out>x)
+                <c:forEach items="${hotelaus}" var="hotelausstattung">
+                    <ul>
+                        <li>
+                            <c:out value="${hotelausstattung.ausstattung}"></c:out> (<c:out value="${hotelausstattung.anzahl}"></c:out>x)
                         </li>
-                        </br>
-                    </c:forEach>
-                </ul>
+                    </ul>
+                </c:forEach>
                 <label>
                     Ort: <c:out value="${hotel.ort}"></c:out>
                 </label>

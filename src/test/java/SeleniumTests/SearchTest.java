@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class SearchTest {
     
-    public SearchTest() {
+   /* public SearchTest() {
     }
     
     @BeforeClass
@@ -46,6 +46,7 @@ public class SearchTest {
     public void hello() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver",
                      "/Users/jonas/Downloads/chromedriver"); 
+        
         WebDriver driver  = new ChromeDriver();
         driver.get("http://localhost:8080/Reiseportal/");
         
@@ -71,6 +72,6 @@ public class SearchTest {
         driver.findElement(By.id("anwenden")).click();
         Thread.sleep(5000);
         driver.quit();
-    }
+    }*/
 }
 

@@ -49,6 +49,7 @@ public class UserSearch extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
         }*/
         
+        // Von dem Benutzer bereits angegebene Daten anzeigen
         if(username!=null){
             request.setAttribute("username",username);
         }
@@ -64,11 +65,12 @@ public class UserSearch extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-    
+        // Den vom Admin eingegebene Benutzer in der Datenbank suchen,ggf. Fehlermeldung anzeigen
         username = request.getParameter("username");
         email = request.getParameter("email");
         userlist = userbean.findUserByEmailOrUsername(email, username);
 
+        
        if (userlist.isEmpty()) {
             error = "Kein Benutzer gefunden";
             request.setAttribute("error",error);
