@@ -21,8 +21,8 @@ public class Main {
         System.setProperty("webdriver.chrome.driver",
                      "/Users/jonas/Downloads/chromedriver");
         //Beliz
-        System.setProperty("webdriver.chrome.driver",
-                     "/Users/jonas/Downloads/chromedriver");
+//        System.setProperty("webdriver.chrome.driver",
+//                     "/Users/jonas/Downloads/chromedriver");
         
         WebDriver driver  = new ChromeDriver();
         
