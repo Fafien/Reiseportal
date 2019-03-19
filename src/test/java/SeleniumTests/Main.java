@@ -18,20 +18,20 @@ public class Main {
     @Test
     public void main() throws InterruptedException {
         //Jonas
-        //System.setProperty("webdriver.chrome.driver",
-                     //"/Users/jonas/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver",
+                     "/Users/jonas/Downloads/chromedriver");
         //Beliz
         //System.setProperty("webdriver.chrome.driver",
         //             "/Users/belizbalim/Downloads");
         //Fabian
-        System.setProperty("webdriver.chrome.driver",
-                     "C:/DHBW/Software/chromedriver.exe"); 
+//        System.setProperty("webdriver.chrome.driver",
+//                     "C:/DHBW/Software/chromedriver.exe"); 
         
         WebDriver driver  = new ChromeDriver();
         
         driver.get("http://localhost:8080/Reiseportal/login");
         //driver.get("http://localhost:8181/Reiseportal/login");
-        
+        Thread.sleep(2000);
         new Registration().test(driver);
         new Login().test(driver);
         new UseraccountSettings().test(driver);

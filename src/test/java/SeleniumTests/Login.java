@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Login {
     
     @Test
-    public static void test(WebDriver driver) throws InterruptedException {
+    public void test(WebDriver driver) throws InterruptedException {
         WebElement input1;
         WebElement input2;
         WebElement button;

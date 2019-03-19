@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Logout {
    
     @Test
-    public static void test(WebDriver driver) throws InterruptedException {
+    public void test(WebDriver driver) throws InterruptedException {
         WebElement button;
         
         driver.findElement(By.linkText("Ausloggen")).click();
