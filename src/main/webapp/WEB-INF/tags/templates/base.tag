@@ -41,8 +41,8 @@
               <div class="w3-col s8 w3-bar">
                 <c:choose>
                     <c:when test="${empty usr}">
-                        <a class="w3-bar-item w3-button w3-padding" href="<c:url value="/login"/>">Anmelden</a>
-                        <a class="w3-bar-item w3-button w3-padding" href="<c:url value="/registration"/>">Registrieren</a>
+                        <a id="login" class="w3-bar-item w3-button w3-padding" href="<c:url value="/login"/>">Anmelden</a>
+                        <a id="registration" class="w3-bar-item w3-button w3-padding" href="<c:url value="/registration"/>">Registrieren</a>
                     </c:when>
                     <c:otherwise>
                         <span>Willkommen, <strong><c:out value="${usr.firstname}"/></strong></span><br>
