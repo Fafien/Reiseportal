@@ -5,6 +5,7 @@
  */
 package SeleniumTests;
 
+import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,6 +13,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  *
@@ -57,6 +61,15 @@ public class SearchTest {
         input4.sendKeys("2");
         button.click();
         
+        //Dropdown für Sortierung testen
+        driver.findElement(By.id("sorting")).click();
+        driver.findElement(By.id("sorting")).sendKeys("Entfernung"+Keys.ENTER);
+        driver.findElement(By.id("anwenden")).click();
+        
+        //Filter testen
+        driver.findElement(By.id("Sauna")).click();
+        driver.findElement(By.id("anwenden")).click();
+        Thread.sleep(5000);
         driver.quit();
     }
 }
