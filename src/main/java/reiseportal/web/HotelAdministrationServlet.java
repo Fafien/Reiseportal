@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.jpa.Hotel;
+import reiseportal.jpa.Useraccount;
 
 
 /**
@@ -45,12 +46,14 @@ public class HotelAdministrationServlet extends HttpServlet {
         
         session = request.getSession();
         
-        /*try{
-            session.getAttribute("usr");           
+       try{
+            Useraccount usr = (Useraccount) session.getAttribute("usr");
+            if(!usr.isAdmn()){
+                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            }
         }catch(NullPointerException e){
-            //Kann ignoriert werden das dies nur als Bestätigung verwendet wird, das man nicht eingeloggt ist.
-            request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-        }*/
+            
+        }
         
          if(hotelname!=null){
             request.setAttribute("hotelname",hotelname);

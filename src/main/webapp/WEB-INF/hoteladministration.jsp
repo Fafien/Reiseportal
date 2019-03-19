@@ -18,7 +18,7 @@
                    Hotelverwaltung
            </div>
             <form method="POST" name="hoteladministrationneu">
-                <button type="submit" class="button" name="button" value="neu">Neues Hotel Anlegen</button>
+                <button type="submit" class="button" name="button" value="neu">Neues Hotel</button>
             </form>
             <form method="POST" name="hoteladministrationsearch">
                 <p class="error"> ${error} </p>
@@ -26,7 +26,7 @@
                 
                 <input class="field_top" name="hotelname" placeholder="Hotelname" id="shotelname">
                 <br>
-                <input class="field_top" name="ort" placeholder="Ort">
+                <input class="field_middle" name="ort" placeholder="Ort">
                 <br>
                 <button type="submit" class="button" name="button" value="suche" id="adminhotelsuche">Hotel Suchen</button>
             </form>

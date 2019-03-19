@@ -10,7 +10,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <template:base>
-    <jsp:attribute name="main">
+   <jsp:attribute name="main">
         <form method="POST" name="select">
             <div>
                 <label>

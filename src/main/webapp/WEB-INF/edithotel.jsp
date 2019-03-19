@@ -62,7 +62,7 @@
                                 <tr>
                                     <td> Entfernung zu der Stadtmitte </td>
                                     <td>
-                                        <input class="field_middle" name="entfernung" value="<c:out value="${foundhotel.entfernung}"></c:out>"  disabled>
+                                        <input class="field_bottom" name="entfernung" value="<c:out value="${foundhotel.entfernung}"></c:out>"  disabled>
                                     </td>
                                 </tr>
                                 <tr>
@@ -116,7 +116,7 @@
                                 <tr>
                                     <td> Entfernung zu der Stadtmitte </td>
                                     <td>
-                                        <input class="field_middle" name="entfernung" value="<c:out value="${foundhotel.entfernung}"></c:out>">
+                                        <input class="field_bottom" name="entfernung" value="<c:out value="${foundhotel.entfernung}"></c:out>">
                                     </td>
                                 </tr>
                                 <tr>

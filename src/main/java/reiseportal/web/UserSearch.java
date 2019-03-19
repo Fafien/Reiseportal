@@ -42,12 +42,14 @@ public class UserSearch extends HttpServlet {
         
         session = request.getSession();
 
-        /*try{
-            session.getAttribute("usr");           
+        try{
+            Useraccount usr = (Useraccount) session.getAttribute("usr");
+            if(!usr.isAdmn()){
+                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            }
         }catch(NullPointerException e){
-            //Kann ignoriert werden das dies nur als Bestätigung verwendet wird, das man nicht eingeloggt ist.
-            request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-        }*/
+            
+        }
         
         // Von dem Benutzer bereits angegebene Daten anzeigen
         if(username!=null){

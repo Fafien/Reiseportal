@@ -36,6 +36,16 @@ public class UseraccountServlet extends HttpServlet {
             throws ServletException, IOException {
     
         session = request.getSession();
+        
+        try{
+            Useraccount usr = (Useraccount) session.getAttribute("usr");
+            if(!usr.isAdmn()){
+                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            }
+        }catch(NullPointerException e){
+            
+        }
+        
         session.removeAttribute("edit");
         session.removeAttribute("password");
         session.removeAttribute("delete");
