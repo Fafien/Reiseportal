@@ -46,7 +46,9 @@ public class LoginServlet extends HttpServlet {
         }
         
         try{
-            error = error + "\n" + session.getAttribute("error");
+            if(!session.getAttribute("error").equals("")){
+                error = error + "\n" + session.getAttribute("error");
+            }
         }catch(Exception e){
             
         }
