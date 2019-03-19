@@ -17,9 +17,8 @@ import org.openqa.selenium.By;
  *
  * @author jonas
  */
-public class SearchTest {
-    
-    public SearchTest() {
+public class Search {
+    public Search() {
     }
     
     @BeforeClass
@@ -58,6 +57,7 @@ public class SearchTest {
         driver.findElement(By.id("sorting")).click();
         driver.findElement(By.id("sorting")).sendKeys("Entfernung"+Keys.ENTER);
         driver.findElement(By.id("anwenden")).click();
+        Thread.sleep(5000);
         
         //Filter testen
         driver.findElement(By.id("Sauna")).click();
@@ -69,4 +69,5 @@ public class SearchTest {
         Thread.sleep(5000);
     }
 }
+
 

@@ -18,8 +18,8 @@ import org.openqa.selenium.WebElement;
  *
  * @author belizbalim
  */
-public class EditHotelTest {
-    public EditHotelTest() {
+public class EditHotel {
+    public EditHotel() {
     }
     
     @BeforeClass

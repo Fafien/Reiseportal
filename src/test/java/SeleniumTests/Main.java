@@ -13,13 +13,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
  *
  * @author jonas
  */
-public class MainTest {
+public class Main {
     
     @Test
     public void main() throws InterruptedException {
-    
+        //Jonas
         System.setProperty("webdriver.chrome.driver",
                      "/Users/jonas/Downloads/chromedriver");
+        //Beliz
+        System.setProperty("webdriver.chrome.driver",
+                     "/Users/jonas/Downloads/chromedriver");
+        
         WebDriver driver  = new ChromeDriver();
         
         //registrieren
@@ -27,10 +31,10 @@ public class MainTest {
         //User-Settings ändern
         //logout
         
-        new LoginAdminTest().test(driver);
-        new EditHotelTest().test(driver);
+        new LoginAdmin().test(driver);
+        new EditHotel().test(driver);
         
-        new SearchTest().test(driver);
+        new Search().test(driver);
         
         //buchen
         //bewerten

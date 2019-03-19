@@ -14,7 +14,7 @@ import org.openqa.selenium.WebElement;
  *
  * @author belizbalim
  */
-public class LoginAdminTest {
+public class LoginAdmin {
     
     @Test
     public void test(WebDriver driver) throws InterruptedException {
