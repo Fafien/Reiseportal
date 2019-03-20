@@ -45,6 +45,13 @@ public class LoginServlet extends HttpServlet {
             //Kann ignoriert werden das dies nur als Bestätigung verwendet wird, das man nicht eingeloggt ist.
         }
         
+        try{
+            if(!session.getAttribute("error").equals("")){
+                error = error + "\n" + session.getAttribute("error");
+            }
+        }catch(Exception e){
+            
+        }
         request.setAttribute("error", error);
         
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);

@@ -13,37 +13,37 @@
     <jsp:attribute name="main">
         <form method="POST" name="select">
             <div>
-                <div>
-                    <label>
-                        Sortierung
+                <label>
+                    Sortierung
+                </label>
+                <select id="sorting" name="sorting">
+                    <option <c:out value="${PreisSelected}"></c:out> value="Preis">
+                        Preis
+                    </option>
+                    <option <c:out value="${EntfernungSelected}"></c:out> value="Entfernung">
+                        Entfernung
+                    </option>
+                    <option <c:out value="${BewertungSelected}"></c:out> value="Bewertung">
+                        Sterne
+                    </option>
+                </select>
+                <label class="filterLabel">
+                    Filter: 
+                </label>
+                <c:forEach items="${filterLabel}" var="filter">
+                    <label for="${filter.filterLabel}" class="filterLabel">
+                        ${filter.filterLabel}
                     </label>
-                    <select name="sorting" type="submit">
-                        <option <c:out value="${PreisSelected}"></c:out> value="Preis">
-                            Preis
-                        </option>
-                        <option <c:out value="${EntfernungSelected}"></c:out> value="Entfernung">
-                            Entfernung
-                        </option>
-                        <option <c:out value="${BewertungSelected}"></c:out> value="Bewertung">
-                            Bewertung
-                        </option>
-                    </select>
-                    <label>
-                        Filter: 
-                    </label>
-                    <c:forEach items="${filterLabel}" var="filter">
-                        <label for="${filter.filterLabel}">
-                            ${filter.filterLabel}
-                        </label>
-                        <input type="checkbox" name="${filter.filterLabel}" ${filter.filterChecked} value="${filter.filterLabel}">
-                    </c:forEach>
-                    <button name="button" value="Anwenden">
-                        Anwenden
-                    </button>
-                </div>
-                </br>
+                    <input type="checkbox" id="${filter.filterLabel}" name="${filter.filterLabel}" ${filter.filterChecked} value="${filter.filterLabel}">
+                </c:forEach>
+                <button class="button" name="button" id="anwenden" value="Anwenden">
+                    Anwenden
+                </button>
+            </div>
+            </br>
+            <div class="hotellist">
                 <c:forEach items="${hotellist}" var="hotel">
-                    <div>
+                    <div class="hotel">
                         <label>
                             Hotelname: <c:out value="${hotel.hotelname}"></c:out>
                         </label>
@@ -53,7 +53,7 @@
                         </label>
                         </br>
                         <label>
-                            Sterne: <c:out value="${hotel.sterne}"></c:out>
+                            <c:out value="${hotel.sterne}"></c:out> Sterne
                         </label>
                         </br>
                         <label>
@@ -64,13 +64,14 @@
                             Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>€
                         </label>
                         </br>
-                        <button name="button" value="${hotel.id}">
+                        <button name="button" id="buttonAnzeigen" value="${hotel.id}">
                             Anzeigen
                         </button>
-                    </div>
                         </br>
-                </div>
-            </c:forEach>
+                    </div>
+                    </br>
+                </c:forEach>
+            </div>
         </form>
     </jsp:attribute>
 </template:base>
