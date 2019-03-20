@@ -41,8 +41,8 @@
               <div class="w3-col s8 w3-bar">
                 <c:choose>
                     <c:when test="${empty usr}">
-                        <a class="w3-bar-item w3-button w3-padding" href="<c:url value="/login"/>">Anmelden</a>
-                        <a class="w3-bar-item w3-button w3-padding" href="<c:url value="/registration"/>">Registrieren</a>
+                        <a id="login" class="w3-bar-item w3-button w3-padding" href="<c:url value="/login"/>">Anmelden</a>
+                        <a id="registration" class="w3-bar-item w3-button w3-padding" href="<c:url value="/registration"/>">Registrieren</a>
                     </c:when>
                     <c:otherwise>
                         <span>Willkommen, <strong><c:out value="${usr.firstname}"/></strong></span><br>
@@ -61,7 +61,7 @@
                     <a href="<c:url value="/bookingview"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Meine Buchungen</a>
                     <c:if test="${usr.admn}">
                         <a href="<c:url value="/usersearch"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Benutzer verwalten</a>
-                        <a href="<c:url value="/hoteladministration"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Hotels verwalten</a>                            
+                        <a href="<c:url value="/hoteladministration"/>" class="w3-bar-item w3-button w3-padding" id="hoteladm"><i class="fa fa-bank fa-fw"></i>  Hotels verwalten</a>                            
                     </c:if>
                     <a href="<c:url value="/useraccount"/>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Kontoeinstellungen</a><br><br>
                 </c:if>
