@@ -40,6 +40,7 @@ public class OverviewServlet extends HttpServlet {
         
         session = request.getSession();
         
+        //gewähltes Hotel mit der dazugehörigen Ausstattung weitergeben
         request.setAttribute("hotel", session.getAttribute("viewHotel"));
         request.setAttribute("hotelaus", session.getAttribute("HotelAusstattung"));
        
@@ -50,13 +51,15 @@ public class OverviewServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
-         usr = (Useraccount) session.getAttribute("usr");
+        
+        //User muss angemeldet sein, um ein Hotel buchen zu können
+        usr = (Useraccount) session.getAttribute("usr");
         if(usr == null){
             error = "Bitte loggen Sie sich erst ein"; 
             session.setAttribute("error", error);
             response.sendRedirect(request.getContextPath() + LoginServlet.URL);
         } else{
+            //wenn User angemeldet, dann Weiterleitung zum Buchungs-Serblet
             response.sendRedirect(request.getContextPath() + ConfirmServlet.URL);
     }
     }
