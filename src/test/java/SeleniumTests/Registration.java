@@ -58,6 +58,7 @@ public class Registration {
         input6 = driver.findElement(By.id("password"));
         input7 = driver.findElement(By.id("passwordb"));
         
+        input1.clear();
         input1.sendKeys("TestVorname"+Keys.TAB);
         input2.sendKeys("TestNachname"+Keys.TAB);
         input3.sendKeys("ihrreiseportal@googlemail.com"+Keys.TAB);
@@ -67,6 +68,12 @@ public class Registration {
         input7.sendKeys("test"+Keys.TAB);
         
         button.click();
+        
+        Thread.sleep(2000);
+        
+        if(!driver.findElement(By.className("error")).getText().equals("")){
+            driver.quit();
+        }
         
         driver.get("https://accounts.google.com/ServiceLogin?hl=de&service=mail");
         input1 = driver.findElement(By.id("identifierId"));
@@ -88,6 +95,12 @@ public class Registration {
         
         driver.findElement(By.linkText("Link")).click();
         
-                
+        driver.close();
+        
+        for(String winHandle : driver.getWindowHandles()){
+            driver.switchTo().window(winHandle);
+        }
+        
+        driver.get("http://localhost:8080/Reiseportal/login");
     }
 }

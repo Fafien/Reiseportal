@@ -23,7 +23,6 @@ public class Login {
         WebElement input2;
         WebElement button;
 
-        driver.get("http://localhost:8080/Reiseportal/index.html");
         driver.findElement(By.linkText("Anmelden")).click();
         
         button = driver.findElement(By.id("login_submit"));
@@ -34,5 +33,11 @@ public class Login {
         input2.sendKeys("test");
         
         button.click();
+        
+        Thread.sleep(2000);
+        if(!driver.findElement(By.className("error")).getText().equals("")){
+            driver.quit();
+        }
+        
     }
 }

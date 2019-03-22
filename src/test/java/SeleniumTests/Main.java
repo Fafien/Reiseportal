@@ -34,7 +34,9 @@ public class Main {
         
         Thread.sleep(2000);
         new Registration().test(driver);
+        Thread.sleep(2000);
         new Login().test(driver);
+        Thread.sleep(2000);
         new UseraccountSettings().test(driver);
         //User-Settings ändern
         //logout

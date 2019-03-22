@@ -140,13 +140,13 @@
             <tr>
                 <td></td>
                 <td>
-                    <button class="button" name="button" value="edit">Bearbeiten</button>
+                    <button id="edit" class="button" name="button" value="edit">Bearbeiten</button>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button class="button" name="button" value="password">Passwort ändern</button>
+                    <button id="change_pw" class="button" name="button" value="password">Passwort ändern</button>
                 </td>
             </tr>
             <tr>

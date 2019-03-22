@@ -6,6 +6,9 @@
 package reiseportal.jpa;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +34,7 @@ public class Useraccount implements Serializable {
     private boolean admin;
     private boolean blocked;
     private boolean activated;
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 
 
 //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
@@ -89,7 +93,7 @@ public class Useraccount implements Serializable {
     }
     
     public void setPassword(String password){
-        this.password = password;
+        this.password = this.hashPassword(password);
     }
     
     public String getUsername(){
@@ -132,5 +136,33 @@ public class Useraccount implements Serializable {
         else{
             return true;
         }
+    }
+    
+    public static String hashPassword(String password) {
+        byte[] hash;
+
+        if (password == null) {
+            password = "";
+        }
+
+        // Hashwert zum Passwort berechnen
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+        } catch (NoSuchAlgorithmException ex) {
+            hash = "!".getBytes(StandardCharsets.UTF_8);
+        }
+
+        // Hashwert in einen Hex-String umwandeln
+        // Vgl. https://stackoverflow.com/a/9855338
+        char[] hashHex = new char[hash.length * 2];
+
+        for (int i = 0; i < hash.length; i++) {
+            int v = hash[i] & 0xFF;
+            hashHex[i * 2] = HEX_ARRAY[v >>> 4];
+            hashHex[i * 2 + 1] = HEX_ARRAY[v & 0x0F];
+        }
+
+        return new String(hashHex);
     }
 }
