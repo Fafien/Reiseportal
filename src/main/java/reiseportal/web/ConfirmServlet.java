@@ -50,17 +50,13 @@ public class ConfirmServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        
         session = request.getSession();
-       
-       
-            
+                  
         request.setAttribute("hotel", session.getAttribute("viewHotel"));
         request.setAttribute("persons", session.getAttribute("persons"));
         request.setAttribute("ankunft", session.getAttribute("fromDateOriginal"));
         request.setAttribute("abreise", session.getAttribute("untilDateOriginal"));
         request.getRequestDispatcher("/WEB-INF/confirm.jsp").forward(request, response);
-        
     }
     
     @Override
@@ -68,14 +64,18 @@ public class ConfirmServlet extends HttpServlet {
             throws ServletException, IOException {
         
            session = request.getSession();
+           
             Hotel hotel = (Hotel) session.getAttribute("viewHotel"); 
             Useraccount usr = (Useraccount) session.getAttribute("usr");
             String ankunft = (String) session.getAttribute("fromDateOriginal");
             String abreise = (String) session.getAttribute("untilDateOriginal");
+            
             String ankunftE = ankunft.substring(0,2) + "/" + ankunft.substring(3,5) + "/" + ankunft.substring(6,10);
             String abreiseE = abreise.substring(0,2) + "/" + abreise.substring(3,5) + "/" + abreise.substring(6,10);
+            
             Date ankunftDatum = new Date();
             Date abreiseDatum = new Date();
+            
         try {
             ankunftDatum = new SimpleDateFormat("dd/MM/yyyy").parse(ankunftE);
             abreiseDatum = new SimpleDateFormat("dd/MM/yyyy").parse(abreiseE);
@@ -89,10 +89,6 @@ public class ConfirmServlet extends HttpServlet {
 
         this.bookingBean.createNewBooking(hotel, usr, ankunftDatum, abreiseDatum  ,personenInt, false);
         
-       //TODO: 
-       //Email-Versand
-         response.sendRedirect(request.getContextPath() + BookingViewServlet.URL);
-         //response.sendRedirect(request.getContextPath() + EvaluationServlet.URL);
-         //response.sendRedirect(request.getContextPath() + AfterConfirmServlet.URL);
+         response.sendRedirect(request.getContextPath() + AfterConfirmServlet.URL);
     }
 }

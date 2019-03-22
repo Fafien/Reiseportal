@@ -6,6 +6,9 @@
 package reiseportal.web;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -30,26 +33,36 @@ import reiseportal.jpa.Useraccount;
         
        @EJB
        BookingBean bookingBean;
-     
+       String evaluationButtonId;
+       HttpSession session;
+       
        @Override
        public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession();
+        session = request.getSession();
         Useraccount usr = (Useraccount) session.getAttribute("usr");
         List<Booking> bookingList;
         bookingList = bookingBean.findBookingByUseraccount(usr);
-        String  error;
+        List<Booking> bookingIntoHotel = new ArrayList<>();
+        bookingIntoHotel.addAll(bookingList);
+        session.setAttribute("bookingEvaluationList", bookingList);
         
+        String  error;
+         
         if(bookingList == null){
          error= "Sie haben kein Hotel gebucht";
          request.setAttribute("bookinglist.hotelname", "" );
          request.setAttribute("bookinglist.ort", "" );
          request.setAttribute("bookinglist.sterne", "" );
         }else{
-         Booking booking = new Booking();
-         Hotel hotel = booking.getHotel(); 
-         request.setAttribute("bookinglist", hotel );
+         Iterator<Booking> iter = bookingIntoHotel.listIterator();
+         List<Hotel> bookingHotelList = new ArrayList<>();
+            while(iter.hasNext()){ 
+                  Hotel hotel =  iter.next().getHotel();
+                  bookingHotelList.add(hotel);
+        }
+         request.setAttribute("bookinglist", bookingHotelList );
          error = "";
         }
         
@@ -61,6 +74,7 @@ import reiseportal.jpa.Useraccount;
          public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
              
+             session.setAttribute("evaluationButtonId", request.getParameter("buttonEvaluation"));
            response.sendRedirect(request.getContextPath() + EvaluationServlet.URL);
     }
   }
