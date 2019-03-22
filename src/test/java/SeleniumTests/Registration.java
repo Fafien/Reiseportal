@@ -88,5 +88,6 @@ public class Registration {
         
         driver.findElement(By.linkText("Link")).click();
         
+                
     }
 }
