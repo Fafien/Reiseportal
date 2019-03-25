@@ -39,8 +39,8 @@ public class Search {
 
     @Test
     public void test(WebDriver driver) throws InterruptedException {
-        driver.get("http://localhost:8080/Reiseportal/");
-        //driver.get("http://localhost:8181/Reiseportal/");
+        //driver.get("http://localhost:8080/Reiseportal/");
+        driver.get("http://localhost:8181/Reiseportal/");
         
         WebElement button = driver.findElement(By.id("search"));
         WebElement input1 = driver.findElement(By.id("location"));

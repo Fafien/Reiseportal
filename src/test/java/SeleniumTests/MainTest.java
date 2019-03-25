@@ -17,15 +17,16 @@ public class MainTest {
     
     @Test
     public void main() throws InterruptedException {
-         //Jonas
+        
+        //Jonas
         //System.setProperty("webdriver.chrome.driver",
         //             "/Users/jonas/Downloads/chromedriver");
         //Beliz
         System.setProperty("webdriver.chrome.driver",
-        //             "/Users/belizbalim/Downloads");
+                   "/Users/belizbalim/Downloads/chromedriver");
         //Fabian
         //System.setProperty("webdriver.chrome.driver",
-                     "C:/DHBW/Software/chromedriver.exe"); 
+        //             "C:/DHBW/Software/chromedriver.exe"); 
         
         WebDriver driver  = new ChromeDriver();
         
@@ -52,6 +53,8 @@ public class MainTest {
         new Logout().test(driver);
         
         driver.quit();
-    }
+        
+                
+     }
     
 }
