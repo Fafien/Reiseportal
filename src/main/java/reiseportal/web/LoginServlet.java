@@ -45,6 +45,13 @@ public class LoginServlet extends HttpServlet {
             //Kann ignoriert werden das dies nur als Bestätigung verwendet wird, das man nicht eingeloggt ist.
         }
         
+        try{
+            if(!session.getAttribute("error").equals("")){
+                error = error + "\n" + session.getAttribute("error");
+            }
+        }catch(Exception e){
+            
+        }
         request.setAttribute("error", error);
         
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
@@ -64,7 +71,7 @@ public class LoginServlet extends HttpServlet {
         
         if(userlist.size() > 0){
             if(userlist.get(0).isActivated())
-                if(userlist.get(0).getPassword().compareTo(request.getParameter("password")) == 0){
+                if(userlist.get(0).getPassword().compareTo(Useraccount.hashPassword(request.getParameter("password"))) == 0){
                     session = request.getSession();  
                     session.setAttribute("usr", userlist.get(0));
                     response.sendRedirect(request.getContextPath() + IndexServlet.URL);

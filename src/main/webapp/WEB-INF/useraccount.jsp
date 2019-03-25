@@ -20,7 +20,7 @@
                     <div id="question">Wollen Sie den Account wirklich löschen?</div>
                     <tr>
                         <td>
-                            <button name="button" value="deletey" class="delete_button">Ja</button>
+                            <button id="delete_submit" name="button" value="deletey" class="delete_button">Ja</button>
                         </td>
                         <td>
                             <button name="button" value="deleten" class="delete_button">Nein</button>
@@ -33,7 +33,7 @@
                     Vorname:
                 </td>
                 <td>
-                    <input name="usr_form_firstname" value="<c:out value="${usr.firstname}"></c:out>">
+                    <input id="firstname" name="usr_form_firstname" value="<c:out value="${usr.firstname}"></c:out>">
                 </td>
             </tr>
             <tr>
@@ -41,7 +41,7 @@
                     Nachname:
                 </td>
                 <td>
-                    <input name="usr_form_lastname" value="<c:out value="${usr.lastname}"></c:out>">
+                    <input id="lastname" name="usr_form_lastname" value="<c:out value="${usr.lastname}"></c:out>">
                 </td>
             </tr>
             <tr>
@@ -49,7 +49,7 @@
                     E-Mail-Adresse:
                 </td>
                 <td>
-                    <input name="usr_form_email" value="<c:out value="${usr.email}"></c:out>">
+                    <input id="email" name="usr_form_email" value="<c:out value="${usr.email}"></c:out>">
                 </td>
             </tr>
             <tr>
@@ -63,7 +63,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <button class="button" name="button" value="save">Speichern</button>
+                    <button id="save_usersettings" class="button" name="button" value="save">Speichern</button>
                 </td>
             </tr>
             </c:when>
@@ -73,7 +73,7 @@
                     Altes Passwort:
                 </td>
                 <td>
-                    <input type="password" name="usr_form_passwordo">
+                    <input id="passworda" type="password" name="usr_form_passwordo">
                 </td>
             </tr>
             <tr>
@@ -81,7 +81,7 @@
                     Neues Passwort:
                 </td>
                 <td>
-                    <input type="password" name="usr_form_password">
+                    <input id="password" type="password" name="usr_form_password">
                 </td>
             </tr>
             <tr>
@@ -89,13 +89,13 @@
                     Neues Passwort bestätigen:
                 </td>
                 <td>
-                    <input type="password" name="usr_form_passwordb">
+                    <input id="passwordb" type="password" name="usr_form_passwordb">
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button class="button" name="button" value="savep">Speichern</button>
+                    <button id="save_password" class="button" name="button" value="savep">Speichern</button>
                 </td>
             </tr>
             <div class="error">
@@ -140,19 +140,19 @@
             <tr>
                 <td></td>
                 <td>
-                    <button class="button" name="button" value="edit">Bearbeiten</button>
+                    <button id="edit" class="button" name="button" value="edit">Bearbeiten</button>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button class="button" name="button" value="password">Passwort ändern</button>
+                    <button id="change_pw" class="button" name="button" value="password">Passwort ändern</button>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button class="button" name="button" value="delete">Löschen</button>
+                    <button id="delete" class="button" name="button" value="delete">Löschen</button>
                 </td>
             </tr>
             </c:otherwise>

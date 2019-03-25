@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,7 +28,7 @@ public class Booking implements Serializable {
     private Hotel hotel = null;
     
     @ManyToOne
-    private Useraccount userAccount = null;
+    private Useraccount useraccount = null;
     
     @Temporal(TemporalType.DATE)
     private Date ankunft= new Date();
@@ -44,9 +43,9 @@ public class Booking implements Serializable {
         
     }
 
-    public Booking(Hotel hotel, Useraccount userAccount, Date ankunft, Date ausreise, int personenanzahl, boolean cancel) {
+    public Booking(Hotel hotel, Useraccount useraccount, Date ankunft, Date ausreise, int personenanzahl, boolean cancel) {
         this.hotel = hotel;
-        this.userAccount = userAccount;
+        this.useraccount = useraccount;
         this.ankunft = ankunft;
         this.ausreise = ausreise;
         this.personenanzahl = personenanzahl;
@@ -69,12 +68,12 @@ public class Booking implements Serializable {
         this.hotel = hotel;
     }
 
-    public Useraccount getUserAccount() {
-        return userAccount;
+    public Useraccount getUseraccount() {
+        return useraccount;
     }
 
-    public void setUserAccount(Useraccount userAccount) {
-        this.userAccount = userAccount;
+    public void setUseraccount(Useraccount useraccount) {
+        this.useraccount = useraccount;
     }
 
     public Date getAnkunft() {

@@ -99,6 +99,7 @@ public class RegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         
         usr = new Useraccount(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"), request.getParameter("password"), request.getParameter("username"));
+        usr.setPassword(usr.getPassword());
         error = new ArrayList<String>();
         
         if(usr.checkValues()){
@@ -110,7 +111,7 @@ public class RegistrationServlet extends HttpServlet {
             }
             if(userBean.findUserByEmailOrUsername(request.getParameter("email"), request.getParameter("username")).isEmpty()){
                 if(error.isEmpty()){
-                    usr = userBean.createNewUser(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"), request.getParameter("password"), request.getParameter("username"));
+                    usr = userBean.createNewUser(usr.getFirstname(), usr.getLastname(), usr.getEmail(), usr.getPassword(), usr.getUsername());
                     
                     toMail = usr.getEmail();
                     registrationLink = "http://localhost:8080/Reiseportal/registration?registrationConfirmation="+ Long.toBinaryString(usr.getId());

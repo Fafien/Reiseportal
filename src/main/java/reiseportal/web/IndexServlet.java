@@ -42,6 +42,7 @@ public class IndexServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        //Daten aus der Session auslesen & an die JSP weitergeben
         session = request.getSession();
         request.setAttribute("errors", session.getAttribute("errors"));
         session.removeAttribute("errors");
@@ -56,12 +57,11 @@ public class IndexServlet extends HttpServlet {
         
         session = request.getSession();
         
+        //Datumsformat umwandeln
         String VonD = request.getParameter("fromDate");
         String BisD = request.getParameter("untilDate");
-        
         String VonE = VonD.substring(0,2) + "/" + VonD.substring(3,5) + "/" + VonD.substring(6,10);
         String BisE = BisD.substring(0,2) + "/" + BisD.substring(3,5) + "/" + BisD.substring(6,10);
-        
         try {
             von = new SimpleDateFormat("dd/MM/yyyy").parse(VonE);
         } catch (ParseException ex) {
@@ -77,6 +77,7 @@ public class IndexServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + IndexServlet.URL);
         }
         
+        //Suchdaten in der Session speichern
         session.setAttribute("location", request.getParameter("location").trim());
         session.setAttribute("fromDateOriginal", request.getParameter("fromDate"));
         session.setAttribute("untilDateOriginal", request.getParameter("untilDate"));
@@ -84,13 +85,17 @@ public class IndexServlet extends HttpServlet {
         session.setAttribute("untilDate", bis);
         session.setAttribute("persons", request.getParameter("persons").trim());
         
+        //wenn ein Feld nicht gefüllt, dann Fehler ausgeben
         if(!request.getParameter("fromDate").trim().isEmpty() && !request.getParameter("location").trim().isEmpty() && !request.getParameter("untilDate").trim().isEmpty() && !request.getParameter("persons").trim().isEmpty()) {
             
+            //passende Hotels suchen und speichern
+            //default-Sortierung: Preis
             hotellist = hotelbean.findHotelsByInputOrderByPreis(request.getParameter("location").trim(), von, bis, request.getParameter("persons").trim());
             session.setAttribute("PreisSelected", "selected");
             session.setAttribute("EntfernungSelected", "");
             session.setAttribute("BewertungSelected", "");
             
+            //Fehler ausgeben, wenn keine Hotels mit gewünschten Daten verfügbar
             if(hotellist.isEmpty()) {
                 error = "Zu ihren Suchdaten gibt es keine passenden Ergebnisse";
                 session.setAttribute("errors", error);
@@ -98,6 +103,7 @@ public class IndexServlet extends HttpServlet {
             } else {
                 error = "";
                 session.setAttribute("errors", error);
+                //Weitergabe der hotellist & Weiterleitung auf Selection-Servlet
                 session.setAttribute("hotels", hotellist);
                 response.sendRedirect(request.getContextPath() + SelectionServlet.URL);
             }

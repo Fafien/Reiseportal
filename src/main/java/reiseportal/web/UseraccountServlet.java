@@ -37,15 +37,6 @@ public class UseraccountServlet extends HttpServlet {
     
         session = request.getSession();
         
-        try{
-            Useraccount usr = (Useraccount) session.getAttribute("usr");
-            if(!usr.isAdmn()){
-                request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-            }
-        }catch(NullPointerException e){
-            
-        }
-        
         session.removeAttribute("edit");
         session.removeAttribute("password");
         session.removeAttribute("delete");
@@ -98,8 +89,8 @@ public class UseraccountServlet extends HttpServlet {
                 break;
             case "savep":
                 errors = new ArrayList<String>();
-                if(request.getParameter("usr_form_passwordo").equals(usr.getPassword())){
-                    if(request.getParameter("usr_form_password").equals("usr_form_passwordb")){
+                if(Useraccount.hashPassword(request.getParameter("usr_form_passwordo")).equals(usr.getPassword())){
+                    if(request.getParameter("usr_form_password").equals(request.getParameter("usr_form_passwordb"))){
                         usr.setPassword(request.getParameter("usr_form_password"));
                         session.setAttribute("usr", usr);
                         userbean.updateUser(usr);
@@ -107,7 +98,9 @@ public class UseraccountServlet extends HttpServlet {
                         session.removeAttribute("errors");
                         request.getRequestDispatcher("/WEB-INF/useraccount.jsp").forward(request, response);
                     }
-                    errors.add("Neue Passwörter stimmen nicht überein");
+                    else{
+                        errors.add("Neue Passwörter stimmen nicht überein");
+                    }
                 }
                 else{
                     errors.add("Altes Passwort stimmt nicht");

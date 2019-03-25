@@ -51,6 +51,7 @@ public class SelectionServlet extends HttpServlet {
         
         session = request.getSession();
         
+        //alle Ausstattungen für Filter speichern, wenn facilities noch nicht gespeichert wurden
         if(facilitiesLabel == null || facilitiesLabel.length == 0) {
             int i = 0;
             facilitiesLabel = new Filter[facilities.length];
@@ -63,6 +64,7 @@ public class SelectionServlet extends HttpServlet {
             }
         }
         
+        //Daten aus der Session an die JSP weitergeben
         request.setAttribute("filterLabel", facilitiesLabel);
         request.setAttribute("hotellist", session.getAttribute("hotels"));
         request.setAttribute("PreisSelected", session.getAttribute("PreisSelected"));
@@ -77,6 +79,7 @@ public class SelectionServlet extends HttpServlet {
         
         String requestButton = request.getParameter("button");
         
+        //wenn Button zum Anwenden von Sortierung / Filter gedrückt wird
         if(requestButton.equals("Anwenden")) {
             String location = (String) session.getAttribute("location");
             Date from = (Date) session.getAttribute("fromDate");
@@ -86,6 +89,7 @@ public class SelectionServlet extends HttpServlet {
             String sort = request.getParameter("sorting");
             facilitiesLabel = new Filter[facilities.length];
             
+            //hotellist nach gewünschter Sortierung sortieren
             switch(sort) {
                 case"Preis":
                     hotellist = hotelbean.findHotelsByInputOrderByPreis(location, from, until, persons);
@@ -115,6 +119,7 @@ public class SelectionServlet extends HttpServlet {
                 facilitiesLabel[i] = fil;
                 i++;
             }
+            //geünschte Filter speichern
             List<String> requiredFacilities = new ArrayList<>();
             int j = 0;
             while(j < facilities.length) {
@@ -127,6 +132,7 @@ public class SelectionServlet extends HttpServlet {
                 j++;
             }
             
+            //alle Hotels, die die gewünschten Filter haben in hotellist2 speichern
             List<Hotel> hotellist2 = new ArrayList<>();
             hotellist2.addAll(hotellist);
             Iterator<Hotel> iter = hotellist2.listIterator();
@@ -142,16 +148,18 @@ public class SelectionServlet extends HttpServlet {
                         }
                     }
                 }
+                //wenn das Hotel nicht alle gewünschten Filter hat, wird es aus hotellist2 gelöscht
                 if(found != requiredFacilities.size()) {
                     iter.remove();
                 }
             }
-            
+            //wenn keine Hotels mit den gewünschten Filtern verfügbar, wird ein Fehler angezeigt
             if(hotellist2.isEmpty()) {
                 error = "Für die gewählten Filtern gibt es keine passenden Ergebnisse";
                 session.setAttribute("errors", error);
                 facilitiesLabel = null;
                 response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+            //andenfalls wird die neue hotellist & die ausgewählten Filter an die JSP weitergegeben
             } else {
                 error = "";
                 session.setAttribute("errors", error);
@@ -159,11 +167,13 @@ public class SelectionServlet extends HttpServlet {
                 session.setAttribute("filter", facilitiesLabel);
                 response.sendRedirect(request.getContextPath() + SelectionServlet.URL);
             }
+        //wenn ein Hotel im Detail angezeigt werden soll
         } else {
             Long id = Long.parseLong(requestButton);
             hotel = hotelbean.findHotelById(id);
             List<Hotelausstattung> hotelaus = hotausbean.findHotelausstattungByHotel(hotel);
-        
+            
+            //entsprechendes Hotel mit der dazugehörigen Ausstattung anzeigen
             session.setAttribute("viewHotel", hotel);
             session.setAttribute("HotelAusstattung", hotelaus);
         

@@ -17,17 +17,27 @@ public class MainTest {
     
     @Test
     public void main() throws InterruptedException {
-        //Jonas
+         //Jonas
         //System.setProperty("webdriver.chrome.driver",
-                     //"/Users/jonas/Downloads/chromedriver");
+        //             "/Users/jonas/Downloads/chromedriver");
         //Beliz
         System.setProperty("webdriver.chrome.driver",
-                     "/Users/belizbalim/Downloads/chromedriver");
+        //             "/Users/belizbalim/Downloads");
+        //Fabian
+        //System.setProperty("webdriver.chrome.driver",
+                     "C:/DHBW/Software/chromedriver.exe"); 
         
         WebDriver driver  = new ChromeDriver();
         
-        //registrieren
-        //anmelden
+        //driver.get("http://localhost:8080/Reiseportal/login");
+        driver.get("http://localhost:8181/Reiseportal/login");
+        
+        Thread.sleep(2000);
+        new Registration().test(driver);
+        Thread.sleep(2000);
+        new Login().test(driver);
+        Thread.sleep(2000);
+        new UseraccountSettings().test(driver);
         //User-Settings ändern
         //logout
         
@@ -38,6 +48,8 @@ public class MainTest {
         
         //buchen
         //bewerten
+        
+        new Logout().test(driver);
         
         driver.quit();
     }
