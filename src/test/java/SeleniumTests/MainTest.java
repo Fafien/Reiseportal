@@ -13,7 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  *
  * @author jonas
  */
-public class Main {
+public class MainTest {
     
     @Test
     public void main() throws InterruptedException {
@@ -22,7 +22,7 @@ public class Main {
                      //"/Users/jonas/Downloads/chromedriver");
         //Beliz
         System.setProperty("webdriver.chrome.driver",
-                     "/Users/belizbalim/Downloads");
+                     "/Users/belizbalim/Downloads/chromedriver");
         
         WebDriver driver  = new ChromeDriver();
         
