@@ -17,7 +17,6 @@ import reiseportal.jpa.Useraccount;
  * @author Fabian Hupe
  */
 @Stateless  
-@DeclareRoles({"Admin", "Member"})
 public class UserBean {
 
     @PersistenceContext
@@ -76,8 +75,4 @@ public class UserBean {
            return updateUser(user);
        } 
     }
-    
-    
-
-
 }

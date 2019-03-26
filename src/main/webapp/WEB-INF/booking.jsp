@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 
 <template:base>
-<jsp:attribute name="main">
+    <jsp:attribute name="main">
         <form method="POST" name="select">
             <div>
                 <label>

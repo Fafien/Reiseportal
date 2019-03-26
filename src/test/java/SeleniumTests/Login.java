@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Login {
     
     @Test
-    public void test(WebDriver driver) throws InterruptedException {
+    public void test(WebDriver driver, String username, String password) throws InterruptedException {
         WebElement input1;
         WebElement input2;
         WebElement button;
@@ -29,8 +29,8 @@ public class Login {
         input1 = driver.findElement(By.id("username"));
         input2 = driver.findElement(By.id("password"));
         
-        input1.sendKeys("Test");
-        input2.sendKeys("test");
+        input1.sendKeys(username);
+        input2.sendKeys(password);
         
         button.click();
         

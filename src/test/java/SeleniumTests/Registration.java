@@ -100,8 +100,5 @@ public class Registration {
         for(String winHandle : driver.getWindowHandles()){
             driver.switchTo().window(winHandle);
         }
-        
-        //driver.get("http://localhost:8080/Reiseportal/login");
-        driver.get("http://localhost:8181/Reiseportal/login");
     }
 }
