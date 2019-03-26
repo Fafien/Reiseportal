@@ -22,16 +22,16 @@ public class MainTest {
         //System.setProperty("webdriver.chrome.driver",
         //             "/Users/jonas/Downloads/chromedriver");
         //Beliz
-        System.setProperty("webdriver.chrome.driver",
-                   "/Users/belizbalim/Downloads/chromedriver");
-        //Fabian
         //System.setProperty("webdriver.chrome.driver",
-        //             "C:/DHBW/Software/chromedriver.exe"); 
+        //           "/Users/belizbalim/Downloads/chromedriver");
+        //Fabian
+        System.setProperty("webdriver.chrome.driver",
+                     "C:/DHBW/Software/chromedriver.exe"); 
         
         WebDriver driver  = new ChromeDriver();
         
-        //driver.get("http://localhost:8080/Reiseportal/login");
-        driver.get("http://localhost:8181/Reiseportal/login");
+        driver.get("http://localhost:8080/Reiseportal/login");
+        //driver.get("http://localhost:8181/Reiseportal/login");
         
         Thread.sleep(2000);
         new Registration().test(driver);

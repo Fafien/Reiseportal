@@ -6,8 +6,6 @@
 package reiseportal.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashSet;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -69,28 +67,28 @@ public class LoginServlet extends HttpServlet {
         else{
             userlist = this.userbean.findUserByEmailOrUsername(" ", request.getParameter("username"));
         
-        if(userlist.size() > 0){
-            if(userlist.get(0).isActivated())
-                if(userlist.get(0).getPassword().compareTo(Useraccount.hashPassword(request.getParameter("password"))) == 0){
-                    session = request.getSession();  
-                    session.setAttribute("usr", userlist.get(0));
-                    response.sendRedirect(request.getContextPath() + IndexServlet.URL);
-                }
+            if(userlist.size() > 0){
+                if(userlist.get(0).isActivated())
+                    if(userlist.get(0).getPassword().compareTo(Useraccount.hashPassword(request.getParameter("password"))) == 0){
+                        session = request.getSession();  
+                        session.setAttribute("usr", userlist.get(0));
+                        response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+                    }
+                    else{
+                        //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden
+                        error = "Unter den Angaben konnte kein Konto gefunden werden";
+                        response.sendRedirect(request.getContextPath() + LoginServlet.URL);
+                    }
                 else{
-                    //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden
-                    error = "Unter den Angaben konnte kein Konto gefunden werden";
+                    error = "Bitte aktvieren Sie Ihren Account mit dem Link in Ihrer Registrierungsemail.";
                     response.sendRedirect(request.getContextPath() + LoginServlet.URL);
                 }
+            }
             else{
-                error = "Bitte aktvieren Sie Ihren Account mit dem Link in Ihrer Registrierungsemail.";
+                //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden
+                error = "Unter den Angaben konnte kein Konto gefunden werden";
                 response.sendRedirect(request.getContextPath() + LoginServlet.URL);
             }
-        }
-        else{
-            //Rückgabe: Unter den Angaben konnte kein Konto gefunden werden
-            error = "Unter den Angaben konnte kein Konto gefunden werden";
-            response.sendRedirect(request.getContextPath() + LoginServlet.URL);
-        }
         }
     }
 }

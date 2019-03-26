@@ -19,8 +19,7 @@ public class LoginAdmin {
     @Test
     public void test(WebDriver driver) throws InterruptedException {
         
-        //driver.get("http://localhost:8080/Reiseportal/login");
-        driver.get("http://localhost:8181/Reiseportal/login");
+        driver.findElement(By.linkText("Anmelden")).click();
         
         WebElement username = driver.findElement(By.id("username"));
         WebElement password = driver.findElement(By.id("password"));

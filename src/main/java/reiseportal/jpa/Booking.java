@@ -98,14 +98,5 @@ public class Booking implements Serializable {
 
     public void setPersonenanzahl(int personenanzahl) {
         this.personenanzahl = personenanzahl;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }  
 }
