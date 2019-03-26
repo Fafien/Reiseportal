@@ -52,7 +52,7 @@ public class MainTest {
         
         new Logout().test(driver);
         
-        driver.quit();*/
+        driver.quit();
         
                 
      }
