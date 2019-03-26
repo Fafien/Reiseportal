@@ -14,7 +14,7 @@
         <div class="center">
             <form method="POST">
                 <div class="titel_evaluation">
-                    Kundenbewertung
+                    Buchungsübersicht und Kundenbewertung
                  </div>
                   </br>
                   <p> Wie zufrieden waren Sie mit Ihrem Hotel?</p>

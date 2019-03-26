@@ -48,7 +48,8 @@ public class MainTest {
         new Search().test(driver);
         
         //buchen
-        //bewerten
+         new Booking().test(driver);
+         new Confirm().test(driver);
         
         new Logout().test(driver);
         

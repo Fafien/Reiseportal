@@ -79,6 +79,9 @@ public class ConfirmServlet extends HttpServlet {
         try {
             ankunftDatum = new SimpleDateFormat("dd/MM/yyyy").parse(ankunftE);
             abreiseDatum = new SimpleDateFormat("dd/MM/yyyy").parse(abreiseE);
+            //int anzahlGebuchteTage= ankunftDatum.get;
+            
+            
         } catch (ParseException ex) {
            
             System.out.print("Datum Speicher hat nicht funkioniert ");

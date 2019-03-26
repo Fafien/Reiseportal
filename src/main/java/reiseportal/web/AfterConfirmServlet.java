@@ -28,9 +28,6 @@ public class AfterConfirmServlet extends HttpServlet {
     
     public static final String URL = "/afterconfirm";
     
-    @EJB
-    HotelBean hotelbean;
-    
     HttpSession session;
     Hotel hotel;
       

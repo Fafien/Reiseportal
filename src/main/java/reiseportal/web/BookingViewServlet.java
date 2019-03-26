@@ -33,8 +33,10 @@ import reiseportal.jpa.Useraccount;
         
        @EJB
        BookingBean bookingBean;
+       
        String evaluationButtonId;
        HttpSession session;
+       String  error;
        
        @Override
        public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,31 +46,18 @@ import reiseportal.jpa.Useraccount;
         Useraccount usr = (Useraccount) session.getAttribute("usr");
         List<Booking> bookingList;
         bookingList = bookingBean.findBookingByUseraccount(usr);
-        List<Booking> bookingIntoHotel = new ArrayList<>();
-        bookingIntoHotel.addAll(bookingList);
-        session.setAttribute("bookingEvaluationList", bookingList);
-        
-        String  error;
          
         if(bookingList == null){
-         error= "Sie haben kein Hotel gebucht";
-         request.setAttribute("bookinglist.hotelname", "" );
-         request.setAttribute("bookinglist.ort", "" );
-         request.setAttribute("bookinglist.sterne", "" );
-        }else{
-         Iterator<Booking> iter = bookingIntoHotel.listIterator();
-         List<Hotel> bookingHotelList = new ArrayList<>();
-            while(iter.hasNext()){ 
-                  Hotel hotel =  iter.next().getHotel();
-                  bookingHotelList.add(hotel);
-        }
-         request.setAttribute("bookinglist", bookingHotelList );
-         error = "";
-        }
-        
+        session.setAttribute("bookingEvaluationList", "");
+        error = "Sie haben kein Hotel gebucht";
         request.setAttribute("error", error);
         request.getRequestDispatcher("/WEB-INF/bookingview.jsp").forward(request, response);
+        
+        }else{
+        session.setAttribute("bookingEvaluationList", bookingList);    
+        request.getRequestDispatcher("/WEB-INF/bookingview.jsp").forward(request, response);
         }
+       }
        
         @Override
          public void doPost(HttpServletRequest request, HttpServletResponse response)

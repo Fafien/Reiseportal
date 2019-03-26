@@ -79,16 +79,16 @@ public class EvaluationServlet extends HttpServlet {
                             }
                         }
                         }
-                     response.sendRedirect(request.getContextPath() + IndexServlet.URL);   
+                     response.sendRedirect(request.getContextPath() + AfterEvaluationServlet.URL);   
                     }
               String sterneInt = (String) session.getAttribute("bewertung");
               int sterneResult = Integer.parseInt(sterneInt);
               String bewertungsarea = request.getParameter("bewertungstext");
               String buttonBookingId = (String) session.getAttribute("evaluationButtonId");
               Long id = Long.parseLong(buttonBookingId);
-              
-            booking = bookingbean.findById(id);
-             evaluationBean.createNewEvaluation(booking, sterneResult, bewertungsarea);
+               booking = bookingbean.findById(id);
+               session.setAttribute("bewertenTest", true);
+               evaluationBean.createNewEvaluation(booking, sterneResult, bewertungsarea);
              
     }
          } catch (Exception e) {
