@@ -43,9 +43,7 @@ public class EditHotel {
     @Test
     public void test(WebDriver driver) throws InterruptedException {
 
-        
-        //driver.get("http://localhost:8080/Reiseportal/hoteladministration");
-        driver.get("http://localhost:8181/Reiseportal/hoteladministration");
+        driver.findElement(By.linkText("Hotels verwalten")).click();
         
         WebElement shotelname = driver.findElement(By.id("shotelname"));
         WebElement adminhotelsuche = driver.findElement(By.id("adminhotelsuche"));

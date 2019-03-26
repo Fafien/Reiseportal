@@ -39,8 +39,9 @@ public class Search {
 
     @Test
     public void test(WebDriver driver) throws InterruptedException {
-        //driver.get("http://localhost:8080/Reiseportal/");
-        driver.get("http://localhost:8181/Reiseportal/");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.linkText("Hotels suchen")).click();
         
         WebElement button = driver.findElement(By.id("search"));
         WebElement input1 = driver.findElement(By.id("location"));
@@ -49,9 +50,9 @@ public class Search {
         WebElement input4 = driver.findElement(By.id("persons"));
         
         input1.sendKeys("Berlin");
-        input2.sendKeys("22.06.2019");
-        input3.sendKeys("06.07.2019");
         input4.sendKeys("2");
+        input2.sendKeys("22.06.2019"+Keys.ENTER);
+        input3.sendKeys("06.07.2019"+Keys.ENTER);
         button.click();
         
         //Dropdown für Sortierung testen

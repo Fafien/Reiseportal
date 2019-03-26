@@ -44,7 +44,7 @@
                     Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>€
                 </label>
                 </br>
-                <button name="buttonBooking" value="buttonBooking">
+                <button id="book" name="buttonBooking" value="buttonBooking">
                     Buchen
                 </button>
             </div>

@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib tagdir="/WEB-INF/tags/templates" prefix="template"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 
 <template:base>
@@ -42,7 +45,7 @@
                     Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>€
                 </label>
                 </br>
-                <button name="buttonBooking" value="buttonBooking">
+                <button id ="book" name="buttonBooking" value="buttonBooking">
                     Buchen
                 </button>
             </div>

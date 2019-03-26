@@ -48,11 +48,11 @@ public class MainTest {
         new Search().test(driver);
         
         //buchen
-         new Booking().test(driver);
-         new Confirm().test(driver);
+        new Booking().test(driver);
+        new Confirm().test(driver);
         
         new Logout().test(driver);
         
-        driver.quit();       
-     } 
+        driver.quit();
+    }
 }

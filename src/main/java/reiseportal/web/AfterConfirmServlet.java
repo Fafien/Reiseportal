@@ -6,16 +6,12 @@
 package reiseportal.web;
 
 import java.io.IOException;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import reiseportal.ejb.BookingBean;
-import reiseportal.ejb.HotelBean;
-import reiseportal.jpa.Booking;
 import reiseportal.jpa.Hotel;
 
 /**
@@ -23,7 +19,7 @@ import reiseportal.jpa.Hotel;
  * @author Marwa Alqataa
  */
 
-    @WebServlet(name = "AfterConfirmServlet", urlPatterns = {"/afterconfirm"})
+@WebServlet(name = "AfterConfirmServlet", urlPatterns = {"/afterconfirm"})
 public class AfterConfirmServlet extends HttpServlet {
     
     public static final String URL = "/afterconfirm";
@@ -44,4 +40,4 @@ public class AfterConfirmServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/afterconfirm.jsp").forward(request, response);
         
     }
-    }
+}
