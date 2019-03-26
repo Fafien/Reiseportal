@@ -109,8 +109,4 @@ public class Hotel implements Serializable {
     public void setEntfernung(int entfernung) {
         this.entfernung = entfernung;
     }
-    
-    public Object getHotelAusstattung() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

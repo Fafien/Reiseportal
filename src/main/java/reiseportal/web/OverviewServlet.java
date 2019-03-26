@@ -61,6 +61,6 @@ public class OverviewServlet extends HttpServlet {
         } else{
             //wenn User angemeldet, dann Weiterleitung zum Buchungs-Serblet
             response.sendRedirect(request.getContextPath() + ConfirmServlet.URL);
-    }
+        }
     }
 }

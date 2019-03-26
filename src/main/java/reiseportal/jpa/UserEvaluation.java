@@ -63,9 +63,5 @@ public class UserEvaluation implements Serializable{
 
     public void setBewertungstext(String bewertungstext) {
         this.bewertungstext = bewertungstext;
-    }
-     
-            
-    
-    
+    }  
 }

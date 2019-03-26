@@ -26,7 +26,6 @@
                         <li style="display: inline">
                             • <c:out value="${hotelausstattung.ausstattung}"></c:out> (<c:out value="${hotelausstattung.anzahl}"></c:out>x)
                         </li>
-                        </br>
                     </c:forEach>
                 </ul>
                 <label>
