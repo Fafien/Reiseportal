@@ -37,7 +37,7 @@
                     Abreise: <c:out value="${abreise}"></c:out>
                 </label>
                 </br>
-                <button name="buttonBestaetigung" value="buttonBestaetung">
+                <button id="confirm" name="buttonBestaetigung" value="buttonBestaetung">
                     Bestätigen
                 </button>
             </div>
