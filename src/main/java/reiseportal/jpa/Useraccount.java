@@ -11,9 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 
 /**
  *
@@ -154,7 +152,6 @@ public class Useraccount implements Serializable {
         }
 
         // Hashwert in einen Hex-String umwandeln
-        // Vgl. https://stackoverflow.com/a/9855338
         char[] hashHex = new char[hash.length * 2];
 
         for (int i = 0; i < hash.length; i++) {

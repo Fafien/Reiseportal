@@ -7,7 +7,6 @@ package reiseportal.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,11 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.jpa.Useraccount;
-import reiseportal.jpa.Hotel;
 
 /**
  * 
  * @author belizbalim
+ * 
+ * Diese Klasse regelt die Hotelanlage. Der Admin kann ein neues Hotel anlegen. 
  */
 @WebServlet(name="CreateHotelServlet", urlPatterns = {"/createhotel"})
 public class CreateHotelServlet extends HttpServlet {
@@ -158,9 +158,5 @@ public class CreateHotelServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + HotelAdministrationServlet.URL);
         }   
            
-}
-       
-  
-        
-       
     }
+}

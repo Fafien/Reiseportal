@@ -6,7 +6,6 @@
 package reiseportal.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +23,7 @@ import reiseportal.jpa.Useraccount;
 @WebServlet(name = "UserAdministrationServlet", urlPatterns = {"/useradministration"})
 public class UserAdministrationServlet extends HttpServlet{
 
-     public static final String URL = "/useradministration";
+    public static final String URL = "/useradministration";
     
     HttpSession session;
     Useraccount usr;
@@ -47,7 +46,8 @@ public class UserAdministrationServlet extends HttpServlet{
             if(!usr.isAdmn()){
                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
             }
-        }catch(NullPointerException e){
+        }
+        catch(NullPointerException e){
             
         }
         
@@ -56,8 +56,7 @@ public class UserAdministrationServlet extends HttpServlet{
         request.setAttribute("founduser", founduser);
         request.setAttribute ("delete", delete);
         request.getRequestDispatcher("/WEB-INF/useradministration.jsp").forward(request, response);
-        
-        
+      
     }
     
     @Override
@@ -102,9 +101,6 @@ public class UserAdministrationServlet extends HttpServlet{
                 delete = false;
                 response.sendRedirect(request.getContextPath() + UserAdministrationServlet.URL);
                 break;
-        }
-        
-       
-           
+        }      
     }
 }

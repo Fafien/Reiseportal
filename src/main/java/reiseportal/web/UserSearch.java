@@ -47,7 +47,8 @@ public class UserSearch extends HttpServlet {
             if(!usr.isAdmn()){
                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
             }
-        }catch(NullPointerException e){
+        }
+        catch(NullPointerException e){
             
         }
         
@@ -84,8 +85,6 @@ public class UserSearch extends HttpServlet {
            session.setAttribute ("founduser", userlist.get(0));
            response.sendRedirect(request.getContextPath() + UserAdministrationServlet.URL);
           
-        }
-        
-    }
-    
+        }  
+    }  
 }

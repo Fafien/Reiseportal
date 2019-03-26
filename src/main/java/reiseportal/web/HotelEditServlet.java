@@ -39,9 +39,7 @@ public class HotelEditServlet extends HttpServlet {
   
     @EJB
     HotelBean hotelbean;
-   
-    
-  
+ 
    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -60,14 +58,14 @@ public class HotelEditServlet extends HttpServlet {
        foundhotel = (Hotel) session.getAttribute("foundhotel");
         
         // Anzeige der Attribute der gefundenen Hotel & ggf. Fehlermeldungen
-        request.setAttribute("hotelname", foundhotel.getHotelname());
-        request.setAttribute("ort", foundhotel.getOrt());
-        request.setAttribute("preisProNacht", foundhotel.getPreisProNacht());
-        request.setAttribute("anzahlZimmer", foundhotel.getAnzahlZimmer());
-        request.setAttribute("sterne", foundhotel.getSterne());
-        request.setAttribute("anzahlZimmer", foundhotel.getEntfernung());
-        request.setAttribute("disabled", disabled);
-        request.setAttribute ("delete", delete);
+       request.setAttribute("hotelname", foundhotel.getHotelname());
+       request.setAttribute("ort", foundhotel.getOrt());
+       request.setAttribute("preisProNacht", foundhotel.getPreisProNacht());
+       request.setAttribute("anzahlZimmer", foundhotel.getAnzahlZimmer());
+       request.setAttribute("sterne", foundhotel.getSterne());
+       request.setAttribute("anzahlZimmer", foundhotel.getEntfernung());
+       request.setAttribute("disabled", disabled);
+       request.setAttribute ("delete", delete);
         
         if (error != null) {
             request.setAttribute("error", error);
@@ -83,8 +81,6 @@ public class HotelEditServlet extends HttpServlet {
         
        //foundhotel = (Hotel) session.getAttribute("foundhotel");
        error = new ArrayList <String> ();
-       
-   
        
        //Ermittlung auf welches Button geklickt wurde
         switch(request.getParameter("button")){
@@ -189,12 +185,7 @@ public class HotelEditServlet extends HttpServlet {
                 delete = false;
                 response.sendRedirect(request.getContextPath() + HotelEditServlet.URL);
                 break;
-               
-               
            
-                
         }
-    
-    }  
-    
+    }   
 }
