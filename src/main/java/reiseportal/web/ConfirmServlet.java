@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -80,18 +78,14 @@ public class ConfirmServlet extends HttpServlet {
             ankunftDatum = new SimpleDateFormat("dd/MM/yyyy").parse(ankunftE);
             abreiseDatum = new SimpleDateFormat("dd/MM/yyyy").parse(abreiseE);
             //int anzahlGebuchteTage= ankunftDatum.get;
-            
-            
         } catch (ParseException ex) {
-           
-            System.out.print("Datum Speicher hat nicht funkioniert ");
-            
+           //Parsing ist immer erfolgreich, da die eingegebenen Daten durch den Datepicker immer das richtige Format haben
         }
-            String personen = (String)   session.getAttribute("persons");
-                 int personenInt = Integer.parseInt(personen);	
+            
+        String personen = (String)   session.getAttribute("persons");
+        int personenInt = Integer.parseInt(personen);	
 
         this.bookingBean.createNewBooking(hotel, usr, ankunftDatum, abreiseDatum  ,personenInt, false);
-        
-         response.sendRedirect(request.getContextPath() + AfterConfirmServlet.URL);
+        response.sendRedirect(request.getContextPath() + AfterConfirmServlet.URL);
     }
 }

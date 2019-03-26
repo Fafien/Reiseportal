@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 public class AfterEvaluationServlet extends HttpServlet{
     public static final String URL = "/afterevaluation";
 
-     @Override
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
     request.getRequestDispatcher("/WEB-INF/afterevaluation.jsp").forward(request, response);
-}
+    }
 }

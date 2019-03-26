@@ -15,7 +15,7 @@
         <form method="POST" >
             <div>
                 <label class="thanks">
-                  Danke für Ihere Zeit
+                  Danke für Ihre Zeit
                 </label>
                 </br>
             </div>
