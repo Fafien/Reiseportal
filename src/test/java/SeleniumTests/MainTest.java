@@ -36,13 +36,13 @@ public class MainTest {
         Thread.sleep(2000);
         new Registration().test(driver);
         Thread.sleep(2000);
-        new Login().test(driver);
+        new Login().test(driver, "Test", "test");
         Thread.sleep(2000);
         new UseraccountSettings().test(driver);
         //User-Settings ändern
         //logout
         
-        new LoginAdmin().test(driver);
+        new Login().test(driver, "Jo15", "testtest");
         new EditHotel().test(driver);
         
         new Search().test(driver);
