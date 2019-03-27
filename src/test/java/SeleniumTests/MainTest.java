@@ -19,14 +19,14 @@ public class MainTest {
     public void main() throws InterruptedException {
         
         //Jonas
-        //System.setProperty("webdriver.chrome.driver",
-        //             "/Users/jonas/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver",
+                     "/Users/jonas/Downloads/chromedriver");
         //Beliz
         //System.setProperty("webdriver.chrome.driver",
         //           "/Users/belizbalim/Downloads/chromedriver");
         //Fabian
-        System.setProperty("webdriver.chrome.driver",
-                     "C:/DHBW/Software/chromedriver.exe"); 
+//        System.setProperty("webdriver.chrome.driver",
+//                     "C:/DHBW/Software/chromedriver.exe"); 
         
         WebDriver driver  = new ChromeDriver();
         
