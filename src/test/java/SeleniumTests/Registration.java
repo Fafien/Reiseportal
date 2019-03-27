@@ -6,11 +6,8 @@
 package SeleniumTests;
 
 import java.util.List;
-import javax.ejb.EJB;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import reiseportal.ejb.UserBean;
-import reiseportal.jpa.Useraccount;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,9 +17,6 @@ import org.openqa.selenium.WebElement;
  * @author Fabian Hupe
  */
 public class Registration {
-    
-    @EJB
-    UserBean userbean;
     
     @Test
     public void test(WebDriver driver) throws InterruptedException {
@@ -34,7 +28,6 @@ public class Registration {
         WebElement input6;
         WebElement input7;
         WebElement button;
-        Useraccount usr;
 
         driver.findElement(By.linkText("Registrieren")).click();
         
