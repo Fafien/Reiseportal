@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reiseportal.web;
+package reiseportal.web.user;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import reiseportal.ejb.UserBean;
 import reiseportal.jpa.Useraccount;
+import reiseportal.web.user.EmailUtil;
+import reiseportal.web.IndexServlet;
 
 /**
  *
