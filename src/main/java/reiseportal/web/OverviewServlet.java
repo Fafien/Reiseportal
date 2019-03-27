@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.jpa.Hotel;
 import reiseportal.jpa.Useraccount;
+import reiseportal.web.user.LoginServlet;
+import reiseportal.web.evaluation_booking.ConfirmServlet;
 
 /**
  *
