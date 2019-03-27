@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reiseportal.web;
+package reiseportal.web.user;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,19 +11,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Marwa Alqataa
+ * @author Fabian Hupe
  */
-@WebServlet(name = "AfterEvaluatioServlet", urlPatterns = {"/afterevaluation"})
-public class AfterEvaluationServlet extends HttpServlet{
-    public static final String URL = "/afterevaluation";
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/logout"})
+public class LogoutServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    request.getRequestDispatcher("/WEB-INF/afterevaluation.jsp").forward(request, response);
+    
+        HttpSession session = request.getSession();
+        session.invalidate();
+        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
 }
