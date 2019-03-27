@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 public class Booking {
     
     @Test
-    public static void test(WebDriver driver) throws InterruptedException {
+    public void test(WebDriver driver) throws InterruptedException {
 
         driver.findElement(By.id("book")).click();
         

@@ -33,12 +33,12 @@ public class MainTest {
         driver.get("http://localhost:8080/Reiseportal/login");
         //driver.get("http://localhost:8181/Reiseportal/login");
         
-//        Thread.sleep(2000);
-//        new Registration().test(driver);
-//        Thread.sleep(2000);
-//        new Login().test(driver, "Test", "test");
-//        Thread.sleep(2000);
-//        new UseraccountSettings().test(driver);
+        Thread.sleep(2000);
+        new Registration().test(driver);
+        Thread.sleep(2000);
+        new Login().test(driver, "Test", "test");
+        Thread.sleep(2000);
+        new UseraccountSettings().test(driver);
         //User-Settings ändern
         //logout
         
