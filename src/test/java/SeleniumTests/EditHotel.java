@@ -45,6 +45,7 @@ public class EditHotel {
 
         driver.findElement(By.linkText("Hotels verwalten")).click();
         
+        Thread.sleep(6000);
         WebElement shotelname = driver.findElement(By.id("shotelname"));
         WebElement adminhotelsuche = driver.findElement(By.id("adminhotelsuche"));
         
