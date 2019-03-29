@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class MainTest {
     
-   /* @Test
+    @Test
     public void main() throws InterruptedException {
         
         //Jonas
@@ -54,5 +54,5 @@ public class MainTest {
         new Logout().test(driver);
         
         driver.quit();
-    }*/
+    }
 }
