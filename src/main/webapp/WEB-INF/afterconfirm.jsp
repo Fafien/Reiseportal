@@ -1,7 +1,8 @@
 <%-- 
+    Content    : zeigt nach der Bestätigung der Buchung, dass der Buchung mit allen dazugehörigen Daten erfolgreich war 
     Document   : afterConfirm
     Created on : 10.03.2019, 17:39:59
-    Author     : dar
+    Author     : Marwa Alqataa
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -33,6 +33,7 @@ public class AfterConfirmServlet extends HttpServlet {
         
         session = request.getSession();
         
+        //gebuchte Daten für die Bestätigung weitergeben, um sicherzustellen, dass die Buchung erfolgreich war 
         request.setAttribute("hotel", session.getAttribute("viewHotel"));
         request.setAttribute("persons", session.getAttribute("persons"));
         request.setAttribute("ankunft", session.getAttribute("fromDateOriginal"));

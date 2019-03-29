@@ -42,6 +42,7 @@ public class EvaluationServlet extends HttpServlet {
     @Override
     public void doGet (HttpServletRequest request, HttpServletResponse response )
         throws ServletException, IOException{
+        
         session = request.getSession();
         request.setAttribute("error", error);
         request.getRequestDispatcher("/WEB-INF/evaluation.jsp").forward(request, response);
@@ -52,12 +53,17 @@ public class EvaluationServlet extends HttpServlet {
         throws ServletException, IOException {
          
         try {
+            //hat der User alle Felder in der Bewertung ausgefüllt?
             if(request.getParameter("bewertung").isEmpty() || request.getParameter("bewertungstext").isEmpty()){
-                error = "Bitte alle Felder ausfühlen";
+                error = "Bitte alle Felder ausfüllen";
                 session.setAttribute("error", error);  
                 response.sendRedirect(request.getContextPath() + EvaluationServlet.URL);
             }else{
+                
+                //Wenn ja!
                 error = "";
+                
+                //Wieviele Sterne wurden gewählt
                 switch(request.getParameter("bewertung")){
                     case "5":
                         session.setAttribute("bewertung", "5");
@@ -75,7 +81,7 @@ public class EvaluationServlet extends HttpServlet {
                         session.setAttribute("bewertung", "1");
                    break;
                 }
-                response.sendRedirect(request.getContextPath() + AfterEvaluationServlet.URL);   
+                //den eingegebenen Bewertungstext auslesen    
                 String sterneInt = (String) session.getAttribute("bewertung");
                 int sterneResult = Integer.parseInt(sterneInt);
                 String bewertungsarea = request.getParameter("bewertungstext");
@@ -83,7 +89,11 @@ public class EvaluationServlet extends HttpServlet {
                 Long id = Long.parseLong(buttonBookingId);
                 booking = bookingbean.findById(id);
                 session.setAttribute("bewertenTest", true);
+                
+                //new Eintrag in Datenbank speichern
                 evaluationBean.createNewEvaluation(booking, sterneResult, bewertungsarea);
+                //Weiterleitung zum AfterEvaluation-Servlet
+                response.sendRedirect(request.getContextPath() + AfterEvaluationServlet.URL);
             }
         }catch(Exception e) {
             error = "Bitte alle Felder ausfühlen";

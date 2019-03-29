@@ -24,6 +24,7 @@ public class AfterEvaluationServlet extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+      //Dankeschön für die abgesendeten Evaluation   
     request.getRequestDispatcher("/WEB-INF/afterevaluation.jsp").forward(request, response);
     }
 }
