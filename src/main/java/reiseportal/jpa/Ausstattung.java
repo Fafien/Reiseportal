@@ -8,6 +8,7 @@ package reiseportal.jpa;
 /**
  *
  * @author jonas
+ * @content enum-class of Ausstattungen
  */
 public enum Ausstattung {
     POOL, SAUNA, GYM, WLAN, WELLNESS;

@@ -2,6 +2,7 @@
     Document   : selection
     Created on : 19.02.2019, 16:32:41
     Author     : Fabian Hupe
+    Content    : shows the list of hotels after search
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

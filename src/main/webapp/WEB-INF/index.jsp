@@ -2,6 +2,7 @@
     Document   : index
     Created on : 19.02.2019, 16:31:34
     Author     : Fabian Hupe
+    Content    : startpage with search-inputs
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
