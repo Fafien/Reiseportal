@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 /**
  *
  * @author jonas
+ * @content connection between Hotel and Ausstattung
  */
 @Entity
 public class Hotelausstattung implements Serializable {

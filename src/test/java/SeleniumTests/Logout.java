@@ -18,6 +18,7 @@ public class Logout {
     @Test
     public void test(WebDriver driver) throws InterruptedException {
         
+        Thread.sleep(1000);
         driver.findElement(By.linkText("Logout")).click();
     }
 }

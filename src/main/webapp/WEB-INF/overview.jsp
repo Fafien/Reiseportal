@@ -2,6 +2,7 @@
     Document   : overview
     Created on : 19.02.2019, 16:34:22
     Author     : Fabian Hupe
+    Content    : shows overview over one hotel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

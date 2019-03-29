@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 /**
  *
  * @author Fabian Hupe
+ * @content definition of hotel-class
  */
 @Entity
 public class Hotel implements Serializable {
