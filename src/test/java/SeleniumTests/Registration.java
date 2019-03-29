@@ -28,6 +28,8 @@ public class Registration {
         WebElement input6;
         WebElement input7;
         WebElement button;
+        
+        driver.manage().window().maximize();
 
         driver.findElement(By.linkText("Registrieren")).click();
         
@@ -48,6 +50,8 @@ public class Registration {
         input5.sendKeys("Test"+Keys.TAB);
         input6.sendKeys("test"+Keys.TAB);
         input7.sendKeys("test"+Keys.TAB);
+        
+        Thread.sleep(2000);
         
         button.click();
         
@@ -75,9 +79,13 @@ public class Registration {
             }
         }
         
+        Thread.sleep(3000);
+        
         driver.findElement(By.linkText("Link")).click();
         
         driver.close();
+        
+        Thread.sleep(2000);
         
         for(String winHandle : driver.getWindowHandles()){
             driver.switchTo().window(winHandle);
