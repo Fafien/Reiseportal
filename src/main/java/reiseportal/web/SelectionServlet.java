@@ -165,6 +165,7 @@ public class SelectionServlet extends HttpServlet {
                 session.setAttribute("errors", error);
                 session.setAttribute("hotels", hotellist2);
                 session.setAttribute("filter", facilitiesLabel);
+                facilitiesLabel = null;
                 response.sendRedirect(request.getContextPath() + SelectionServlet.URL);
             }
         //wenn ein Hotel im Detail angezeigt werden soll
