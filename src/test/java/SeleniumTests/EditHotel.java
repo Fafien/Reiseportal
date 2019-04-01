@@ -50,8 +50,10 @@ public class EditHotel {
         WebElement adminhotelsuche = driver.findElement(By.id("adminhotelsuche"));
         
         shotelname.sendKeys("Smart Stay Hotel Berlin");
+        Thread.sleep(4000);
         adminhotelsuche.click();
         
+        Thread.sleep(4000);
         WebElement bearbeiten = driver.findElement(By.id("bearbeiten"));
         bearbeiten.click();
         
@@ -59,10 +61,13 @@ public class EditHotel {
         WebElement input2 = driver.findElement(By.id("anzahlZimmer"));
         WebElement speichern = driver.findElement(By.id("speichern"));
       
+        Thread.sleep(3000);
         input1.clear();
         input1.sendKeys("15");
+        Thread.sleep(3000);
         input2.clear();
         input2.sendKeys("20");
+        Thread.sleep(4000);
         speichern.click();
         
 //        if (input1.getAttribute("value").equals("15") && input2.getAttribute("value").equals("20")){
