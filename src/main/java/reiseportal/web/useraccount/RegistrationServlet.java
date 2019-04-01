@@ -45,6 +45,7 @@ public class RegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         
         session = request.getSession();
+
         try{
             if(!session.getAttribute("usr").equals(new Useraccount())){
                 request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
@@ -53,6 +54,7 @@ public class RegistrationServlet extends HttpServlet {
             //Kann ignoriert werden das dies nur als Bestätigung verwendet wird, das man nicht eingeloggt ist.
         }
         
+        //Freischaltung eines Accounts
         try{
             if(!request.getParameter("registrationConfirmation").isEmpty()){
                 try{
@@ -70,6 +72,7 @@ public class RegistrationServlet extends HttpServlet {
             
         }
   
+        //Anzeigen von zuvor gemachten Eingaben
         if(usr != null){
             request.setAttribute("firstname", usr.getFirstname());
             request.setAttribute("lastname", usr.getLastname());
@@ -93,13 +96,17 @@ public class RegistrationServlet extends HttpServlet {
         usr.setPassword(usr.getPassword());
         error = new ArrayList<String>();
         
+        //Überprüfen der Feldeingaben
         if(usr.checkValues()){
+            //Überprüfen ob E-Mails übereinstimmen
             if(!request.getParameter("email").equals(request.getParameter("emailb"))){
                 error.add("E-Mails stimmen nicht überein");
             }
+            //Überprüfen ob Passwörter übereinstimmen
             if(!request.getParameter("password").equals(request.getParameter("passwordb"))){
                 error.add("Passwörter stimmen nicht überein");
             }
+            //Überprüfen, ob schon ein Account mit diesem Usernamen oder diese E-Mail vorhanden ist
             if(userBean.findUserByEmailOrUsername(request.getParameter("email"), request.getParameter("username")).isEmpty()){
                 if(error.isEmpty()){
                     usr = userBean.createNewUser(usr.getFirstname(), usr.getLastname(), usr.getEmail(), usr.getPassword(), usr.getUsername());
