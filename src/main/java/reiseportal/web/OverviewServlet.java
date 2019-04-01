@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 import reiseportal.ejb.HotelBean;
 import reiseportal.jpa.Hotel;
 import reiseportal.jpa.Useraccount;
-import reiseportal.web.useraccount.LoginServlet;
 import reiseportal.web.evaluation_booking.ConfirmServlet;
+import reiseportal.web.useraccount.LoginServlet;
 
 /**
  *
@@ -35,6 +35,7 @@ public class OverviewServlet extends HttpServlet {
     Hotel hotel;
     Useraccount usr;
     String error= new String();
+    String gesamterPriseStr;
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -54,6 +55,40 @@ public class OverviewServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        //Gesamten Preis der Buchung berechnen
+        Hotel hotel = (Hotel) session.getAttribute("viewHotel"); 
+        String ankunft = (String) session.getAttribute("fromDateOriginal");
+        String abreise = (String) session.getAttribute("untilDateOriginal");
+        int ankunftTag = Integer.parseInt(ankunft.substring(0,2));
+        int ankunftMonat = Integer.parseInt(ankunft.substring(3,5));
+        int ankunftJahr = Integer.parseInt(ankunft.substring(6,10));
+        int abreisTag = Integer.parseInt(abreise.substring(0,2));
+        int abreiseMonat = Integer.parseInt(abreise.substring(3,5));
+        int abreiseJahr = Integer.parseInt(abreise.substring(6,10));           
+        int gebuchteTage = Math.abs(abreisTag - ankunftTag);
+        int gebuchteMonate =  Math.abs(abreiseMonat - ankunftMonat);
+        int gebuchteJahre = Math.abs(abreiseJahr - ankunftJahr) ;
+        int gesamteTage;
+        
+        if(gebuchteJahre == 0){
+            if(gebuchteMonate == 0){
+                gesamteTage = gebuchteTage;
+            }else{
+                gesamteTage = (gebuchteMonate - 1)*30 + gebuchteTage;
+            }
+        }else{
+            if(gebuchteMonate == 0){
+                gesamteTage = (gebuchteJahre) * 356 + gebuchteTage;
+            }else{
+            gesamteTage = (gebuchteJahre - 1) * 356 +(gebuchteMonate - 1)*30 + gebuchteTage;
+        }
+        }
+            
+        int preis = hotel.getPreisProNacht();
+        int gesamterPreis = gesamteTage * preis;
+            
+        session.setAttribute("gesamterPriseStr", gesamterPreis);
+        
         //User muss angemeldet sein, um ein Hotel buchen zu können
         usr = (Useraccount) session.getAttribute("usr");
         if(usr == null){
@@ -61,7 +96,9 @@ public class OverviewServlet extends HttpServlet {
             session.setAttribute("error", error);
             response.sendRedirect(request.getContextPath() + LoginServlet.URL);
         } else{
-            //wenn User angemeldet, dann Weiterleitung zum Buchungs-Serblet
+            //wenn User angemeldet, dann Weiterleitung zum Buchungs-Servlet
+            session.removeAttribute("filter");
+            session.removeAttribute("filterLabel");
             response.sendRedirect(request.getContextPath() + ConfirmServlet.URL);
         }
     }

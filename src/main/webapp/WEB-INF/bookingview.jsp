@@ -1,4 +1,5 @@
 <%-- 
+    Content    : Anzeige aller gebuchten Hotels, mit Bewerten-Button zu jedem gebuchten Hotel 
     Document   : BookingView
     Created on : 10.03.2019, 18:40:22
     Author     : Marwa Alqataa

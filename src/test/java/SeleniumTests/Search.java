@@ -50,8 +50,8 @@ public class Search {
         WebElement input4 = driver.findElement(By.id("persons"));
         
         input1.sendKeys("Berlin");
-        input2.sendKeys("22.06.2019"+Keys.ENTER);
-        input3.sendKeys("06.07.2019"+Keys.ENTER);
+        input2.sendKeys("13.07.2019"+Keys.ENTER);
+        input3.sendKeys("14.07.2019"+Keys.ENTER);
         input4.sendKeys("2");
         Thread.sleep(2000);
         driver.findElement(By.id("search")).click();

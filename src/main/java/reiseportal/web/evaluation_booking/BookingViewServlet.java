@@ -37,6 +37,7 @@ public class BookingViewServlet extends HttpServlet{
        public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+         //alle gebuchtgen Hotels für einen User auslesen und weitergeben 
         session = request.getSession();
         Useraccount usr = (Useraccount) session.getAttribute("usr");
         List<Booking> bookingList;
@@ -56,8 +57,11 @@ public class BookingViewServlet extends HttpServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-             
+           
+        //Speicher BookingID im Session um zu wissen, welche Buchung wird bewertet   
         session.setAttribute("evaluationButtonId", request.getParameter("buttonEvaluation"));
+        
+        //User zur Bewertungsseite weiterleiten
         response.sendRedirect(request.getContextPath() + EvaluationServlet.URL);
     }
  }

@@ -1,4 +1,5 @@
 <%-- 
+    Content    : Bestätigung der Buchung mit allen gewählten Daten
     Document   : booking
     Created on : 08.03.2019, 13:55:48
     Author     : Marwa Alqataa
@@ -22,7 +23,7 @@
                 </label>
                 </br>
                 <label>
-                    Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>€
+                    Gesamter Preis: <c:out value="${gesamterPreis}"></c:out>€
                 </label>
                 </br>
                 <label>
