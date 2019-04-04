@@ -26,6 +26,8 @@ import reiseportal.ejb.BookingBean;
 import reiseportal.ejb.HotelBean;
 import reiseportal.jpa.Hotel;
 import reiseportal.jpa.Useraccount;
+import reiseportal.web.IndexServlet;
+import reiseportal.web.WebUtils;
 
 /**
  *
@@ -63,29 +65,23 @@ public class ConfirmServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-            session = request.getSession();
-           
-            //allle gewählten Daten auslesen
-            Hotel hotel = (Hotel) session.getAttribute("viewHotel"); 
-            Useraccount usr = (Useraccount) session.getAttribute("usr");
-            String ankunft = (String) session.getAttribute("fromDateOriginal");
-            String abreise = (String) session.getAttribute("untilDateOriginal");
-            
-            //Datum in das richtige Format umwandeln
-            String ankunftE = ankunft.substring(0,2) + "/" + ankunft.substring(3,5) + "/" + ankunft.substring(6,10);
-            String abreiseE = abreise.substring(0,2) + "/" + abreise.substring(3,5) + "/" + abreise.substring(6,10);
-            
-            Date ankunftDatum = new Date();
-            Date abreiseDatum = new Date();
-            
-        try {
-            ankunftDatum = new SimpleDateFormat("dd/MM/yyyy").parse(ankunftE);
-            abreiseDatum = new SimpleDateFormat("dd/MM/yyyy").parse(abreiseE);
-             
-        } catch (ParseException ex) {
-           //Parsing ist immer erfolgreich, da die eingegebenen Daten durch den Datepicker immer das richtige Format haben
+        session = request.getSession();
+
+        //allle gewählten Daten auslesen
+        Hotel hotel = (Hotel) session.getAttribute("viewHotel"); 
+        Useraccount usr = (Useraccount) session.getAttribute("usr");
+        String ankunft = (String) session.getAttribute("fromDateOriginal");
+        String abreise = (String) session.getAttribute("untilDateOriginal");
+
+        Date ankunftDatum = WebUtils.parseDate(ankunft);
+        Date abreiseDatum = WebUtils.parseDate(abreise);
+        if (ankunftDatum == null || abreiseDatum == null) {
+            String error = "Das Datum muss dem Format dd.mm.yyyy entsprechen.";
+            session.setAttribute("errors", error);
+            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+            return;
         }
-            
+        
         String personen = (String) session.getAttribute("persons");
         int personenInt = Integer.parseInt(personen);
         
