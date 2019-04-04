@@ -28,6 +28,7 @@ import reiseportal.jpa.Hotel;
 import reiseportal.jpa.Useraccount;
 import reiseportal.web.IndexServlet;
 import reiseportal.web.WebUtils;
+import reiseportal.web.useraccount.EmailUtil;
 
 /**
  *
@@ -45,6 +46,8 @@ public class ConfirmServlet extends HttpServlet {
     BookingBean bookingBean;  
 
     HttpSession session;
+    String toMail;
+    String contentEmail;
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -87,6 +90,15 @@ public class ConfirmServlet extends HttpServlet {
         
         //Datensatz der Buchung in Datenbank speichern 
         this.bookingBean.createNewBooking(hotel, usr, ankunftDatum, abreiseDatum  ,personenInt, false);
+        
+        toMail = usr.getEmail();
+                                        
+        contentEmail = "Vielen Dank für Ihre Buchung.<br>"
+                + "Sie haben vom " + ankunft + "bis" + abreise + "das folgende Hotel gebucht:<br>"
+                + hotel.getHotelname() + "<br>"
+                + "Mit freundlichen Grüßen<br>"+ "Ihr Reiseportal";
+                    
+        EmailUtil.sendEmail(toMail, "Buchungsbestätigung IhrReiseportal", contentEmail);
         
         //Danach Weiterleitung zum AfterConfirmServlet
         response.sendRedirect(request.getContextPath() + AfterConfirmServlet.URL);
