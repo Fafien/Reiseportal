@@ -50,9 +50,10 @@ public class SelectionServlet extends HttpServlet {
             throws ServletException, IOException {
         
         session = request.getSession();
-        
-        //alle Ausstattungen für Filter speichern, wenn facilities noch nicht gespeichert wurden
-        if(facilitiesLabel == null || facilitiesLabel.length == 0) {
+        if(session.getAttribute("filter") != null) {
+            facilitiesLabel = (Filter[]) session.getAttribute("filter");
+        } else {
+            //alle Ausstattungen für Filter speichern
             int i = 0;
             facilitiesLabel = new Filter[facilities.length];
             while(i < facilities.length) {
@@ -165,7 +166,6 @@ public class SelectionServlet extends HttpServlet {
                 session.setAttribute("errors", error);
                 session.setAttribute("hotels", hotellist2);
                 session.setAttribute("filter", facilitiesLabel);
-                facilitiesLabel = null;
                 response.sendRedirect(request.getContextPath() + SelectionServlet.URL);
             }
         //wenn ein Hotel im Detail angezeigt werden soll
