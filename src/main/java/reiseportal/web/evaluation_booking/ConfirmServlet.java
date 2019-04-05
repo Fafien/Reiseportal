@@ -94,8 +94,8 @@ public class ConfirmServlet extends HttpServlet {
         toMail = usr.getEmail();
                                         
         contentEmail = "Vielen Dank für Ihre Buchung.<br>"
-                + "Sie haben vom " + ankunft + "bis" + abreise + "das folgende Hotel gebucht:<br>"
-                + hotel.getHotelname() + "<br>"
+                + "Sie haben vom " + ankunft + " bis " + abreise + " das folgende Hotel gebucht:<br>"
+                + hotel.getHotelname() + "<br><br>"
                 + "Mit freundlichen Grüßen<br>"+ "Ihr Reiseportal";
                     
         EmailUtil.sendEmail(toMail, "Buchungsbestätigung IhrReiseportal", contentEmail);
