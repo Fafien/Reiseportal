@@ -23,10 +23,10 @@ Java Server Pages sowie verschiedene statische Dateien bilden die View und gener
 Folgende Entwicklungswerkzeuge kommen dabei zum Einsatz:
 
 NetBeans: Integrierte Entwicklungsumgebung für Java und andere Sprachen
-Maven: Build-Werkzeug und Verwaltung von Abhängigkeiten
-Git: Versionsverwaltung zur gemeinsamen Arbeit am Quellcode
-TomEE: Applikationsserver zum lokalen Testen der Anwendung
-Derby: In Java implementierte SQL-Datenbank zum Testen der Anwendung
+Maven:    Build-Werkzeug und Verwaltung von Abhängigkeiten
+Git:      Versionsverwaltung zur gemeinsamen Arbeit am Quellcode
+TomEE:    Applikationsserver zum lokalen Testen der Anwendung
+Derby:    In Java implementierte SQL-Datenbank zum Testen der Anwendung
 
-Installations-Warnung:
-Nach der Installation und der ersten Registration, ist der Benutzer ein normaler-Benutzer. Daher sind Admin-Funktionalitäten zur Hotelverwaltung und Benutzerverwaltung sind zunächst unsichtbar. Der Anwender, der die Admin-Funktionalitän ausüben möchte, muss sich in Datenbank manuell als Admin eintragen. Das geschiet durch das Detzen des Admin Wertes auf "1" in der Tabelle Useraccount.
+Nutzungshinweis:
+Nach der Installation und der ersten Registration, ist der Benutzer ein normaler-Benutzer. Daher sind Admin-Funktionalitäten zur Hotelverwaltung und Benutzerverwaltung sind zunächst unsichtbar. Der Anwender, der die Admin-Funktionalitän ausüben möchte, muss sich in Datenbank manuell als Admin eintragen. Das geschiet durch das Setzen des Admin Wertes auf "1" in der Tabelle Useraccount.
