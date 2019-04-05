@@ -22,7 +22,7 @@ Java Server Pages sowie verschiedene statische Dateien bilden die View und gener
 
 Folgende Entwicklungswerkzeuge kommen dabei zum Einsatz:
 
-NetBeans: Integrierte Entwicklungsumgebung für Java und andere Sprachen
+NetBeans: Integrierte Entwicklungsumgebung für Java und andere Sprachen<br>
 Maven:    Build-Werkzeug und Verwaltung von Abhängigkeiten
 Git:      Versionsverwaltung zur gemeinsamen Arbeit am Quellcode
 TomEE:    Applikationsserver zum lokalen Testen der Anwendung
