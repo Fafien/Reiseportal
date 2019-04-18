@@ -44,33 +44,54 @@
             </br>
             <div class="hotellist">
                 <c:forEach items="${hotellist}" var="hotel">
-                    <div class="hotel">
-                        <label>
-                            Hotelname: <c:out value="${hotel.hotelname}"></c:out>
-                        </label>
-                        </br>
-                        <label>
-                            Ort: <c:out value="${hotel.ort}"></c:out>
-                        </label>
-                        </br>
-                        <label>
-                            <c:out value="${hotel.sterne}"></c:out> Sterne
-                        </label>
-                        </br>
-                        <label>
-                            Entfernung zum Zentrum: <c:out value="${hotel.entfernung}"></c:out>km
-                        </label>
-                        </br>
-                        <label>
-                            Preis / Nacht: <c:out value="${hotel.preisProNacht}"></c:out>€
-                        </label>
-                        </br>
-                        <button name="button" id="buttonAnzeigen" value="${hotel.id}">
-                            Anzeigen
-                        </button>
-                        </br>
+                    <div class="hotelzeile">
+                        <div class="hotelelement">
+                            <div class="bild">
+                                <img src="KeinBild.jpg" alt=""/>
+                            </div>
+                            <div class="hotel">
+                                <label class="left_width">
+                                    Hotelname: 
+                                </label>
+                                <label>
+                                    <c:out value="${hotel.hotelname}"></c:out>
+                                </label>
+                                </br>
+                                <label class="left_width">
+                                    Ort: 
+                                </label>
+                                <lable>
+                                    <c:out value="${hotel.ort}"></c:out>
+                                </lable>
+                                </br>
+                                <label class="left_width">
+                                    Sterne:
+                                </label>
+                                <label>
+                                    <c:out value="${hotel.sterne}"></c:out> Sterne
+                                </label>
+                                </br>
+                                <label class="left_width">
+                                    Entfernung:
+                                </label>
+                                <label>
+                                    <c:out value="${hotel.entfernung}"></c:out>km (zum Zentrum)
+                                </label>
+                                </br>
+                                <label class="left_width">
+                                    Preis / Nacht: 
+                                </label>
+                                <label>
+                                    <c:out value="${hotel.preisProNacht}"></c:out>€
+                                </label>
+                                </br>
+                                <button name="button" id="buttonAnzeigen" value="${hotel.id}">
+                                    Anzeigen
+                                </button>
+                                </br>
+                            </div>
+                        </div>
                     </div>
-                    </br>
                 </c:forEach>
             </div>
         </form>

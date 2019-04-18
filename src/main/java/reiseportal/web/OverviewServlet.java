@@ -91,6 +91,8 @@ public class OverviewServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + LoginServlet.URL);
         } else{
             //wenn User angemeldet, dann Weiterleitung zum Buchungs-Servlet
+            session.removeAttribute("filter");
+            session.removeAttribute("filterLabel");
             response.sendRedirect(request.getContextPath() + ConfirmServlet.URL);
         }
     }

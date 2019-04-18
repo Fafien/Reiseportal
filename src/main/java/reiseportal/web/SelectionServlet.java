@@ -50,9 +50,10 @@ public class SelectionServlet extends HttpServlet {
             throws ServletException, IOException {
         
         session = request.getSession();
-        
-        //alle Ausstattungen für Filter speichern, wenn facilities noch nicht gespeichert wurden
-        if(facilitiesLabel == null || facilitiesLabel.length == 0) {
+        if(session.getAttribute("filter") != null) {
+            facilitiesLabel = (Filter[]) session.getAttribute("filter");
+        } else {
+            //alle Ausstattungen für Filter speichern
             int i = 0;
             facilitiesLabel = new Filter[facilities.length];
             while(i < facilities.length) {

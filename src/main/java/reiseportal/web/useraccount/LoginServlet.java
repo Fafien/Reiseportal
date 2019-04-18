@@ -73,6 +73,7 @@ public class LoginServlet extends HttpServlet {
                     if(userlist.get(0).getPassword().compareTo(Useraccount.hashPassword(request.getParameter("password"))) == 0){
                         session = request.getSession();  
                         session.setAttribute("usr", userlist.get(0));
+                        session.removeAttribute("error");
                         response.sendRedirect(request.getContextPath() + IndexServlet.URL);
                     }
                     else{

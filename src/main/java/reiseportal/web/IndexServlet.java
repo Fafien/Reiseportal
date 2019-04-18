@@ -45,6 +45,7 @@ public class IndexServlet extends HttpServlet {
         //Daten aus der Session auslesen & an die JSP weitergeben
         session = request.getSession();
         request.setAttribute("errors", session.getAttribute("errors"));
+        session.removeAttribute("filter");
         session.removeAttribute("errors");
         request.setAttribute("fromDate", session.getAttribute("fromDateOriginal"));
         request.setAttribute("untilDate", session.getAttribute("untilDateOriginal"));
@@ -57,36 +58,32 @@ public class IndexServlet extends HttpServlet {
         
         session = request.getSession();
         
-        //Datumsformat umwandeln
-        String VonD = request.getParameter("fromDate");
-        String BisD = request.getParameter("untilDate");
-        String VonE = VonD.substring(0,2) + "/" + VonD.substring(3,5) + "/" + VonD.substring(6,10);
-        String BisE = BisD.substring(0,2) + "/" + BisD.substring(3,5) + "/" + BisD.substring(6,10);
-        try {
-            von = new SimpleDateFormat("dd/MM/yyyy").parse(VonE);
-        } catch (ParseException ex) {
-            error = "Bitte geben sie gültige Daten ein";
-            session.setAttribute("errors", error);
-            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
-        }
-        try {
-            bis = new SimpleDateFormat("dd/MM/yyyy").parse(BisE);
-        } catch (ParseException ex) {
-            error = "Bitte geben sie gültige Daten ein";
-            session.setAttribute("errors", error);
-            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
-        }
-        
         //Suchdaten in der Session speichern
         session.setAttribute("location", request.getParameter("location").trim());
         session.setAttribute("fromDateOriginal", request.getParameter("fromDate"));
         session.setAttribute("untilDateOriginal", request.getParameter("untilDate"));
-        session.setAttribute("fromDate", von);
-        session.setAttribute("untilDate", bis);
         session.setAttribute("persons", request.getParameter("persons").trim());
         
         //wenn ein Feld nicht gefüllt, dann Fehler ausgeben
-        if(!request.getParameter("fromDate").trim().isEmpty() && !request.getParameter("location").trim().isEmpty() && !request.getParameter("untilDate").trim().isEmpty() && !request.getParameter("persons").trim().isEmpty()) {
+        if(request.getParameter("fromDate").trim().isEmpty() || request.getParameter("location").trim().isEmpty() || request.getParameter("untilDate").trim().isEmpty() || request.getParameter("persons").trim().isEmpty()) {
+            error = "Bitte geben sie gültige Daten ein";
+            session.setAttribute("errors", error);
+            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+        } else {
+            //Datumsformat umwandeln
+            String vonDatum = request.getParameter("fromDate");
+            String bisDatum = request.getParameter("untilDate");
+            von = WebUtils.parseDate(vonDatum);
+            bis = WebUtils.parseDate(bisDatum);
+            if (von == null || bis == null) {
+                error = "Das Datum muss dem Format dd.mm.yyyy entsprechen.";
+                session.setAttribute("errors", error);
+                response.sendRedirect(request.getContextPath() + IndexServlet.URL);
+                return;
+            }
+        
+            session.setAttribute("fromDate", von);
+            session.setAttribute("untilDate", bis);
             
             //passende Hotels suchen und speichern
             //default-Sortierung: Preis
@@ -107,10 +104,6 @@ public class IndexServlet extends HttpServlet {
                 session.setAttribute("hotels", hotellist);
                 response.sendRedirect(request.getContextPath() + SelectionServlet.URL);
             }
-        } else {
-            error = "Bitte geben sie gültige Daten ein";
-            session.setAttribute("errors", error);
-            response.sendRedirect(request.getContextPath() + IndexServlet.URL);
         }
     }
 }
