@@ -6,6 +6,12 @@
 package reiseportal.web;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,34 +65,22 @@ public class OverviewServlet extends HttpServlet {
         Hotel hotel = (Hotel) session.getAttribute("viewHotel"); 
         String ankunft = (String) session.getAttribute("fromDateOriginal");
         String abreise = (String) session.getAttribute("untilDateOriginal");
-        int ankunftTag = Integer.parseInt(ankunft.substring(0,2));
-        int ankunftMonat = Integer.parseInt(ankunft.substring(3,5));
-        int ankunftJahr = Integer.parseInt(ankunft.substring(6,10));
-        int abreisTag = Integer.parseInt(abreise.substring(0,2));
-        int abreiseMonat = Integer.parseInt(abreise.substring(3,5));
-        int abreiseJahr = Integer.parseInt(abreise.substring(6,10));           
-        int gebuchteTage = Math.abs(abreisTag - ankunftTag);
-        int gebuchteMonate =  Math.abs(abreiseMonat - ankunftMonat);
-        int gebuchteJahre = Math.abs(abreiseJahr - ankunftJahr) ;
-        int gesamteTage;
-        
-        if(gebuchteJahre == 0){
-            if(gebuchteMonate == 0){
-                gesamteTage = gebuchteTage;
-            }else{
-                gesamteTage = (gebuchteMonate - 1)*30 + gebuchteTage;
-            }
-        }else{
-            if(gebuchteMonate == 0){
-                gesamteTage = (gebuchteJahre) * 356 + gebuchteTage;
-            }else{
-            gesamteTage = (gebuchteJahre - 1) * 356 +(gebuchteMonate - 1)*30 + gebuchteTage;
-        }
+        String ankunftSt = ankunft.substring(0,2) + "/" + ankunft.substring(3,5) + "/" + ankunft.substring(6,10);
+        String abreiseSt = abreise.substring(0,2) + "/" + abreise.substring(3,5) + "/" + abreise.substring(6,10);
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+        long diff;
+        try {
+            Date date1 = myFormat.parse(ankunftSt);
+            Date date2 = myFormat.parse(abreiseSt);
+            diff = date2.getTime() - date1.getTime();
+        } catch (ParseException ex) {
+           throw new ServletException();
         }
             
         int preis = hotel.getPreisProNacht();
+        int gesamteTage =  (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) ;
         int gesamterPreis = gesamteTage * preis;
-            
+        
         session.setAttribute("gesamterPriseStr", gesamterPreis);
         
         //User muss angemeldet sein, um ein Hotel buchen zu können

@@ -92,6 +92,7 @@ public class EvaluationServlet extends HttpServlet {
                 
                 //new Eintrag in Datenbank speichern
                 evaluationBean.createNewEvaluation(booking, sterneResult, bewertungsarea);
+                
                 //Weiterleitung zum AfterEvaluation-Servlet
                 response.sendRedirect(request.getContextPath() + AfterEvaluationServlet.URL);
             }
