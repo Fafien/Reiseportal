@@ -30,3 +30,10 @@ Derby:    In Java implementierte SQL-Datenbank zum Testen der Anwendung<br>
 
 Nutzungshinweis:<br>
 Nach der Installation und der ersten Registrierung, ist der Benutzer ein "normaler" Benutzer. Daher sind die Admin-Funktionalitäten zur Hotelverwaltung und Benutzerverwaltung zunächst nicht verfügbar. Möchte ein Anwender die Admin-Funktionalitän ausüben, muss sich dieser manuell in der Datenbank als Admin eintragen. Das geschiet durch das Setzen des Admin-Wertes auf "1" in der Tabelle Useraccount.
+
+Installationshinweis:<br>
+Zur Entwicklung der Anwendung wurde ein TomEE-Applikationsserver sowie eine Apache Derby Datenbank genutzt. Um nun die Anwendung zu testen müssen eben diese beiden Anwendungen installiert sein. Eine Installationsanleitung zum Applikationsserver ist unter
+
+https://www.wpvs.de/software/#10
+
+zu finden. Sowohl der Server, als auch die Datenbank befinden sich in der Datei "TomEE und Derby".
